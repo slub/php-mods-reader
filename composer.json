@@ -1,0 +1,34 @@
+{
+    "name": "slub/php-mods-reader",
+    "description": "Read MODS metadata into PHP objects that offer some convenient data extraction methods",
+    "type": "library",
+    "keywords": [
+        "mods",
+        "mods-reader"
+    ],
+    "require": {
+        "php": ">=7.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~7.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Slub\\Mods\\": "src/Mods/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Slub\\Mods\\": "tests/Mods/"
+        }
+    },
+    "minimum-stability": "stable",
+    "license": "GPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Beatrycze Volk",
+            "email": "beatrycze.volk@slub-dresden.de",
+            "role": "Developer"
+        }
+    ]
+}

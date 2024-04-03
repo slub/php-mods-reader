@@ -22,10 +22,7 @@ use Slub\Mods\Element\Specific\Language\LanguageTerm;
 use Slub\Mods\Element\Specific\Language\ScriptTerm;
 
 /**
- * Language MODS metadata element class for the 'dlf' extension
- *
- * @package TYPO3
- * @subpackage dlf
+ * Language MODS metadata element class for the 'php-mods-reader' library.
  *
  * @access public
  */

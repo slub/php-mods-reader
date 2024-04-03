@@ -23,10 +23,7 @@ use Slub\Mods\Attribute\Common\Miscellaneous\ShareableAttribute;
 use Slub\Mods\Element\Common\BaseElement;
 
 /**
- * Abstract MODS metadata element class for the 'dlf' extension
- *
- * @package TYPO3
- * @subpackage dlf
+ * Abstract MODS metadata element class for the 'php-mods-reader' library.
  *
  * @access public
  */

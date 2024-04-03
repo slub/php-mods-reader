@@ -21,10 +21,7 @@ use Slub\Mods\Attribute\Specific\InvalidAttribute;
 use Slub\Mods\Element\Common\BaseElement;
 
 /**
- * Identifier MODS metadata element class for the 'dlf' extension
- *
- * @package TYPO3
- * @subpackage dlf
+ * Identifier MODS metadata element class for the 'php-mods-reader' library.
  *
  * @access public
  */

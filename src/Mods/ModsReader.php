@@ -35,10 +35,7 @@ use Slub\Mods\Element\TypeOfResource;
 use Slub\Mods\Element\Xml\Element;
 
 /**
- * Metadata MODS reader class for the 'dlf' extension
- *
- * @package TYPO3
- * @subpackage dlf
+ * Metadata MODS reader class for the 'php-mods-reader' library.
  *
  * @access public
  */

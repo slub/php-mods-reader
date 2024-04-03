@@ -13,10 +13,7 @@
 namespace Slub\Mods\Element\Xml;
 
 /**
- * MODS metadata element class for the 'dlf' extension
- *
- * @package TYPO3
- * @subpackage dlf
+ * MODS metadata element class for the 'php-mods-reader' library.
  *
  * @access public
  */

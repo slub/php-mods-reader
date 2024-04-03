@@ -19,10 +19,7 @@ use Slub\Mods\Attribute\Common\Miscellaneous\DisplayLabelAttribute;
 use Slub\Mods\Element\Common\BaseElement;
 
 /**
- * PhysicalLocation MODS metadata element class for the 'dlf' extension
- *
- * @package TYPO3
- * @subpackage dlf
+ * PhysicalLocation MODS metadata element class for the 'php-mods-reader' library.
  *
  * @access public
  */

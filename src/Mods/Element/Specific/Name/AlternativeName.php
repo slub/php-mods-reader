@@ -22,10 +22,7 @@ use Slub\Mods\Element\Common\LanguageElement;
 use Slub\Mods\Element\Specific\Name\NameIdentifier;
 
 /**
- * AlternativeName MODS metadata element class for the 'dlf' extension
- *
- * @package TYPO3
- * @subpackage dlf
+ * AlternativeName MODS metadata element class for the 'php-mods-reader' library.
  *
  * @access public
  */

@@ -20,10 +20,7 @@ use Slub\Mods\Attribute\Common\Miscellaneous\TypeUriAttribute;
 use Slub\Mods\Element\Common\BaseElement;
 
 /**
- * Note MODS metadata element class for the 'dlf' extension
- *
- * @package TYPO3
- * @subpackage dlf
+ * Note MODS metadata element class for the 'php-mods-reader' library.
  *
  * @access public
  */

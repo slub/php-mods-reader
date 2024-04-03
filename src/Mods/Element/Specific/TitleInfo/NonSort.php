@@ -16,10 +16,7 @@ use Slub\Mods\Attribute\Common\LanguageAttribute;
 use Slub\Mods\Element\Common\BaseElement;
 
 /**
- * NonSort MODS metadata element class for the 'dlf' extension
- *
- * @package TYPO3
- * @subpackage dlf
+ * NonSort MODS metadata element class for the 'php-mods-reader' library.
  *
  * @access public
  */

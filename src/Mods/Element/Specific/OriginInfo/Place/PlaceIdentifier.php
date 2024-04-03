@@ -15,10 +15,7 @@ namespace Slub\Mods\Element\Specific\OriginInfo\Place;
 use Slub\Mods\Element\Common\BaseElement;
 
 /**
- * PlaceIdentifier MODS metadata element class for the 'dlf' extension
- *
- * @package TYPO3
- * @subpackage dlf
+ * PlaceIdentifier MODS metadata element class for the 'php-mods-reader' library.
  *
  * @access public
  */

@@ -23,10 +23,7 @@ use Slub\Mods\Element\Specific\Location\PhysicalLocation;
 use Slub\Mods\Element\Specific\Location\Url;
 
 /**
- * Location MODS metadata element class for the 'dlf' extension
- *
- * @package TYPO3
- * @subpackage dlf
+ * Location MODS metadata element class for the 'php-mods-reader' library.
  *
  * @access public
  */

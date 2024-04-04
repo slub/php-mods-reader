@@ -24,6 +24,6 @@ trait XlinkHrefAttribute
      */
     public function getXlinkHref(): string
     {
-        return $this->getStringAttribute('xlinkHref');
+        return $this->getStringAttribute('xlink:href');
     }
 }

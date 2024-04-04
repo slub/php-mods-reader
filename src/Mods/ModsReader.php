@@ -153,16 +153,19 @@ class ModsReader
      *
      * @param string $query The XPath query for metadata search
      *
-     * @return ?Genre
+     * @return Genre[]
      */
-    public function getGenre(string $query = ''): ?Genre
+    public function getGenres(string $query = ''): array
     {
-        $xpath = './mods:classification' . $query;
+        $genres = [];
+        $xpath = './mods:genre' . $query;
         $element = new Element($this->xml, $xpath);
         if ($element->exists()) {
-            return new Genre($element->getValues()[0]);
+            foreach ($element->getValues() as $value) {
+                $genres[] = new Genre($value);
+            }
         }
-        return null;
+        return $genres;
     }
 
     /**

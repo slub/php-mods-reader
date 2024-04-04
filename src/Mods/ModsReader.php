@@ -216,16 +216,19 @@ class ModsReader
      *
      * @param string $query The XPath query for metadata search
      *
-     * @return ?Location
+     * @return Location[]
      */
-    public function getLocation(string $query = ''): ?Location
+    public function getLocations(string $query = ''): array
     {
+        $locations = [];
         $xpath = './mods:location' . $query;
         $element = new Element($this->xml, $xpath);
         if ($element->exists()) {
-            return new Location($element->getValues()[0]);
+            foreach ($element->getValues() as $value) {
+                $locations[] = new Location($value);
+            }
         }
-        return null;
+        return $locations;
     }
 
     /**

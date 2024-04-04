@@ -29,10 +29,7 @@ use Slub\Mods\Element\Common\LanguageElement;
 use Slub\Mods\Element\Specific\TitleInfo\NonSort;
 
 /**
- * TitleInfo MODS metadata element class for the 'dlf' extension
- *
- * @package TYPO3
- * @subpackage dlf
+ * TitleInfo MODS metadata element class for the 'php-mods-reader' library.
  *
  * @access public
  */

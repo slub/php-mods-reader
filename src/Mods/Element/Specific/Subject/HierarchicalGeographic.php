@@ -18,10 +18,7 @@ use Slub\Mods\Element\Specific\Subject\HierarchicalGeographic\Element;
 use Slub\Mods\Element\Specific\Subject\HierarchicalGeographic\TypeElement;
 
 /**
- * HierarchicalGeographic MODS metadata element class for the 'dlf' extension
- *
- * @package TYPO3
- * @subpackage dlf
+ * HierarchicalGeographic MODS metadata element class for the 'php-mods-reader' library.
  *
  * @access public
  */

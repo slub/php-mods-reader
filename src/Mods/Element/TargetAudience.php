@@ -21,10 +21,7 @@ use Slub\Mods\Attribute\Common\Miscellaneous\DisplayLabelAttribute;
 use Slub\Mods\Element\Common\BaseElement;
 
 /**
- * TargetAudience MODS metadata element class for the 'dlf' extension
- *
- * @package TYPO3
- * @subpackage dlf
+ * TargetAudience MODS metadata element class for the 'php-mods-reader' library.
  *
  * @access public
  */

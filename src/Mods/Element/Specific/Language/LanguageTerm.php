@@ -19,10 +19,7 @@ use Slub\Mods\Attribute\Specific\TypeAttribute;
 use Slub\Mods\Element\Common\BaseElement;
 
 /**
- * LanguageTerm MODS metadata element class for the 'dlf' extension
- *
- * @package TYPO3
- * @subpackage dlf
+ * LanguageTerm MODS metadata element class for the 'php-mods-reader' library.
  *
  * @access public
  */

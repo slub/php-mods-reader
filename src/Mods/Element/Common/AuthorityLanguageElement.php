@@ -16,10 +16,7 @@ use Slub\Mods\Attribute\Common\AuthorityAttribute;
 use Slub\Mods\Attribute\Common\LanguageAttribute;
 
 /**
- * AuthorityLanguageElement MODS metadata element class for the 'dlf' extension
- *
- * @package TYPO3
- * @subpackage dlf
+ * AuthorityLanguageElement MODS metadata element class for the 'php-mods-reader' library.
  *
  * @access public
  */

@@ -26,10 +26,7 @@ use Slub\Mods\Element\Specific\OriginInfo\Frequency;
 use Slub\Mods\Element\Specific\OriginInfo\Issuance;
 
 /**
- * OriginInfo MODS metadata element class for the 'dlf' extension
- *
- * @package TYPO3
- * @subpackage dlf
+ * OriginInfo MODS metadata element class for the 'php-mods-reader' library.
  *
  * @access public
  */

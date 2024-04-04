@@ -24,10 +24,7 @@ use Slub\Mods\Element\Specific\PhysicalDescription\Extent;
 use Slub\Mods\Element\Specific\PhysicalDescription\Form;
 
 /**
- * PhysicalDescription MODS metadata element class for the 'dlf' extension
- *
- * @package TYPO3
- * @subpackage dlf
+ * PhysicalDescription MODS metadata element class for the 'php-mods-reader' library.
  *
  * @access public
  */

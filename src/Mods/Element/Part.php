@@ -23,10 +23,7 @@ use Slub\Mods\Element\Specific\Part\Extent;
 use Slub\Mods\Element\Specific\Part\Text;
 
 /**
- * Part MODS metadata element class for the 'dlf' extension
- *
- * @package TYPO3
- * @subpackage dlf
+ * Part MODS metadata element class for the 'php-mods-reader' library.
  *
  * @access public
  */

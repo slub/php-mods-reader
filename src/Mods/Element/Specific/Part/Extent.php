@@ -16,10 +16,7 @@ use Slub\Mods\Element\Common\BaseElement;
 use Slub\Mods\Element\Common\LanguageElement;
 
 /**
- * Extent MODS metadata element class for the 'dlf' extension
- *
- * @package TYPO3
- * @subpackage dlf
+ * Extent MODS metadata element class for the 'php-mods-reader' library.
  *
  * @access public
  */

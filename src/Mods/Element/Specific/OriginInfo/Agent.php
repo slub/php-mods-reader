@@ -29,10 +29,7 @@ use Slub\Mods\Element\Specific\Name\NamePart;
 use Slub\Mods\Element\Specific\Name\Role;
 
 /**
- * Agent MODS metadata element class for the 'dlf' extension
- *
- * @package TYPO3
- * @subpackage dlf
+ * Agent MODS metadata element class for the 'php-mods-reader' library.
  *
  * @access public
  */

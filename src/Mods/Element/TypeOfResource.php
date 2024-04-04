@@ -21,10 +21,7 @@ use Slub\Mods\Attribute\Common\Miscellaneous\UsageAttribute;
 use Slub\Mods\Element\Common\BaseElement;
 
 /**
- * TypeOfResource MODS metadata element class for the 'dlf' extension
- *
- * @package TYPO3
- * @subpackage dlf
+ * TypeOfResource MODS metadata element class for the 'php-mods-reader' library.
  *
  * @access public
  */

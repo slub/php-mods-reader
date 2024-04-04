@@ -17,10 +17,7 @@ use Slub\Mods\Attribute\Common\Miscellaneous\SuppliedAttribute;
 use Slub\Mods\Element\Common\BaseElement;
 
 /**
- * DisplayDate MODS metadata element class for the 'dlf' extension
- *
- * @package TYPO3
- * @subpackage dlf
+ * DisplayDate MODS metadata element class for the 'php-mods-reader' library.
  *
  * @access public
  */

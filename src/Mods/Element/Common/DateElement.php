@@ -16,10 +16,7 @@ use Slub\Mods\Attribute\Common\DateAttribute;
 use Slub\Mods\Attribute\Common\LanguageAttribute;
 
 /**
- * General date MODS metadata element class for the 'dlf' extension
- *
- * @package TYPO3
- * @subpackage dlf
+ * General date MODS metadata element class for the 'php-mods-reader' library.
  *
  * @access public
  */

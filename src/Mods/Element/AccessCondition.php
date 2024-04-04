@@ -23,10 +23,7 @@ use Slub\Mods\Attribute\Common\Miscellaneous\DisplayLabelAttribute;
 use Slub\Mods\Element\Common\BaseElement;
 
 /**
- * AccessCondition MODS metadata element class for the 'dlf' extension
- *
- * @package TYPO3
- * @subpackage dlf
+ * AccessCondition MODS metadata element class for the 'php-mods-reader' library.
  *
  * @access public
  */

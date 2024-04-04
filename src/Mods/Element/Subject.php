@@ -27,10 +27,7 @@ use Slub\Mods\Element\Specific\OriginInfo\Place\Cartographics;
 use Slub\Mods\Element\Specific\Subject\HierarchicalGeographic;
 
 /**
- * Subject MODS metadata element class for the 'dlf' extension
- *
- * @package TYPO3
- * @subpackage dlf
+ * Subject MODS metadata element class for the 'php-mods-reader' library.
  *
  * @access public
  */

@@ -15,10 +15,7 @@ namespace Slub\Mods\Element\Specific\OriginInfo;
 use Slub\Mods\Element\Common\BaseElement;
 
 /**
- * Issuance MODS metadata element class for the 'dlf' extension
- *
- * @package TYPO3
- * @subpackage dlf
+ * Issuance MODS metadata element class for the 'php-mods-reader' library.
  *
  * @access public
  */

@@ -109,16 +109,19 @@ class ModsReader
      *
      * @param string $query The XPath query for metadata search
      *
-     * @return ?Classification
+     * @return Classification[]
      */
-    public function getClassification(string $query = ''): ?Classification
+    public function getClassifications(string $query = ''): array
     {
+        $classifications = [];
         $xpath = './mods:classification' . $query;
         $element = new Element($this->xml, $xpath);
         if ($element->exists()) {
-            return new Classification($element->getValues()[0]);
+            foreach ($element->getValues() as $value) {
+                $classifications[] = new Classification($value);
+            }
         }
-        return null;
+        return $classifications;
     }
 
     /**

@@ -42,6 +42,7 @@
     <physicalDescription>
         <form authority="marcform">electronic</form>
         <form authority="gmd">electronic resource</form>
+        <internetMediaType>text/html</internetMediaType>
     </physicalDescription>
     <abstract shareable="no">Test description for non shareable document.</abstract>
     <note type="date/sequential designation">V. 3, no. 1/2 (winter 2002)-</note>

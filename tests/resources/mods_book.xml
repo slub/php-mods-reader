@@ -26,7 +26,7 @@
             <roleTerm type="code" authority="marcrelator">aut</roleTerm>
         </role>
     </name>
-    <typeOfResource>text</typeOfResource>
+    <typeOfResource displayLabel="format">text</typeOfResource>
     <genre authority="marcgt">bibliography</genre>
     <originInfo eventType='publication'>
         <place>
@@ -62,6 +62,8 @@
     <physicalDescription>
         <form authority="marcform">print</form>
         <extent>vii, 322 p. ; 23 cm.</extent>
+        <reformattingQuality>replacement</reformattingQuality>
+        <digitalOrigin>born digital</digitalOrigin>
     </physicalDescription>
     <abstract displayLabel="Content description">Test description for document which contains display label.</abstract>
     <note type="statement of responsibility">Eric Alterman.</note>
@@ -107,6 +109,25 @@
         <url access="raw object">http://www.slub-dresden.de/some-url/SLO-0000</url>
     </location>
     <accessCondition type="use and reproduction">Use of this public-domain resource is unrestricted.</accessCondition>
+    <part type="poem" order="1">
+        <detail>
+            <title>Wayfarers</title>
+        </detail>
+        <extent unit="pages">
+            <start>97</start>
+            <end>98</end>
+        </extent>
+    </part>
+    <part type="poem" order="2">
+        <detail>
+            <title>Vagabonds</title>
+        </detail>
+        <extent unit="pages">
+            <start>99</start>
+            <end>100</end>
+        </extent>
+    </part>
+    <tableOfContents displayLabel="Chapters">Bluegrass odyssey -- Hills of Tennessee -- Sassafrass -- Muddy river -- Take your shoes off Moses -- Let Smokey Mountain smoke get in your eyes -- Farewell party -- Faded love</tableOfContents>
     <recordInfo>
         <descriptionStandard>aacr</descriptionStandard>
         <recordContentSource authority="marcorg">DLC</recordContentSource>

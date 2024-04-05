@@ -57,7 +57,12 @@
         <dateIssued>c1999</dateIssued>
     </originInfo>
     <language>
-        <languageTerm authority="iso639-2b" type="code">eng</languageTerm>
+        <languageTerm type="code" authority="iso639-2b">eng</languageTerm>
+        <scriptTerm type="code" authority="iso15924">Latn</scriptTerm>
+    </language>
+    <language objectPart="summary">
+        <languageTerm type="code" authority="iso639-2b">spa</languageTerm>
+        <scriptTerm type="code" authority="iso15924">Latn</scriptTerm>
     </language>
     <physicalDescription>
         <form authority="marcform">print</form>

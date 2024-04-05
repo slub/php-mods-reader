@@ -46,6 +46,7 @@ class Element
     {
         $this->xml = $xml;
         $this->xml->registerXPathNamespace('mods', 'http://www.loc.gov/mods/v3');
+        $this->xml->registerXPathNamespace('xlink', 'http://www.w3.org/1999/xlink');
 
         $this->values = $this->xml->xpath($xpath);
     }

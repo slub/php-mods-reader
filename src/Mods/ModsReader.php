@@ -372,7 +372,7 @@ class ModsReader
      *
      * @return RelatedItem[]
      */
-    public function getRelatedItem(string $query = ''): array
+    public function getRelatedItems(string $query = ''): array
     {
         $relatedItems = [];
         $xpath = './mods:relatedItem' . $query;

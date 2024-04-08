@@ -17,6 +17,7 @@ use Slub\Mods\Element\Common\BaseElement;
 
 /**
  * NonSort MODS metadata element class for the 'php-mods-reader' library.
+ * @see https://www.loc.gov/standards/mods/userguide/titleinfo.html#nonsort
  *
  * @access public
  */

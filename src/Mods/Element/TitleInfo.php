@@ -27,9 +27,11 @@ use Slub\Mods\Attribute\Specific\OtherTypeAttribute;
 use Slub\Mods\Element\Common\BaseElement;
 use Slub\Mods\Element\Common\LanguageElement;
 use Slub\Mods\Element\Specific\TitleInfo\NonSort;
+use Slub\Mods\Element\Xml\Element;
 
 /**
  * TitleInfo MODS metadata element class for the 'php-mods-reader' library.
+ * @see https://www.loc.gov/standards/mods/userguide/titleinfo.html
  *
  * @access public
  */
@@ -49,36 +51,6 @@ class TitleInfo extends BaseElement
     ];
 
     /**
-     * @access private
-     * @var LanguageElement
-     */
-    private LanguageElement $title;
-
-    /**
-     * @access private
-     * @var LanguageElement
-     */
-    private LanguageElement $subTitle;
-
-    /**
-     * @access private
-     * @var LanguageElement
-     */
-    private LanguageElement $partNumber;
-
-    /**
-     * @access private
-     * @var LanguageElement
-     */
-    private LanguageElement $partName;
-
-    /**
-     * @access private
-     * @var NonSort
-     */
-    private NonSort $nonSort;
-
-    /**
      * This extracts the essential MODS metadata from XML
      *
      * @access public
@@ -90,16 +62,11 @@ class TitleInfo extends BaseElement
     public function __construct(\SimpleXMLElement $xml)
     {
         parent::__construct($xml);
-
-        $this->title = new LanguageElement($xml);
-        $this->subTitle = new LanguageElement($xml);
-        $this->partNumber = new LanguageElement($xml);
-        $this->partName = new LanguageElement($xml);
-        $this->nonSort = new NonSort($xml);
     }
 
     /**
-     * Get the value of type
+     * Get the value of the 'type' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/titleinfo.html#type
      *
      * @access public
      *
@@ -111,62 +78,104 @@ class TitleInfo extends BaseElement
     }
 
     /**
-     * Get the value of title
+     * Get the value of the <title> element.
+     * @see https://www.loc.gov/standards/mods/userguide/titleinfo.html#title
      *
      * @access public
      *
-     * @return LanguageElement
+     * @param string $query The XPath query for metadata search
+     *
+     * @return ?LanguageElement
      */
-    public function getTitle(): LanguageElement
+    public function getTitle(string $query = ''): ?LanguageElement
     {
-        return $this->title;
+        $xpath = './mods:title' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            return new LanguageElement($element->getValues()[0]);
+        }
+        return null;
     }
 
     /**
-     * Get the value of subTitle
+     * Get the value of the <subTitle> element.
+     * @see https://www.loc.gov/standards/mods/userguide/titleinfo.html#subtitle
      *
      * @access public
      *
-     * @return LanguageElement
+     * @param string $query The XPath query for metadata search
+     *
+     * @return ?LanguageElement
      */
-    public function getSubTitle(): LanguageElement
+    public function getSubTitle(string $query = ''): ?LanguageElement
     {
-        return $this->subTitle;
+        $xpath = './mods:subTitle' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            return new LanguageElement($element->getValues()[0]);
+        }
+        return null;
     }
 
     /**
-     * Get the value of partNumber
+     * Get the value of the <partNumber> element.
+     * @see https://www.loc.gov/standards/mods/userguide/titleinfo.html#partnumber
      *
      * @access public
+     *
+     * @param string $query The XPath query for metadata search
      *
      * @return LanguageElement
      */
-    public function getPartNumber(): LanguageElement
+    public function getPartNumber(string $query = ''): LanguageElement
     {
-        return $this->partNumber;
+        $xpath = './mods:partNumber' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            return new LanguageElement($element->getValues()[0]);
+        }
+        return null;
     }
 
     /**
-     * Get the value of partName
+     * Get the the array of the <partName> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/titleinfo.html#partname
      *
      * @access public
      *
-     * @return LanguageElement
+     * @param string $query The XPath query for metadata search
+     *
+     * @return LanguageElement[]
      */
-    public function getPartName(): LanguageElement
+    public function getPartName(string $query = ''): array
     {
-        return $this->partName;
+        $partNames = [];
+        $xpath = './mods:partName' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $partNames[] = new LanguageElement($value);
+            }
+        }
+        return $partNames;
     }
 
     /**
-     * Get the value of nonSort
+     * Get the value of the <nonSort> element.
      *
      * @access public
      *
-     * @return NonSort
+     * @param string $query The XPath query for metadata search
+     *
+     * @return ?NonSort
      */
-    public function getNonSort(): NonSort
+    public function getNonSort(string $query = ''): ?NonSort
     {
-        return $this->nonSort;
+        $xpath = './mods:nonSort' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            return new NonSort($element->getValues()[0]);
+        }
+        return null;
     }
 }

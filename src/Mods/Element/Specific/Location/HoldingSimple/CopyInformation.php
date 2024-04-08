@@ -18,56 +18,16 @@ use Slub\Mods\Element\Note;
 use Slub\Mods\Element\Specific\Location\HoldingSimple\CopyInformation\EnumerationAndChronology;
 use Slub\Mods\Element\Specific\Location\HoldingSimple\CopyInformation\ItemIdentifier;
 use Slub\Mods\Element\Specific\PhysicalDescription\Form;
+use Slub\Mods\Element\Xml\Element;
 
 /**
  * HoldingSimple MODS metadata element class for the 'php-mods-reader' library.
+ * @see https://www.loc.gov/standards/mods/userguide/location.html#copyinformation
  *
  * @access public
  */
 class CopyInformation extends BaseElement
 {
-
-    /**
-     * @access private
-     * @var Form
-     */
-    private Form $form;
-
-    /**
-     * @access private
-     * @var LanguageElement
-     */
-    private LanguageElement $subLocation;
-
-    /**
-     * @access private
-     * @var LanguageElement
-     */
-    private LanguageElement $shelfLocator;
-
-    /**
-     * @access private
-     * @var string
-     */
-    private string $electronicLocator;
-
-    /**
-     * @access private
-     * @var Note
-     */
-    private Note $note;
-
-    /**
-     * @access private
-     * @var EnumerationAndChronology
-     */
-    private EnumerationAndChronology $enumerationAndChronology;
-
-    /**
-     * @access private
-     * @var ItemIdentifier
-     */
-    private ItemIdentifier $itemIdentifier;
 
     /**
      * This extracts the essential MODS metadata from XML
@@ -84,43 +44,71 @@ class CopyInformation extends BaseElement
     }
 
     /**
-     * Get the value of form
+     * Get the value of the <form> element.
+     * @see https://www.loc.gov/standards/mods/userguide/location.html#form
      *
      * @access public
      *
-     * @return Form
+     * @param string $query The XPath query for metadata search
+     *
+     * @return ?Form
      */
-    public function getForm(): Form
+    public function getForm(string $query = ''): ?Form
     {
-        return $this->form;
+        $xpath = './mods:form' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            return new LanguageElement($element->getValues()[0]);
+        }
+        return null;
     }
 
     /**
-     * Get the value of subLocation
+     * Get the the array of the <subLocation> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/location.html#sublocation
      *
      * @access public
+     *
+     * @param string $query The XPath query for metadata search
+     *
+     * @return LanguageElement[]
+     */
+    public function getSubLocations(string $query = ''): array
+    {
+        $subLocations = [];
+        $xpath = './mods:subLocation' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $subLocations[] = new LanguageElement($value);
+            }
+        }
+        return $subLocations;
+    }
+
+    /**
+     * Get the value of the <shelfLocator> element.
+     * @see https://www.loc.gov/standards/mods/userguide/location.html#copyshelflocator
+     *
+     * @access public
+     *
+     * @param string $query The XPath query for metadata search
      *
      * @return LanguageElement
      */
-    public function getSubLocation(): LanguageElement
+    public function getShelfLocator(string $query = ''): LanguageElement
     {
-        return $this->subLocation;
+        $xpath = './mods:shelfLocator' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            return new LanguageElement($element->getValues()[0]);
+        }
+        return null;
     }
 
     /**
-     * Get the value of shelfLocator
-     *
-     * @access public
-     *
-     * @return LanguageElement
-     */
-    public function getShelfLocator(): LanguageElement
-    {
-        return $this->shelfLocator;
-    }
-
-    /**
-     * Get the value of electronicLocator
+     * Get the value of the <electronicLocator> element.
+     * @see https://www.loc.gov/standards/mods/userguide/location.html#electroniclocator
      *
      * @access public
      *
@@ -128,42 +116,73 @@ class CopyInformation extends BaseElement
      */
     public function getElectronicLocator(): string
     {
-        return $this->electronicLocator;
+        $element = new Element($this->xml, './mods:electronicLocator');
+        if ($element->exists()) {
+            return $element->getValues()[0];
+        }
+        return '';
     }
 
     /**
-     * Get the value of note
+     * Get the array of the <note> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/location.html#copyInformationnote
      *
      * @access public
      *
-     * @return Note
+     * @param string $query The XPath query for metadata search
+     *
+     * @return Note[]
      */
-    public function getNote(): Note
+    public function getNotes(string $query = ''): array
     {
-        return $this->note;
+        $notes = [];
+        $xpath = './mods:note' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $notes[] = new Note($value);
+            }
+        }
+        return $notes;
     }
 
     /**
-     * Get the value of enumerationAndChronology
+     * Get the value of the <enumerationAndChronology> element.
+     * @see https://www.loc.gov/standards/mods/userguide/location.html#enumerationandchronology
      *
      * @access public
      *
-     * @return EnumerationAndChronology
+     * @param string $query The XPath query for metadata search
+     *
+     * @return ?EnumerationAndChronology
      */
-    public function getEnumerationAndChronology(): EnumerationAndChronology
+    public function getEnumerationAndChronology(string $query = ''): ?EnumerationAndChronology
     {
-        return $this->enumerationAndChronology;
+        $xpath = './mods:enumerationAndChronology' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            return new EnumerationAndChronology($element->getValues()[0]);
+        }
+        return null;
     }
 
     /**
-     * Get the value of itemIdentifier
+     * Get the value of the <itemIdentifier> element.
+     * @see https://www.loc.gov/standards/mods/userguide/location.html#itemidentifier
      *
      * @access public
      *
-     * @return ItemIdentifier
+     * @param string $query The XPath query for metadata search
+     *
+     * @return ?ItemIdentifier
      */
-    public function getItemIdentifier(): ItemIdentifier
+    public function getItemIdentifier(string $query = ''): ?ItemIdentifier
     {
-        return $this->itemIdentifier;
+        $xpath = './mods:itemIdentifier' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            return new EnumerationAndChronology($element->getValues()[0]);
+        }
+        return null;
     }
 }

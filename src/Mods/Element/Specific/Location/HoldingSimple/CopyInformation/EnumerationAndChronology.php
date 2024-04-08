@@ -17,6 +17,7 @@ use Slub\Mods\Element\Common\BaseElement;
 
 /**
  * EnumerationAndChronology MODS metadata element class for the 'php-mods-reader' library.
+ * @see https://www.loc.gov/standards/mods/userguide/location.html#enumerationandchronology
  *
  * @access public
  */
@@ -39,7 +40,8 @@ class EnumerationAndChronology extends BaseElement
     }
 
     /**
-     * Get the value of unitType
+     * Get the value of the 'unitType' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/location.html#unittype
      *
      * @access public
      *
@@ -47,11 +49,6 @@ class EnumerationAndChronology extends BaseElement
      */
     public function getUnitType(): string
     {
-        $value = $this->xml->attributes()->unitType;
-
-        if (!empty($value)) {
-            return $value;
-        }
-        return '';
+        return $this->getStringAttribute('unitType');
     }
 }

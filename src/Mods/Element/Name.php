@@ -20,82 +20,20 @@ use Slub\Mods\Attribute\Common\Linking\NameTitleGroupAttribute;
 use Slub\Mods\Attribute\Common\Linking\XlinkHrefAttribute;
 use Slub\Mods\Attribute\Common\Miscellaneous\DisplayLabelAttribute;
 use Slub\Mods\Attribute\Common\Miscellaneous\UsageAttribute;
-use Slub\Mods\Element\Common\AuthorityLanguageElement;
-use Slub\Mods\Element\Common\BaseElement;
 use Slub\Mods\Element\Common\LanguageElement;
 use Slub\Mods\Element\Specific\Name\AlternativeName;
-use Slub\Mods\Element\Specific\Name\NameIdentifier;
-use Slub\Mods\Element\Specific\Name\NamePart;
-use Slub\Mods\Element\Specific\Name\Role;
+use Slub\Mods\Element\Specific\Name\BaseNameElement;
 use Slub\Mods\Element\Xml\Element;
 
 /**
  * Name MODS metadata element class for the 'php-mods-reader' library.
+ * @see https://www.loc.gov/standards/mods/userguide/name.html
  *
  * @access public
  */
-class Name extends BaseElement
+class Name extends BaseNameElement
 {
     use AuthorityAttribute, LanguageAttribute, IdAttribute, XlinkHrefAttribute, AltRepGroupAttribute, NameTitleGroupAttribute, UsageAttribute, DisplayLabelAttribute;
-
-    /**
-     * @access private
-     * @var array
-     */
-    private array $allowedTypes = [
-        'personal',
-        'corporate',
-        'conference',
-        'family'
-    ];
-
-    /**
-     * @access private
-     * @var array
-     */
-    private array $nameParts = [];
-
-    /**
-     * @access private
-     * @var array
-     */
-    private array $alternativeNames = [];
-
-    /**
-     * @access private
-     * @var array
-     */
-    private array $nameIdentifiers = [];
-
-    /**
-     * @access private
-     * @var array
-     */
-    private array $displayForms = [];
-
-    /**
-     * @access private
-     * @var array
-     */
-    private array $affiliations = [];
-
-    /**
-     * @access private
-     * @var array
-     */
-    private array $roles = [];
-
-    /**
-     * @access private
-     * @var array
-     */
-    private array $descriptions = [];
-
-    /**
-     * @access private
-     * @var LanguageElement
-     */
-    private LanguageElement $etal;
 
     /**
      * This extracts the essential MODS metadata from XML
@@ -112,7 +50,8 @@ class Name extends BaseElement
     }
 
     /**
-     * Get the value of type
+     * Get the value of the 'type' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/name.html#type
      *
      * @access public
      *
@@ -124,32 +63,8 @@ class Name extends BaseElement
     }
 
     /**
-     * Get the value of namePart
-     *
-     * @access public
-     *
-     * @param string $query The XPath query for metadata search
-     *
-     * @return NamePart[]
-     */
-    public function getNameParts(string $query = ''): array
-    {
-        if (empty($this->nameParts)) {
-            $xpath = './mods:namePart' . $query;
-            $element = new Element($this->xml, $xpath);
-
-            if ($element->exists()) {
-                foreach ($element->getValues() as $value) {
-                    $this->nameParts[] = new NamePart($value);
-                }
-            }
-        }
-
-        return $this->nameParts;
-    }
-
-    /**
-     * Get the value of alternativeName
+     * Get the the array of the <alternativeName> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/name.html#alternativename
      *
      * @access public
      *
@@ -159,154 +74,34 @@ class Name extends BaseElement
      */
     public function getAlternativeNames(string $query = ''): array
     {
-        if (empty($this->alternativeNames)) {
-            $xpath = './mods:alternativeName' . $query;
-            $element = new Element($this->xml, $xpath);
-
-            if ($element->exists()) {
-                foreach ($element->getValues() as $value) {
-                    $this->alternativeNames[] = new AlternativeName($value);
-                }
+        $alternativeNames = [];
+        $xpath = './mods:alternativeName' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $alternativeNames[] = new AlternativeName($value);
             }
         }
-
-        return $this->alternativeNames;
+        return $alternativeNames;
     }
 
     /**
-     * Get the value of nameIdentifier
+     * Get the value of the <etal> element.
+     * @see https://www.loc.gov/standards/mods/userguide/name.html#etal
      *
      * @access public
      *
      * @param string $query The XPath query for metadata search
      *
-     * @return NameIdentifier
+     * @return ?LanguageElement
      */
-    public function getNameIdentifier(string $query): array
+    public function getEtal(string $query = ''): ?LanguageElement
     {
-        if (empty($this->nameIdentifiers)) {
-            $xpath = './mods:nameIdentifier' . $query;
-            $element = new Element($this->xml, $xpath);
-
-            if ($element->exists()) {
-                foreach ($element->getValues() as $value) {
-                    $this->nameIdentifiers[] = new NameIdentifier($value);
-                }
-            }
+        $xpath = './mods:etal' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            return new LanguageElement($element->getValues()[0]);
         }
-
-        return $this->nameIdentifiers;
-    }
-
-    /**
-     * Get the value of displayForm
-     *
-     * @access public
-     *
-     * @param string $query The XPath query for metadata search
-     *
-     * @return LanguageElement[]
-     */
-    public function getDisplayForms(string $query = ''): array
-    {
-        if (empty($this->displayForms)) {
-            $xpath = './mods:displayForm' . $query;
-            $element = new Element($this->xml, $xpath);
-
-            if ($element->exists()) {
-                foreach ($element->getValues() as $value) {
-                    $this->displayForms[] = new LanguageElement($value);
-                }
-            }
-        }
-
-        return $this->displayForms;
-    }
-
-    /**
-     * Get the value of affiliation
-     *
-     * @access public
-     *
-     * @param string $query The XPath query for metadata search
-     *
-     * @return AuthorityLanguageElement[]
-     */
-    public function getAffiliations(string $query = ''): array
-    {
-        if (empty($this->affiliations)) {
-            $xpath = './mods:affiliation' . $query;
-            $element = new Element($this->xml, $xpath);
-
-            if ($element->exists()) {
-                foreach ($element->getValues() as $value) {
-                    $this->affiliations[] = new AuthorityLanguageElement($value);
-                }
-            }
-        }
-
-        return $this->affiliations;
-    }
-
-    /**
-     * Get the array of roles
-     *
-     * @access public
-     *
-     * @param string $query The XPath query for metadata search
-     *
-     * @return Role[]
-     */
-    public function getRoles(string $query = ''): array
-    {
-        if (empty($this->roles)) {
-            $xpath = './mods:role' . $query;
-            $element = new Element($this->xml, $xpath);
-
-            if ($element->exists()) {
-                foreach ($element->getValues() as $value) {
-                    $this->roles[] = new AuthorityLanguageElement($value);
-                }
-            }
-        }
-
-        return $this->roles;
-    }
-
-    /**
-     * Get the value of description
-     *
-     * @access public
-     *
-     * @param string $query The XPath query for metadata search
-     *
-     * @return LanguageElement[]
-     */
-    public function getDescriptions(string $query = ''): array
-    {
-        if (empty($this->descriptions)) {
-            $xpath = './mods:description' . $query;
-            $element = new Element($this->xml, $xpath);
-
-            if ($element->exists()) {
-                foreach ($element->getValues() as $value) {
-                    $this->descriptions[] = new LanguageElement($value);
-                }
-            }
-        }
-
-        return $this->descriptions;
-    }
-
-    /**
-     * Get the value of etal
-     *
-     * @access public
-     *
-     * @return LanguageElement
-     */
-    public function getEtal(): LanguageElement
-    {
-        return $this->etal;
+        return null;
     }
 }

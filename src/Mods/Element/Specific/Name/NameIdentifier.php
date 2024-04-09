@@ -22,6 +22,7 @@ use Slub\Mods\Element\Common\BaseElement;
 
 /**
  * NameIdentifier MODS metadata element class for the 'php-mods-reader' library.
+ * @see https://www.loc.gov/standards/mods/userguide/name.html#nameidentifier
  *
  * @access public
  */
@@ -44,7 +45,8 @@ class NameIdentifier extends BaseElement
     }
 
     /**
-     * Get the value of type
+     * Get the value of the 'type' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/identifier.html#type
      *
      * @access public
      *

@@ -18,17 +18,12 @@ use Slub\Mods\Element\Xml\Element;
 
 /**
  * Role MODS metadata element class for the 'php-mods-reader' library.
+ * @see https://www.loc.gov/standards/mods/userguide/name.html#role
  *
  * @access public
  */
 class Role extends BaseElement
 {
-
-    /**
-     * @access private
-     * @var array
-     */
-    private array $roleTerms = [];
 
     /**
      * This extracts the essential MODS metadata from XML
@@ -45,7 +40,8 @@ class Role extends BaseElement
     }
 
     /**
-     * Get the value of role term
+     * Get the the array of the <roleTerm> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/name.html#roleterm
      *
      * @access public
      *
@@ -55,17 +51,14 @@ class Role extends BaseElement
      */
     public function getRoleTerms(string $query = ''): array
     {
-        if (empty($this->roleTerms)) {
-            $xpath = './mods:roleTerm' . $query;
-            $element = new Element($this->xml, $xpath);
-
-            if ($element->exists()) {
-                foreach ($element->getValues() as $value) {
-                    $this->roleTerms[] = new RoleTerm($value);
-                }
+        $roleTerms = [];
+        $xpath = './mods:roleTerm' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $roleTerms[] = new RoleTerm($value);
             }
         }
-
-        return $this->roleTerms;
+        return $roleTerms;
     }
 }

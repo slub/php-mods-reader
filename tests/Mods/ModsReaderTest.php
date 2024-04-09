@@ -918,12 +918,26 @@ class ModsReaderTest extends TestCase
     {
         $titleInfos = $this->bookReader->getTitleInfos();
         self::assertNotEmpty($titleInfos);
+        self::assertEquals(2, count($titleInfos));
+        self::assertNotEmpty($titleInfos[0]->getValue());
+        self::assertEquals('Sound and fury', $titleInfos[0]->getTitle()->getValue());
+        self::assertEquals('the making of the punditocracy', $titleInfos[0]->getSubTitle()->getValue());
+    }
+
+    public function testGetTitleInfosByQueryForBookDocument()
+    {
+        $titleInfos = $this->bookReader->getTitleInfos('[@xml:lang="fr"]');
+        self::assertNotEmpty($titleInfos);
         self::assertEquals(1, count($titleInfos));
         self::assertNotEmpty($titleInfos[0]->getValue());
-        //self::assertNotEmpty($titleInfos[0]->getTitle());
-        //self::assertNotEmpty($titleInfos[0]->getSubTitle());
-
-        // TODO: implement reading of elements
+        self::assertNotEmpty($titleInfos[0]->getType());
+        self::assertEquals('translated', $titleInfos[0]->getType());
+        self::assertNotEmpty($titleInfos[0]->getNonSort());
+        self::assertEquals('Le', $titleInfos[0]->getNonSort()->getValue());
+        self::assertNotEmpty($titleInfos[0]->getTitle());
+        self::assertEquals('bruit et la fureur', $titleInfos[0]->getTitle()->getValue());
+        self::assertNotEmpty($titleInfos[0]->getSubTitle());
+        self::assertEquals('la création de la punditocratie', $titleInfos[0]->getSubTitle()->getValue());
     }
 
     public function testGetTitleInfosForSerialDocument()
@@ -932,22 +946,21 @@ class ModsReaderTest extends TestCase
         self::assertNotEmpty($titleInfos);
         self::assertEquals(3, count($titleInfos));
         self::assertNotEmpty($titleInfos[0]->getValue());
-        //self::assertNotEmpty($titleInfos[0]->getTitle());
-        //self::assertNotEmpty($titleInfos[0]->getSubTitle());
-
-        // TODO: implement reading of elements
+        self::assertNotEmpty($titleInfos[0]->getTitle());
+        self::assertEquals('E-JASL', $titleInfos[0]->getTitle()->getValue());
+        self::assertNotEmpty($titleInfos[0]->getSubTitle());
+        self::assertEquals('the electronic journal of academic and special librarianship', $titleInfos[0]->getSubTitle()->getValue());
     }
 
     public function testGetTitleInfosByQueryForSerialDocument()
     {
-        $titleInfos = $this->serialReader->getTitleInfos('[@type="alternative"]');
+        $titleInfos = $this->serialReader->getTitleInfos('[@type="abbreviated"]');
         self::assertNotEmpty($titleInfos);
         self::assertEquals(1, count($titleInfos));
         self::assertNotEmpty($titleInfos[0]->getValue());
-        //self::assertNotEmpty($titleInfos[0]->getTitle());
-        //self::assertEmpty($titleInfos[0]->getSubTitle());
-
-        // TODO: implement reading of elements
+        self::assertEquals('E-JASL', $titleInfos[0]->getTitle()->getValue());
+        self::assertNotEmpty($titleInfos[0]->getSubTitle());
+        self::assertEquals('(Athabasca)', $titleInfos[0]->getSubTitle()->getValue());
     }
 
     public function testGetNoTitleInfosByQueryForSerialDocument()

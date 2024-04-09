@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mods xmlns="http://www.loc.gov/mods/v3"
+<mods xmlns="http://www.loc.gov/mods/v3" xmlns:xml="http://www.w3.org/XML/1998/namespace"
     xmlns:zs="http://docs.oasis-open.org/ns/search-ws/sruResponse"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="3.8" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-8.xsd">
     <titleInfo>
         <title>Sound and fury</title>
         <subTitle>the making of the punditocracy</subTitle>
+    </titleInfo>
+    <titleInfo xml:lang="fr" type="translated">
+        <nonSort>Le</nonSort>
+        <title>bruit et la fureur</title>
+        <subTitle>la création de la punditocratie</subTitle>
     </titleInfo>
     <name type="personal" usage="primary">
         <namePart>Alterman, Eric.</namePart>

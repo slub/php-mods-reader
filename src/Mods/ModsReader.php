@@ -191,22 +191,26 @@ class ModsReader
     }
 
     /**
-     * Get 
+     * Get the array of the <language> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/language.html
      *
      * @access public
      *
      * @param string $query The XPath query for metadata search
      *
-     * @return ?Language
+     * @return Language[]
      */
-    public function getLanguage(string $query = ''): ?Language
+    public function getLanguages(string $query = ''): array
     {
+        $languages = [];
         $xpath = './mods:language' . $query;
         $element = new Element($this->xml, $xpath);
         if ($element->exists()) {
-            return new Language($element->getValues()[0]);
+            foreach ($element->getValues() as $value) {
+                $languages[] = new Language($value);
+            }
         }
-        return null;
+        return $languages;
     }
 
     /**

@@ -379,28 +379,83 @@ class ModsReaderTest extends TestCase
         self::assertEmpty($identifiers);
     }
 
-    public function testGetLanguageForBookDocument()
+    public function testGetLanguagesForBookDocument()
     {
-        $language = $this->bookReader->getLanguage();
-        self::assertNotNull($language);
-        // TODO: implement reading of languageTerm and scriptTerm
-        // self::assertNotEmpty($language->getLanguageTerm());
-        // self::assertNotEmpty($language->getScriptTerm());
-
-        $language = $this->bookReader->getLanguage('[@type="text"]');
-        self::assertNull($language);
+        $languages = $this->bookReader->getLanguages();
+        self::assertNotEmpty($languages);
+        self::assertEquals(2, count($languages));
+        self::assertEmpty($languages[0]->getObjectPart());
+        self::assertNotEmpty($languages[0]->getValue());
+        self::assertNotEmpty($languages[0]->getLanguageTerms());
+        self::assertNotEmpty($languages[0]->getLanguageTerms()[0]->getValue());
+        self::assertEquals('code', $languages[0]->getLanguageTerms()[0]->getType());
+        self::assertEquals('iso639-2b', $languages[0]->getLanguageTerms()[0]->getAuthority());
+        self::assertEquals('eng', $languages[0]->getLanguageTerms()[0]->getValue());
+        self::assertNotEmpty($languages[0]->getScriptTerms());
+        self::assertEquals('code', $languages[0]->getScriptTerms()[0]->getType());
+        self::assertEquals('iso15924', $languages[0]->getScriptTerms()[0]->getAuthority());
+        self::assertEquals('Latn', $languages[0]->getScriptTerms()[0]->getValue());
     }
 
-    public function testGetLanguageForSerialDocument()
+    public function testGetLanguagesByQueryForBookDocument()
     {
-        $language = $this->serialReader->getLanguage();
-        self::assertNotNull($language);
-        // TODO: implement reading of languageTerm and scriptTerm
-        // self::assertNotEmpty($language->getLanguageTerm());
-        // self::assertNotEmpty($language->getScriptTerm());
+        $languages = $this->bookReader->getLanguages('[@objectPart="summary"]');
+        self::assertNotEmpty($languages);
+        self::assertEquals(1, count($languages));
+        self::assertNotEmpty($languages[0]->getObjectPart());
+        self::assertEquals('summary', $languages[0]->getObjectPart());
+        self::assertNotEmpty($languages[0]->getValue());
+        self::assertNotEmpty($languages[0]->getLanguageTerms());
+        self::assertNotEmpty($languages[0]->getLanguageTerms()[0]->getValue());
+        self::assertEquals('code', $languages[0]->getLanguageTerms()[0]->getType());
+        self::assertEquals('iso639-2b', $languages[0]->getLanguageTerms()[0]->getAuthority());
+        self::assertEquals('spa', $languages[0]->getLanguageTerms()[0]->getValue());
+        self::assertNotEmpty($languages[0]->getScriptTerms());
+        self::assertEquals('code', $languages[0]->getScriptTerms()[0]->getType());
+        self::assertEquals('iso15924', $languages[0]->getScriptTerms()[0]->getAuthority());
+        self::assertEquals('Latn', $languages[0]->getScriptTerms()[0]->getValue());
+    }
 
-        $language = $this->serialReader->getLanguage('[@type="text"]');
-        self::assertNull($language);
+    public function testGetNoLanguagesByQueryForBookDocument()
+    {
+        $languages = $this->bookReader->getLanguages('[@objectPart="abstract"]');
+        self::assertEmpty($languages);
+    }
+
+    public function testGetLanguagesForSerialDocument()
+    {
+        $languages = $this->serialReader->getLanguages();
+        self::assertNotEmpty($languages);
+        self::assertEquals(1, count($languages));
+        self::assertEmpty($languages[0]->getObjectPart());
+        self::assertNotEmpty($languages[0]->getValue());
+        self::assertNotEmpty($languages[0]->getLanguageTerms());
+        self::assertNotEmpty($languages[0]->getLanguageTerms()[0]->getValue());
+        self::assertEquals('code', $languages[0]->getLanguageTerms()[0]->getType());
+        self::assertEquals('iso639-2b', $languages[0]->getLanguageTerms()[0]->getAuthority());
+        self::assertEquals('eng', $languages[0]->getLanguageTerms()[0]->getValue());
+        self::assertEmpty($languages[0]->getScriptTerms());
+    }
+
+    public function testGetLanguagesByQueryForSerialDocument()
+    {
+        $languages = $this->serialReader->getLanguages('[./mods:languageTerm[@type="code"]]');
+        self::assertNotEmpty($languages);
+        self::assertEquals(1, count($languages));
+        self::assertEmpty($languages[0]->getObjectPart());
+        self::assertNotEmpty($languages[0]->getValue());
+        self::assertNotEmpty($languages[0]->getLanguageTerms());
+        self::assertNotEmpty($languages[0]->getLanguageTerms()[0]->getValue());
+        self::assertEquals('code', $languages[0]->getLanguageTerms()[0]->getType());
+        self::assertEquals('iso639-2b', $languages[0]->getLanguageTerms()[0]->getAuthority());
+        self::assertEquals('eng', $languages[0]->getLanguageTerms()[0]->getValue());
+        self::assertEmpty($languages[0]->getScriptTerms());
+    }
+
+    public function testGetNoLanguagesByQueryForSerialDocument()
+    {
+        $languages = $this->serialReader->getLanguages('[@objectPart="summary"]');
+        self::assertEmpty($languages);
     }
 
     public function testGetLocationsForBookDocument()

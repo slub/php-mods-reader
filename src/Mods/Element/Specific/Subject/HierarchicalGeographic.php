@@ -14,83 +14,19 @@ namespace Slub\Mods\Element\Specific\Subject;
 
 use Slub\Mods\Attribute\Common\AuthorityAttribute;
 use Slub\Mods\Element\Common\BaseElement;
-use Slub\Mods\Element\Specific\Subject\HierarchicalGeographic\Element;
+use Slub\Mods\Element\Specific\Subject\HierarchicalGeographic\LevelPeriodElement;
 use Slub\Mods\Element\Specific\Subject\HierarchicalGeographic\TypeElement;
+use Slub\Mods\Element\Xml\Element;
 
 /**
  * HierarchicalGeographic MODS metadata element class for the 'php-mods-reader' library.
+ * @see https://www.loc.gov/standards/mods/userguide/subject.html#hierarchicalgeographic
  *
  * @access public
  */
 class HierarchicalGeographic extends BaseElement
 {
     use AuthorityAttribute;
-
-    /**
-     * @access private
-     * @var Element
-     */
-    private Element $continent;
-
-    /**
-     * @access private
-     * @var Element
-     */
-    private Element $country;
-
-    /**
-     * @access private
-     * @var TypeElement
-     */
-    private TypeElement $region;
-
-    /**
-     * @access private
-     * @var TypeElement
-     */
-    private TypeElement $state;
-
-    /**
-     * @access private
-     * @var Element
-     */
-    private Element $territory;
-
-    /**
-     * @access private
-     * @var Element
-     */
-    private Element $county;
-
-    /**
-     * @access private
-     * @var Element
-     */
-    private Element $city;
-
-    /**
-     * @access private
-     * @var TypeElement
-     */
-    private TypeElement $citySection;
-
-    /**
-     * @access private
-     * @var Element
-     */
-    private Element $island;
-
-    /**
-     * @access private
-     * @var TypeElement
-     */
-    private TypeElement $area;
-
-    /**
-     * @access private
-     * @var Element
-     */
-    private Element $extraterrestrialArea;
 
     /**
      * This extracts the essential MODS metadata from XML
@@ -107,134 +43,255 @@ class HierarchicalGeographic extends BaseElement
     }
 
     /**
-     * Get the value of continent
+     * Get the the array of the <continent> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/subject.html#continent
      *
      * @access public
      *
-     * @return Element
+     * @param string $query The XPath query for metadata search
+     *
+     * @return LevelPeriodElement[]
      */
-    public function getContinent(): Element
+    public function getContinents(string $query = ''): array
     {
-        return $this->continent;
+        $continents = [];
+        $xpath = './mods:continent' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $continents[] = new LevelPeriodElement($value);
+            }
+        }
+        return $continents;
     }
 
     /**
-     * Get the value of country
+     * Get the the array of the <country> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/subject.html#country
      *
      * @access public
      *
-     * @return Element
+     * @param string $query The XPath query for metadata search
+     *
+     * @return LevelPeriodElement[]
      */
-    public function getCountry(): Element
+    public function getCountries(string $query = ''): array
     {
-        return $this->country;
+        $countries = [];
+        $xpath = './mods:country' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $countries[] = new LevelPeriodElement($value);
+            }
+        }
+        return $countries;
     }
 
     /**
-     * Get the value of region
+     * Get the the array of the <region> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/subject.html#region
      *
      * @access public
      *
-     * @return TypeElement
+     * @param string $query The XPath query for metadata search
+     *
+     * @return TypeElement[]
      */
-    public function getRegion(): TypeElement
+    public function getRegions(string $query = ''): array
     {
-        return $this->region;
+        $regions = [];
+        $xpath = './mods:region' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $regions[] = new TypeElement($value, 'regionType');
+            }
+        }
+        return $regions;
     }
 
     /**
-     * Get the value of state
+     * Get the the array of the <state> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/subject.html#state
      *
      * @access public
      *
-     * @return TypeElement
+     * @param string $query The XPath query for metadata search
+     *
+     * @return TypeElement[]
      */
-    public function getState(): TypeElement
+    public function getStates(string $query = ''): array
     {
-        return $this->state;
+        $states = [];
+        $xpath = './mods:state' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $states[] = new TypeElement($value, 'stateType');
+            }
+        }
+        return $states;
     }
 
     /**
-     * Get the value of territory
+     * Get the the array of the <territory> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/subject.html#territory
      *
      * @access public
      *
-     * @return Element
+     * @param string $query The XPath query for metadata search
+     *
+     * @return LevelPeriodElement[]
      */
-    public function getTerritory(): Element
+    public function getTerritories(string $query = ''): array
     {
-        return $this->territory;
+        $territories = [];
+        $xpath = './mods:territory' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $territories[] = new LevelPeriodElement($value);
+            }
+        }
+        return $territories;
     }
 
     /**
-     * Get the value of county
+     * Get the the array of the <county> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/subject.html#county
      *
      * @access public
      *
-     * @return Element
+     * @param string $query The XPath query for metadata search
+     *
+     * @return LevelPeriodElement[]
      */
-    public function getCounty(): Element
+    public function getCounties(string $query = ''): array
     {
-        return $this->county;
+        $counties = [];
+        $xpath = './mods:territory' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $counties[] = new LevelPeriodElement($value);
+            }
+        }
+        return $counties;
     }
 
     /**
-     * Get the value of city
+     * Get the the array of the <city> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/subject.html#city
      *
      * @access public
      *
-     * @return Element
+     * @param string $query The XPath query for metadata search
+     *
+     * @return LevelPeriodElement[]
      */
-    public function getCity(): Element
+    public function getCities(string $query = ''): array
     {
-        return $this->city;
+        $cities = [];
+        $xpath = './mods:territory' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $cities[] = new LevelPeriodElement($value);
+            }
+        }
+        return $cities;
     }
 
     /**
-     * Get the value of citySection
+     * Get the the array of the <citySection> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/subject.html#citysection
      *
      * @access public
      *
-     * @return TypeElement
+     * @param string $query The XPath query for metadata search
+     *
+     * @return TypeElement[]
      */
-    public function getCitySection(): TypeElement
+    public function getCitySections(string $query = ''): array
     {
-        return $this->citySection;
+        $sections = [];
+        $xpath = './mods:section' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $sections[] = new TypeElement($value, 'citySectionType');
+            }
+        }
+        return $sections;
     }
 
     /**
-     * Get the value of island
+     * Get the the array of the <island> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/subject.html#island
      *
      * @access public
      *
-     * @return Element
+     * @param string $query The XPath query for metadata search
+     *
+     * @return LevelPeriodElement[]
      */
-    public function getIsland(): Element
+    public function getIslands(string $query = ''): array
     {
-        return $this->island;
+        $islands = [];
+        $xpath = './mods:territory' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $islands[] = new LevelPeriodElement($value);
+            }
+        }
+        return $islands;
     }
 
     /**
-     * Get the value of area
+     * Get the the array of the <area> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/subject.html#area
      *
      * @access public
      *
-     * @return TypeElement
+     * @param string $query The XPath query for metadata search
+     *
+     * @return TypeElement[]
      */
-    public function getArea(): TypeElement
+    public function getAreas(string $query = ''): array
     {
-        return $this->area;
+        $areas = [];
+        $xpath = './mods:area' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $areas[] = new TypeElement($value, 'areaType');
+            }
+        }
+        return $areas;
     }
 
     /**
-     * Get the value of extraterrestrialArea
+     * Get the the array of the <extraterrestrialArea> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/subject.html#extraterrestrialarea
      *
      * @access public
      *
-     * @return Element
+     * @param string $query The XPath query for metadata search
+     *
+     * @return LevelPeriodElement[]
      */
-    public function getExtraterrestrialArea(): Element
+    public function getExtraterrestrialAreas(string $query = ''): array
     {
-        return $this->extraterrestrialArea;
+        $extraterrestrialAreas = [];
+        $xpath = './mods:extraterrestrialArea' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $extraterrestrialAreas[] = new LevelPeriodElement($value);
+            }
+        }
+        return $extraterrestrialAreas;
     }
 }

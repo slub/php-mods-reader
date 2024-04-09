@@ -17,8 +17,14 @@ namespace Slub\Mods\Element\Specific\Subject\HierarchicalGeographic;
  *
  * @access public
  */
-class TypeElement extends Element
+class TypeElement extends LevelPeriodElement
 {
+
+    /**
+     * @access private
+     * @var string
+     */
+    private string $attribute;
 
     /**
      * This extracts the essential MODS metadata from XML
@@ -29,13 +35,14 @@ class TypeElement extends Element
      *
      * @return void
      */
-    public function __construct(\SimpleXMLElement $xml)
+    public function __construct(\SimpleXMLElement $xml, string $attribute)
     {
+        $this->attribute = $attribute;
         parent::__construct($xml);
     }
 
     /**
-     * Get the value of type
+     * Get the value of the 'xyzType' attribute.
      *
      * @access public
      *
@@ -43,6 +50,6 @@ class TypeElement extends Element
      */
     public function getType(): string
     {
-        return $this->getStringAttribute('type');
+        return $this->getStringAttribute($this->attribute);
     }
 }

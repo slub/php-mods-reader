@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mods xmlns="http://www.loc.gov/mods/v3" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:zs="http://docs.oasis-open.org/ns/search-ws/sruResponse"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="3.8" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-8.xsd">
+    <titleInfo>
+        <title>E-JASL</title>
+        <subTitle>the electronic journal of academic and special librarianship</subTitle>
+    </titleInfo>
+    <titleInfo type="abbreviated">
+        <title>E-JASL</title>
+        <subTitle>(Athabasca)</subTitle>
+    </titleInfo>
+    <titleInfo type="alternative">
+        <title>Electronic journal of academic and special librarianship</title>
+    </titleInfo>
+    <name type="corporate">
+        <namePart>International Consortium for the Advancement of Academic Publication.</namePart>
+    </name>
+    <typeOfResource>text</typeOfResource>
+    <genre authority="marcgt" usage="primary">periodical</genre>
+    <genre authority="marcgt">series</genre>
+    <originInfo eventType='publication'>
+        <place>
+            <placeTerm authority="marccountry" type="code">abc</placeTerm>
+        </place>
+        <dateIssued encoding="marc" point="start">2002</dateIssued>
+        <dateIssued encoding="marc" point="end">9999</dateIssued>
+        <issuance>serial</issuance>
+        <frequency authority="marcfrequency">Three times a year</frequency>
+        <place>
+            <placeTerm type="text">Athabasca [Alta.]</placeTerm>
+        </place>
+        <agent>
+            <namePart>International Consortium for the Advancement of Academic Publication</namePart>
+        </agent>
+        <dateIssued>2002-</dateIssued>
+        <frequency>Three times a year (irregular)</frequency>
+    </originInfo>
+    <language>
+        <languageTerm authority="iso639-2b" type="code">eng</languageTerm>
+    </language>
+    <physicalDescription>
+        <form authority="marcform">electronic</form>
+        <form authority="gmd">electronic resource</form>
+        <internetMediaType>text/html</internetMediaType>
+    </physicalDescription>
+    <abstract shareable="no">Test description for non shareable document.</abstract>
+    <note type="date/sequential designation">V. 3, no. 1/2 (winter 2002)-</note>
+    <note>Title from title screen (viewed Aug. 13, 2002).</note>
+    <note>Archived by the National Library of Canada.</note>
+    <note>Latest issue consulted: V. 9 no. 1 (spring 2008) (viewed Sept. 5, 2008).</note>
+    <note type="system details">Mode of access: World Wide Web.</note>
+    <note>Electronic serial in HTML format.</note>
+    <subject authority="lcsh">
+        <topic>Academic libraries</topic>
+        <genre>Periodicals</genre>
+    </subject>
+    <subject authority="lcsh">
+        <topic>Special libraries</topic>
+        <genre>Periodicals</genre>
+    </subject>
+    <subject authority="lcsh">
+        <topic>Web sites</topic>
+        <genre>Directories</genre>
+    </subject>
+    <subject authority="rvm">
+        <topic>Bibliothèques universitaires</topic>
+        <genre>Périodiques</genre>
+    </subject>
+    <subject authority="rvm">
+        <topic>Bibliothèques spécialisées</topic>
+        <genre>Périodiques</genre>
+    </subject>
+    <subject authority="rvm">
+        <topic>Sites Web</topic>
+        <genre>Répertoires</genre>
+    </subject>
+    <classification authority="ddc" edition="21">027.7/05</classification>
+    <location>
+        <url displayLabel="electronic resource" usage="primary display">http://bibpurl.oclc.org/web/7085</url>
+    </location>
+    <location>
+        <url displayLabel="electronic resource">http://collection.nlc-bnc.ca/100/201/300/ejasl/index.html</url>
+    </location>
+    <accessCondition type="restriction on access" xlink:href="http://purl.org/eprint/accessRights/OpenAccess" displayLabel="Access Status">Open Access</accessCondition>
+    <relatedItem type="preceding">
+        <titleInfo>
+            <title>Journal of southern academic and special librarianship</title>
+        </titleInfo>
+        <originInfo>
+            <publisher>Hammond, La. : P. Haschak ; Athabasca, Alta. : Distributed by the International Consortium for Alternative Academic Publication, 1999-2001</publisher>
+        </originInfo>
+        <identifier type="issn">1525-321X</identifier>
+        <identifier type="local">(OCoLC)41477508</identifier>
+        <identifier type="local">(DLC)sn 99004018</identifier>
+        <identifier type="local">(CaOONL) 003900517</identifier>
+    </relatedItem>
+    <identifier type="issn">1704-8532</identifier>
+    <identifier invalid="yes" type="issn">1525-321X</identifier>
+    <identifier type="lccn">cn2002301668</identifier>
+    <identifier type="oclc">ocm51090366</identifier>
+    <recordInfo>
+        <descriptionStandard>aacr</descriptionStandard>
+        <recordContentSource authority="marcorg">NLC</recordContentSource>
+        <recordCreationDate encoding="marc">021127</recordCreationDate>
+        <recordChangeDate encoding="iso8601">20080910160139.0</recordChangeDate>
+        <recordIdentifier>15446420</recordIdentifier>
+        <recordOrigin>Converted from MARCXML to MODS version 3.8 using MARC21slim2MODS3-8_XSLT1-0.xsl
+				(Revision 1.172 20230208)</recordOrigin>
+        <languageOfCataloging>
+            <languageTerm authority="iso639-2b" type="code">eng</languageTerm>
+        </languageOfCataloging>
+    </recordInfo>
+</mods>

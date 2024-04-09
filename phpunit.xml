@@ -3,7 +3,6 @@
     <testsuites>
         <testsuite name="MODS Reader Test Suite">
             <directory>./tests/Mods/</directory>
-            <directory>./tests/Mods/Context</directory>
         </testsuite>
     </testsuites>
     <filter>

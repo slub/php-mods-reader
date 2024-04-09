@@ -109,16 +109,19 @@ class ModsReader
      *
      * @param string $query The XPath query for metadata search
      *
-     * @return ?Classification
+     * @return Classification[]
      */
-    public function getClassification(string $query = ''): ?Classification
+    public function getClassifications(string $query = ''): array
     {
+        $classifications = [];
         $xpath = './mods:classification' . $query;
         $element = new Element($this->xml, $xpath);
         if ($element->exists()) {
-            return new Classification($element->getValues()[0]);
+            foreach ($element->getValues() as $value) {
+                $classifications[] = new Classification($value);
+            }
         }
-        return null;
+        return $classifications;
     }
 
     /**
@@ -150,16 +153,19 @@ class ModsReader
      *
      * @param string $query The XPath query for metadata search
      *
-     * @return ?Genre
+     * @return Genre[]
      */
-    public function getGenre(string $query = ''): ?Genre
+    public function getGenres(string $query = ''): array
     {
-        $xpath = './mods:classification' . $query;
+        $genres = [];
+        $xpath = './mods:genre' . $query;
         $element = new Element($this->xml, $xpath);
         if ($element->exists()) {
-            return new Genre($element->getValues()[0]);
+            foreach ($element->getValues() as $value) {
+                $genres[] = new Genre($value);
+            }
         }
-        return null;
+        return $genres;
     }
 
     /**
@@ -210,16 +216,19 @@ class ModsReader
      *
      * @param string $query The XPath query for metadata search
      *
-     * @return ?Location
+     * @return Location[]
      */
-    public function getLocation(string $query = ''): ?Location
+    public function getLocations(string $query = ''): array
     {
+        $locations = [];
         $xpath = './mods:location' . $query;
         $element = new Element($this->xml, $xpath);
         if ($element->exists()) {
-            return new Location($element->getValues()[0]);
+            foreach ($element->getValues() as $value) {
+                $locations[] = new Location($value);
+            }
         }
-        return null;
+        return $locations;
     }
 
     /**
@@ -363,7 +372,7 @@ class ModsReader
      *
      * @return RelatedItem[]
      */
-    public function getRelatedItem(string $query = ''): array
+    public function getRelatedItems(string $query = ''): array
     {
         $relatedItems = [];
         $xpath = './mods:relatedItem' . $query;

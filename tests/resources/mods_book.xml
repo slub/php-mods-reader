@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mods xmlns="http://www.loc.gov/mods/v3"
+    xmlns:zs="http://docs.oasis-open.org/ns/search-ws/sruResponse"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="3.8" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-8.xsd">
+    <titleInfo>
+        <title>Sound and fury</title>
+        <subTitle>the making of the punditocracy</subTitle>
+    </titleInfo>
+    <name type="personal" usage="primary">
+        <namePart>Alterman, Eric.</namePart>
+        <role>
+            <roleTerm type="text" authroity="marcrelator">creator</roleTerm>
+            <roleTerm type="code" authority="marcrelator">cre</roleTerm>
+            <roleTerm valueURI="http://id.loc.gov/vocabulary/relators/cre"/>
+        </role>
+        <role>
+            <roleTerm type="text" authority="marcrelator">author</roleTerm>
+            <roleTerm type="code" authority="marcrelator">aut</roleTerm>
+        </role>
+    </name>
+    <name type="personal">
+        <namePart type="given">Aron</namePart>
+        <namePart type="family">Jungerman</namePart>
+        <role>
+            <roleTerm type="text" authority="marcrelator">author</roleTerm>
+            <roleTerm type="code" authority="marcrelator">aut</roleTerm>
+        </role>
+    </name>
+    <typeOfResource displayLabel="format">text</typeOfResource>
+    <genre authority="marcgt">bibliography</genre>
+    <originInfo eventType='publication'>
+        <place>
+            <placeTerm authority="marccountry" type="code">nyu</placeTerm>
+        </place>
+        <dateIssued encoding="marc">2000</dateIssued>
+        <issuance>monographic</issuance>
+        <place>
+            <placeTerm type="text">Ithaca, N.Y</placeTerm>
+        </place>
+        <agent>
+            <namePart>Cornell University Press</namePart>
+        </agent>
+        <dateIssued>c2000</dateIssued>
+    </originInfo>
+    <originInfo eventType='redaction'>
+        <place>
+            <placeTerm authority="marccountry" type="code">nyu</placeTerm>
+        </place>
+        <dateIssued encoding="marc">1999</dateIssued>
+        <issuance>monographic</issuance>
+        <place>
+            <placeTerm type="text">Ithaca, N.Y</placeTerm>
+        </place>
+        <agent>
+            <namePart>Cornell University Press</namePart>
+        </agent>
+        <dateIssued>c1999</dateIssued>
+    </originInfo>
+    <language>
+        <languageTerm authority="iso639-2b" type="code">eng</languageTerm>
+    </language>
+    <physicalDescription>
+        <form authority="marcform">print</form>
+        <extent>vii, 322 p. ; 23 cm.</extent>
+        <reformattingQuality>replacement</reformattingQuality>
+        <digitalOrigin>born digital</digitalOrigin>
+    </physicalDescription>
+    <abstract displayLabel="Content description">Test description for document which contains display label.</abstract>
+    <note type="statement of responsibility">Eric Alterman.</note>
+    <note type="bibliography">Includes bibliographical references (p. 291-312) and index.</note>
+    <subject>
+        <geographicCode authority="marcgac">n-us---</geographicCode>
+    </subject>
+    <subject authority="lcsh">
+        <topic>Journalism</topic>
+        <topic>Political aspects</topic>
+        <geographic>United States</geographic>
+    </subject>
+    <subject authority="lcsh">
+        <topic>Mass media</topic>
+        <topic>Political aspects</topic>
+        <geographic>United States</geographic>
+    </subject>
+    <subject authority="lcsh">
+        <topic>Television and politics</topic>
+        <geographic>United States</geographic>
+    </subject>
+    <subject authority="lcsh">
+        <topic>Press and politics</topic>
+        <geographic>United States</geographic>
+    </subject>
+    <subject authority="lcsh">
+        <topic>Television talk shows</topic>
+        <geographic>United States</geographic>
+    </subject>
+    <subject authority="lcsh">
+        <geographic>United States</geographic>
+        <topic>Politics and government</topic>
+        <temporal>20th century</temporal>
+    </subject>
+    <classification authority="lcc">PN4888.P6 A48 1999</classification>
+    <classification authority="ddc" edition="21">071/.3</classification>
+    <identifier type="isbn">0801486394 (pbk. : acid-free, recycled paper)</identifier>
+    <identifier type="lccn">99042030</identifier>
+    <location>
+        <url dateLastAccessed="2024-01-27">http://www.slub-dresden.de/some-url</url>
+        <url access="preview">http://www.slub-dresden.de/some-url/SLO-0000</url>
+        <url access="object in context">http://www.slub-dresden.de/some-url/SLO-0000</url>
+        <url access="raw object">http://www.slub-dresden.de/some-url/SLO-0000</url>
+    </location>
+    <accessCondition type="use and reproduction">Use of this public-domain resource is unrestricted.</accessCondition>
+    <part type="poem" order="1">
+        <detail>
+            <title>Wayfarers</title>
+        </detail>
+        <extent unit="pages">
+            <start>97</start>
+            <end>98</end>
+        </extent>
+    </part>
+    <part type="poem" order="2">
+        <detail>
+            <title>Vagabonds</title>
+        </detail>
+        <extent unit="pages">
+            <start>99</start>
+            <end>100</end>
+        </extent>
+    </part>
+    <tableOfContents displayLabel="Chapters">Bluegrass odyssey -- Hills of Tennessee -- Sassafrass -- Muddy river -- Take your shoes off Moses -- Let Smokey Mountain smoke get in your eyes -- Farewell party -- Faded love</tableOfContents>
+    <recordInfo>
+        <descriptionStandard>aacr</descriptionStandard>
+        <recordContentSource authority="marcorg">DLC</recordContentSource>
+        <recordCreationDate encoding="marc">990730</recordCreationDate>
+        <recordChangeDate encoding="iso8601">20060801143536.0</recordChangeDate>
+        <recordIdentifier>11761548</recordIdentifier>
+        <recordOrigin>Converted from MARCXML to MODS version 3.8 using MARC21slim2MODS3-8_XSLT1-0.xsl
+				(Revision 1.172 20230208)</recordOrigin>
+    </recordInfo>
+</mods>

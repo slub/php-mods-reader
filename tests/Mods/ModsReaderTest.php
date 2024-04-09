@@ -537,7 +537,46 @@ class ModsReaderTest extends TestCase
         $names = $this->bookReader->getNames();
         self::assertNotEmpty($names);
         self::assertEquals(2, count($names));
+        self::assertNotEmpty($names[0]->getType());
+        self::assertEquals('personal', $names[0]->getType());
+        self::assertNotEmpty($names[0]->getUsage());
+        self::assertEquals('primary', $names[0]->getUsage());
+        self::assertNotEmpty($names[0]->getValue());
+        self::assertNotEmpty($names[0]->getNameParts());
+        self::assertEquals('Alterman, Eric.', $names[0]->getNameParts()[0]->getValue());
+        $roles = $names[0]->getRoles();
+        self::assertNotEmpty($roles);
+        self::assertNotEmpty($roles[0]->getRoleTerms());
+        self::assertEquals('text', $roles[0]->getRoleTerms()[0]->getType());
+        self::assertEquals('marcrelator', $roles[0]->getRoleTerms()[0]->getAuthority());
+        self::assertEquals('creator', $roles[0]->getRoleTerms()[0]->getValue());
+    }
 
+    public function testGetNamesByQueryForBookDocument()
+    {
+        $names = $this->bookReader->getNames('[@type="personal" and not(@usage="primary")]');
+        self::assertNotEmpty($names);
+        self::assertEquals(1, count($names));
+        self::assertNotEmpty($names[0]->getType());
+        self::assertEquals('personal', $names[0]->getType());
+        self::assertEmpty($names[0]->getUsage());
+        self::assertNotEmpty($names[0]->getValue());
+        self::assertNotEmpty($names[0]->getNameParts());
+        self::assertEquals(2, count($names[0]->getNameParts()));
+        self::assertEquals('given', $names[0]->getNameParts()[0]->getType());
+        self::assertEquals('Aron', $names[0]->getNameParts()[0]->getValue());
+        $roles = $names[0]->getRoles();
+        self::assertNotEmpty($roles);
+        self::assertNotEmpty($roles[0]->getRoleTerms());
+        self::assertEquals('text', $roles[0]->getRoleTerms()[0]->getType());
+        self::assertEquals('marcrelator', $roles[0]->getRoleTerms()[0]->getAuthority());
+        self::assertEquals('author', $roles[0]->getRoleTerms()[0]->getValue());
+    }
+
+    public function testGetNoNamesByQueryForBookDocument()
+    {
+        $names = $this->bookReader->getNames('[@type="corporate"]');
+        self::assertEmpty($names);
     }
 
     public function testGetNamesForSerialDocument()
@@ -545,7 +584,27 @@ class ModsReaderTest extends TestCase
         $names = $this->serialReader->getNames();
         self::assertNotEmpty($names);
         self::assertEquals(1, count($names));
+        self::assertNotEmpty($names[0]->getValue());
+        self::assertNotEmpty($names[0]->getNameParts());
+        self::assertEquals(1, count($names[0]->getNameParts()));
+        self::assertEquals('International Consortium for the Advancement of Academic Publication.', $names[0]->getNameParts()[0]->getValue());
+    }
 
+    public function testGetNamesByQueryForSerialDocument()
+    {
+        $names = $this->serialReader->getNames('[@type="corporate"]');
+        self::assertNotEmpty($names);
+        self::assertEquals(1, count($names));
+        self::assertNotEmpty($names[0]->getValue());
+        self::assertNotEmpty($names[0]->getNameParts());
+        self::assertEquals(1, count($names[0]->getNameParts()));
+        self::assertEquals('International Consortium for the Advancement of Academic Publication.', $names[0]->getNameParts()[0]->getValue());
+    }
+
+    public function testGetNoNamesByQueryForSerialDocument()
+    {
+        $names = $this->serialReader->getNames('[@type="personal"]');
+        self::assertEmpty($names);
     }
 
     public function testGetNotesForBookDocument()

@@ -19,6 +19,7 @@ use Slub\Mods\Element\Common\BaseElement;
 
 /**
  * NamePart MODS metadata element class for the 'php-mods-reader' library.
+ * @see https://www.loc.gov/standards/mods/userguide/name.html#namepart
  *
  * @access public
  */
@@ -52,7 +53,8 @@ class NamePart extends BaseElement
     }
 
     /**
-     * Get the value of type
+     * Get the value of the 'tpe' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/name.html#nameParttype
      *
      * @access public
      *
@@ -60,11 +62,6 @@ class NamePart extends BaseElement
      */
     public function getType(): string
     {
-        $value = $this->xml->attributes()->type;
-
-        if (!empty($value)) {
-            return $value;
-        }
-        return '';
+        return $this->getStringAttribute('type');
     }
 }

@@ -19,6 +19,7 @@ use Slub\Mods\Element\Common\BaseElement;
 
 /**
  * RoleTerm MODS metadata element class for the 'php-mods-reader' library.
+ * @see https://www.loc.gov/standards/mods/userguide/name.html#roleterm
  *
  * @access public
  */

@@ -16,25 +16,16 @@ use Slub\Mods\Attribute\Common\LanguageAttribute;
 use Slub\Mods\Attribute\Common\Linking\IdAttribute;
 use Slub\Mods\Attribute\Common\Linking\XlinkHrefAttribute;
 use Slub\Mods\Attribute\Common\Miscellaneous\DisplayLabelAttribute;
-use Slub\Mods\Element\Common\AuthorityLanguageElement;
-use Slub\Mods\Element\Common\BaseElement;
-use Slub\Mods\Element\Common\LanguageElement;
-use Slub\Mods\Element\Specific\Name\NameIdentifier;
 
 /**
  * AlternativeName MODS metadata element class for the 'php-mods-reader' library.
+ * @see https://www.loc.gov/standards/mods/userguide/name.html#alternativename
  *
  * @access public
  */
-class AlternativeName extends BaseElement
+class AlternativeName extends BaseNameElement
 {
     use LanguageAttribute, IdAttribute, XlinkHrefAttribute, DisplayLabelAttribute;
-
-    /**
-     * @access private
-     * @var string
-     */
-    private string $alternativeType;
 
     /**
      * @access private
@@ -49,42 +40,6 @@ class AlternativeName extends BaseElement
     ];
 
     /**
-     * @access private
-     * @var NamePart
-     */
-    private NamePart $namePart;
-
-    /**
-     * @access private
-     * @var NameIdentifier
-     */
-    private NameIdentifier $nameIdentifier;
-
-    /**
-     * @access private
-     * @var LanguageElement
-     */
-    private LanguageElement $displayForm;
-
-    /**
-     * @access private
-     * @var AuthorityLanguageElement
-     */
-    private AuthorityLanguageElement $affiliation;
-
-    /**
-     * @access private
-     * @var Role
-     */
-    private Role $role;
-
-    /**
-     * @access private
-     * @var LanguageElement
-     */
-    private LanguageElement $description;
-
-    /**
      * This extracts the essential MODS metadata from XML
      *
      * @access public
@@ -96,17 +51,11 @@ class AlternativeName extends BaseElement
     public function __construct(\SimpleXMLElement $xml)
     {
         parent::__construct($xml);
-
-        $this->namePart = new NamePart($xml);
-        $this->nameIdentifier = new NameIdentifier($xml);
-        $this->displayForm = new LanguageElement($xml);
-        $this->affiliation = new AuthorityLanguageElement($xml);
-        $this->role = new Role($xml);
-        $this->description = new LanguageElement($xml);
     }
 
     /**
-     * Get the value of alternative type
+     * Get the value of the 'altType' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/name.html#altType
      *
      * @access public
      *
@@ -114,78 +63,6 @@ class AlternativeName extends BaseElement
      */
     public function getAlternativeType(): string
     {
-        return $this->getStringAttribute('alternativeType');
-    }
-
-    /**
-     * Get the value of namePart
-     *
-     * @access public
-     *
-     * @return NamePart
-     */
-    public function getNamePart(): NamePart
-    {
-        return $this->namePart;
-    }
-
-    /**
-     * Get the value of nameIdentifier
-     *
-     * @access public
-     *
-     * @return NameIdentifier
-     */
-    public function getNameIdentifier(): NameIdentifier
-    {
-        return $this->nameIdentifier;
-    }
-
-    /**
-     * Get the value of displayForm
-     *
-     * @access public
-     *
-     * @return LanguageElement
-     */
-    public function getDisplayForm(): LanguageElement
-    {
-        return $this->displayForm;
-    }
-
-    /**
-     * Get the value of affiliation
-     *
-     * @access public
-     *
-     * @return AuthorityLanguageElement
-     */
-    public function getAffiliation(): AuthorityLanguageElement
-    {
-        return $this->affiliation;
-    }
-
-    /**
-     * Get the value of role
-     *
-     * @access public
-     *
-     * @return Role
-     */
-    public function getRole(): Role
-    {
-        return $this->role;
-    }
-
-    /**
-     * Get the value of description
-     *
-     * @access public
-     *
-     * @return LanguageElement
-     */
-    public function getDescription(): LanguageElement
-    {
-        return $this->description;
+        return $this->getStringAttribute('altType');
     }
 }

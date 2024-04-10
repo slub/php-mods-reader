@@ -14,7 +14,7 @@
     <name type="personal" usage="primary">
         <namePart>Alterman, Eric.</namePart>
         <role>
-            <roleTerm type="text" authroity="marcrelator">creator</roleTerm>
+            <roleTerm type="text" authority="marcrelator">creator</roleTerm>
             <roleTerm type="code" authority="marcrelator">cre</roleTerm>
             <roleTerm valueURI="http://id.loc.gov/vocabulary/relators/cre"/>
         </role>

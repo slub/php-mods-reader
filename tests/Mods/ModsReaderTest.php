@@ -462,10 +462,46 @@ class ModsReaderTest extends TestCase
     {
         $locations = $this->bookReader->getLocations();
         self::assertNotEmpty($locations);
-        self::assertEquals(1, count($locations));
-        
-        // TODO: implement reading of location elements
+        self::assertEquals(2, count($locations));
+        self::assertNotEmpty($locations[0]->getValue());
 
+        $physicalLocations = $locations[0]->getPhysicalLocations();
+        self::assertNotEmpty($physicalLocations);
+        self::assertEquals('marcorg', $physicalLocations[0]->getAuthority());
+        self::assertEquals('MnRM', $physicalLocations[0]->getValue());
+
+        $holdingSimple = $locations[0]->getHoldingSimple();
+        self::assertNotNull($holdingSimple);
+
+        $copyInformation = $holdingSimple->getCopyInformation();
+        self::assertNotNull($copyInformation);
+        self::assertNotEmpty($copyInformation->getSubLocations());
+        self::assertEquals('Reading room', $copyInformation->getSubLocations()[0]->getValue());
+        self::assertEquals('QH511.A1J68', $copyInformation->getShelfLocator()->getValue());
+        self::assertEquals('1', $copyInformation->getEnumerationAndChronology()->getUnitType());
+        self::assertEquals('v.1-v.2 1999-2002', $copyInformation->getEnumerationAndChronology()->getValue());
+    }
+
+    public function testGetLocationsByQueryForBookDocument()
+    {
+        $locations = $this->bookReader->getLocations('[@displayLabel="links"]');
+        self::assertNotEmpty($locations);
+        self::assertEquals(1, count($locations));
+        self::assertNotEmpty($locations[0]->getValue());
+
+        $urls = $locations[0]->getUrls();
+        self::assertNotEmpty($urls);
+        self::assertEquals(4, count($urls));
+        self::assertEquals('2024-01-27', $urls[0]->getDateLastAccessed());
+        self::assertEquals('http://www.slub-dresden.de/some-url', $urls[0]->getValue());
+        self::assertEquals('preview', $urls[1]->getAccess());
+        self::assertEquals('http://www.slub-dresden.de/some-url/SLO-0000', $urls[1]->getValue());
+    }
+
+    public function testGetNoLocationsByQueryForBookDocument()
+    {
+        $locations = $this->bookReader->getLocations('[@displayLabel="random"]');
+        self::assertEmpty($locations);
     }
 
     public function testGetLocationsForSerialDocument()
@@ -473,8 +509,27 @@ class ModsReaderTest extends TestCase
         $locations = $this->serialReader->getLocations();
         self::assertNotEmpty($locations);
         self::assertEquals(2, count($locations));
-        
-        // TODO: implement reading of location elements
+        self::assertNotEmpty($locations[0]->getUrls());
+        self::assertEquals('electronic resource', $locations[0]->getUrls()[0]->getDisplayLabel());
+        self::assertEquals('primary display', $locations[0]->getUrls()[0]->getUsage());
+        self::assertEquals('http://bibpurl.oclc.org/web/7085', $locations[0]->getUrls()[0]->getValue());
+    }
+
+    public function testGetLocationsByQueryForSerialDocument()
+    {
+        $locations = $this->serialReader->getLocations('[./mods:url[@usage="primary display"]]');
+        self::assertNotEmpty($locations);
+        self::assertEquals(1, count($locations));
+        self::assertNotEmpty($locations[0]->getUrls());
+        self::assertEquals('electronic resource', $locations[0]->getUrls()[0]->getDisplayLabel());
+        self::assertEquals('primary display', $locations[0]->getUrls()[0]->getUsage());
+        self::assertEquals('http://bibpurl.oclc.org/web/7085', $locations[0]->getUrls()[0]->getValue());
+    }
+
+    public function testNoGetLocationsByQueryForSerialDocument()
+    {
+        $locations = $this->serialReader->getLocations('[@usage="rad"]');
+        self::assertEmpty($locations);
     }
 
     public function testGetNamesForBookDocument()
@@ -482,8 +537,6 @@ class ModsReaderTest extends TestCase
         $names = $this->bookReader->getNames();
         self::assertNotEmpty($names);
         self::assertEquals(2, count($names));
-        
-        // TODO: implement reading of name elements
 
     }
 
@@ -492,8 +545,7 @@ class ModsReaderTest extends TestCase
         $names = $this->serialReader->getNames();
         self::assertNotEmpty($names);
         self::assertEquals(1, count($names));
-        
-        // TODO: implement reading of name elements
+
     }
 
     public function testGetNotesForBookDocument()

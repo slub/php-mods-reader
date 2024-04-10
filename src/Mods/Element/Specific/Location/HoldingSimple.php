@@ -14,20 +14,16 @@ namespace Slub\Mods\Element\Specific\Location;
 
 use Slub\Mods\Element\Common\BaseElement;
 use Slub\Mods\Element\Specific\Location\HoldingSimple\CopyInformation;
+use Slub\Mods\Element\Xml\Element;
 
 /**
  * HoldingSimple MODS metadata element class for the 'php-mods-reader' library.
+ * @see https://www.loc.gov/standards/mods/userguide/location.html#holdingsimple
  *
  * @access public
  */
 class HoldingSimple extends BaseElement
 {
-
-    /**
-     * @access private
-     * @var CopyInformation
-     */
-    private CopyInformation $copyInformation;
 
     /**
      * This extracts the essential MODS metadata from XML
@@ -44,14 +40,22 @@ class HoldingSimple extends BaseElement
     }
 
     /**
-     * Get the value of copyInformation
+     * Get the value of the <copyInformation> element.
+     * @see https://www.loc.gov/standards/mods/userguide/location.html#copyinformation
      *
      * @access public
      *
-     * @return CopyInformation
+     * @param string $query The XPath query for metadata search
+     *
+     * @return ?CopyInformation
      */
-    public function getCopyInformation(): CopyInformation
+    public function getCopyInformation(string $query = ''): ?CopyInformation
     {
-        return $this->copyInformation;
+        $xpath = './mods:copyInformation' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            return new CopyInformation($element->getValues()[0]);
+        }
+        return null;
     }
 }

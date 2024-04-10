@@ -108,6 +108,16 @@
     <identifier type="isbn">0801486394 (pbk. : acid-free, recycled paper)</identifier>
     <identifier type="lccn">99042030</identifier>
     <location>
+        <physicalLocation authority="marcorg">MnRM</physicalLocation>
+        <holdingSimple>
+            <copyInformation>
+                <subLocation>Reading room</subLocation>
+                <shelfLocator>QH511.A1J68</shelfLocator>
+                <enumerationAndChronology unitType="1">v.1-v.2 1999-2002</enumerationAndChronology>
+            </copyInformation>
+        </holdingSimple>
+    </location>
+    <location displayLabel='links'>
         <url dateLastAccessed="2024-01-27">http://www.slub-dresden.de/some-url</url>
         <url access="preview">http://www.slub-dresden.de/some-url/SLO-0000</url>
         <url access="object in context">http://www.slub-dresden.de/some-url/SLO-0000</url>

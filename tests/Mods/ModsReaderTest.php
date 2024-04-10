@@ -931,12 +931,28 @@ class ModsReaderTest extends TestCase
     {
         $subjects = $this->bookReader->getSubjects();
         self::assertNotEmpty($subjects);
-        self::assertEquals(7, count($subjects));
+        self::assertEquals(8, count($subjects));
         self::assertNotEmpty($subjects[0]->getValue());
-        //self::assertNotEmpty($subjects[0]->getTopic());
-        //self::assertNotEmpty($subjects[0]->getGeographic());
-
-        // TODO: implement reading of elements
+        $hierarchicalGeographics = $subjects[0]->getHierarchicalGeographics();
+        self::assertNotEmpty($hierarchicalGeographics);
+        self::assertNotEmpty($hierarchicalGeographics[0]->getCountries());
+        self::assertEquals(2, count($hierarchicalGeographics[0]->getCountries()));
+        self::assertEquals(1, $hierarchicalGeographics[0]->getCountries()[0]->getLevel());
+        self::assertEquals('United Kingdom', $hierarchicalGeographics[0]->getCountries()[0]->getValue());
+        self::assertNotEmpty($hierarchicalGeographics[0]->getRegions());
+        self::assertEquals('North West', $hierarchicalGeographics[0]->getRegions()[0]->getValue());
+        self::assertNotEmpty($hierarchicalGeographics[0]->getCounties());
+        self::assertEquals('Cumbria', $hierarchicalGeographics[0]->getCounties()[0]->getValue());
+        self::assertNotEmpty($hierarchicalGeographics[0]->getCities());
+        self::assertEquals('Providence', $hierarchicalGeographics[0]->getCities()[0]->getValue());
+        self::assertNotEmpty($hierarchicalGeographics[0]->getCitySections());
+        self::assertEquals(2, count($hierarchicalGeographics[0]->getCitySections()));
+        self::assertEquals('neighborhood', $hierarchicalGeographics[0]->getCitySections()[0]->getType());
+        self::assertEquals(1, $hierarchicalGeographics[0]->getCitySections()[0]->getLevel());
+        self::assertEquals('East Side', $hierarchicalGeographics[0]->getCitySections()[0]->getValue());
+        self::assertNotEmpty($hierarchicalGeographics[0]->getAreas());
+        self::assertEquals('national park', $hierarchicalGeographics[0]->getAreas()[0]->getType());
+        self::assertEquals('Lake District', $hierarchicalGeographics[0]->getAreas()[0]->getValue());
     }
 
     public function testGetSubjectsByQueryForBookDocument()
@@ -944,11 +960,15 @@ class ModsReaderTest extends TestCase
         $subjects = $this->bookReader->getSubjects('[./mods:topic="Mass media"]');
         self::assertNotEmpty($subjects);
         self::assertEquals(1, count($subjects));
+        self::assertNotEmpty($subjects[0]->getAuthority());
+        self::assertEquals('lcsh', $subjects[0]->getAuthority());
         self::assertNotEmpty($subjects[0]->getValue());
-        //self::assertNotEmpty($subjects[0]->getTopic());
-        //self::assertNotEmpty($subjects[0]->getGeographic());
-
-        // TODO: implement reading of elements
+        self::assertNotEmpty($subjects[0]->getTopics());
+        self::assertEquals(2, count($subjects[0]->getTopics()));
+        self::assertEquals('Political aspects', $subjects[0]->getTopics()[1]->getValue());
+        self::assertNotEmpty($subjects[0]->getGeographics());
+        self::assertEquals(1, count($subjects[0]->getGeographics()));
+        self::assertEquals('United States', $subjects[0]->getGeographics()[0]->getValue());
     }
 
     public function testGetNoSubjectsByQueryForBookDocument()
@@ -961,12 +981,15 @@ class ModsReaderTest extends TestCase
     {
         $subjects = $this->serialReader->getSubjects();
         self::assertNotEmpty($subjects);
-        self::assertEquals(6, count($subjects));
+        self::assertEquals(7, count($subjects));
         self::assertNotEmpty($subjects[0]->getValue());
-        //self::assertNotEmpty($subjects[0]->getTopic());
-        //self::assertNotEmpty($subjects[0]->getGenre());
+        self::assertNotEmpty($subjects[0]->getCartographics());
 
-        // TODO: implement reading of elements
+        // TODO: implement reading of cartographics
+        /*self::assertNotEmpty($subjects[0]->getCartographics()[0]->getCoordinates());
+        self::assertEquals('', $subjects[0]->getCartographics()[0]->getCoordinates()[0]->getValue());
+        self::assertNotEmpty($subjects[0]->getCartographics()[0]->getScale());
+        self::assertNotEmpty($subjects[0]->getCartographics()[0]->getProjection());*/
     }
 
     public function testGetSubjectsByQueryForSerialDocument()
@@ -975,10 +998,10 @@ class ModsReaderTest extends TestCase
         self::assertNotEmpty($subjects);
         self::assertEquals(1, count($subjects));
         self::assertNotEmpty($subjects[0]->getValue());
-        //self::assertNotEmpty($subjects[0]->getForm());
-        //self::assertNotEmpty($subjects[0]->getGenre());
-
-        // TODO: implement reading of elements
+        self::assertNotEmpty($subjects[0]->getTopics());
+        self::assertEquals('Web sites', $subjects[0]->getTopics()[0]->getValue());
+        self::assertNotEmpty($subjects[0]->getGenres());
+        self::assertEquals('Directories', $subjects[0]->getGenres()[0]->getValue());
     }
 
     public function testGetNoSubjectsByQueryForSerialDocument()

@@ -170,7 +170,7 @@ class HierarchicalGeographic extends BaseElement
     public function getCounties(string $query = ''): array
     {
         $counties = [];
-        $xpath = './mods:territory' . $query;
+        $xpath = './mods:county' . $query;
         $element = new Element($this->xml, $xpath);
         if ($element->exists()) {
             foreach ($element->getValues() as $value) {
@@ -193,7 +193,7 @@ class HierarchicalGeographic extends BaseElement
     public function getCities(string $query = ''): array
     {
         $cities = [];
-        $xpath = './mods:territory' . $query;
+        $xpath = './mods:city' . $query;
         $element = new Element($this->xml, $xpath);
         if ($element->exists()) {
             foreach ($element->getValues() as $value) {
@@ -216,7 +216,7 @@ class HierarchicalGeographic extends BaseElement
     public function getCitySections(string $query = ''): array
     {
         $sections = [];
-        $xpath = './mods:section' . $query;
+        $xpath = './mods:citySection' . $query;
         $element = new Element($this->xml, $xpath);
         if ($element->exists()) {
             foreach ($element->getValues() as $value) {
@@ -239,7 +239,7 @@ class HierarchicalGeographic extends BaseElement
     public function getIslands(string $query = ''): array
     {
         $islands = [];
-        $xpath = './mods:territory' . $query;
+        $xpath = './mods:island' . $query;
         $element = new Element($this->xml, $xpath);
         if ($element->exists()) {
             foreach ($element->getValues() as $value) {

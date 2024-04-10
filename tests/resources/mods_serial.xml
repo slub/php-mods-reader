@@ -51,6 +51,13 @@
     <note>Latest issue consulted: V. 9 no. 1 (spring 2008) (viewed Sept. 5, 2008).</note>
     <note type="system details">Mode of access: World Wide Web.</note>
     <note>Electronic serial in HTML format.</note>
+    <subject>
+        <cartographics>
+            <coordinates>E 72°--E 148°/N 13°--N 18°</coordinates>
+            <scale>1:22,000,000</scale>
+            <projection>Conic proj</projection>
+        </cartographics>
+    </subject>
     <subject authority="lcsh">
         <topic>Academic libraries</topic>
         <genre>Periodicals</genre>

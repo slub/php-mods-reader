@@ -833,11 +833,22 @@ class ModsReaderTest extends TestCase
         self::assertNotEmpty($recordInfos);
         self::assertEquals(1, count($recordInfos));
         self::assertNotEmpty($recordInfos[0]->getValue());
-        //self::assertEquals('', $recordInfos[0]->getRecordIdentifier());
-        //self::assertNotEmpty($recordInfos[0]->getRecordOrigin());
-        //self::assertNotEmpty($recordInfos[0]->getLanguageOfCataloging());
-
-        // TODO: implement reading of elements
+        self::assertNotEmpty($recordInfos[0]->getDescriptionStandards());
+        self::assertEquals('aacr', $recordInfos[0]->getDescriptionStandards()[0]->getValue());
+        self::assertNotEmpty($recordInfos[0]->getRecordContentSources());
+        self::assertEquals('marcorg', $recordInfos[0]->getRecordContentSources()[0]->getAuthority());
+        self::assertEquals('DLC', $recordInfos[0]->getRecordContentSources()[0]->getValue());
+        self::assertNotEmpty($recordInfos[0]->getRecordCreationDates());
+        self::assertEquals('marc', $recordInfos[0]->getRecordCreationDates()[0]->getEncoding());
+        self::assertEquals('990730', $recordInfos[0]->getRecordCreationDates()[0]->getValue());
+        self::assertNotEmpty($recordInfos[0]->getRecordChangeDates());
+        self::assertEquals('iso8601', $recordInfos[0]->getRecordChangeDates()[0]->getEncoding());
+        self::assertEquals('20060801143536.0', $recordInfos[0]->getRecordChangeDates()[0]->getValue());
+        self::assertNotEmpty($recordInfos[0]->getRecordIdentifiers());
+        self::assertEquals('DE-14', $recordInfos[0]->getRecordIdentifiers()[0]->getSource());
+        self::assertEquals('11761548', $recordInfos[0]->getRecordIdentifiers()[0]->getValue());
+        self::assertNotEmpty($recordInfos[0]->getRecordOrigins());
+        self::assertStringContainsString('Converted from MARCXML to MODS', $recordInfos[0]->getRecordOrigins()[0]->getValue());
     }
 
     public function testGetRecordInfosByQueryForBookDocument()
@@ -846,11 +857,22 @@ class ModsReaderTest extends TestCase
         self::assertNotEmpty($recordInfos);
         self::assertEquals(1, count($recordInfos));
         self::assertNotEmpty($recordInfos[0]->getValue());
-        //self::assertEquals('', $recordInfos[0]->getRecordIdentifier());
-        //self::assertNotEmpty($recordInfos[0]->getRecordOrigin());
-        //self::assertNotEmpty($recordInfos[0]->getLanguageOfCataloging());
-
-        // TODO: implement reading of elements
+        self::assertNotEmpty($recordInfos[0]->getDescriptionStandards());
+        self::assertEquals('aacr', $recordInfos[0]->getDescriptionStandards()[0]->getValue());
+        self::assertNotEmpty($recordInfos[0]->getRecordContentSources());
+        self::assertEquals('marcorg', $recordInfos[0]->getRecordContentSources()[0]->getAuthority());
+        self::assertEquals('DLC', $recordInfos[0]->getRecordContentSources()[0]->getValue());
+        self::assertNotEmpty($recordInfos[0]->getRecordCreationDates());
+        self::assertEquals('marc', $recordInfos[0]->getRecordCreationDates()[0]->getEncoding());
+        self::assertEquals('990730', $recordInfos[0]->getRecordCreationDates()[0]->getValue());
+        self::assertNotEmpty($recordInfos[0]->getRecordChangeDates());
+        self::assertEquals('iso8601', $recordInfos[0]->getRecordChangeDates()[0]->getEncoding());
+        self::assertEquals('20060801143536.0', $recordInfos[0]->getRecordChangeDates()[0]->getValue());
+        self::assertNotEmpty($recordInfos[0]->getRecordIdentifiers());
+        self::assertEquals('DE-14', $recordInfos[0]->getRecordIdentifiers()[0]->getSource());
+        self::assertEquals('11761548', $recordInfos[0]->getRecordIdentifiers()[0]->getValue());
+        self::assertNotEmpty($recordInfos[0]->getRecordOrigins());
+        self::assertStringContainsString('Converted from MARCXML to MODS', $recordInfos[0]->getRecordOrigins()[0]->getValue());
     }
 
     public function testGetNoRecordInfosByQueryForBookDocument()
@@ -865,11 +887,33 @@ class ModsReaderTest extends TestCase
         self::assertNotEmpty($recordInfos);
         self::assertEquals(1, count($recordInfos));
         self::assertNotEmpty($recordInfos[0]->getValue());
-        //self::assertEquals('', $recordInfos[0]->getRecordIdentifier());
-        //self::assertNotEmpty($recordInfos[0]->getRecordOrigin());
-        //self::assertNotEmpty($recordInfos[0]->getLanguageOfCataloging());
-
-        // TODO: implement reading of elements
+        self::assertNotEmpty($recordInfos[0]->getDescriptionStandards());
+        self::assertEquals('aacr', $recordInfos[0]->getDescriptionStandards()[0]->getValue());
+        self::assertNotEmpty($recordInfos[0]->getRecordContentSources());
+        self::assertEquals('marcorg', $recordInfos[0]->getRecordContentSources()[0]->getAuthority());
+        self::assertEquals('NLC', $recordInfos[0]->getRecordContentSources()[0]->getValue());
+        self::assertNotEmpty($recordInfos[0]->getRecordCreationDates());
+        self::assertEquals('marc', $recordInfos[0]->getRecordCreationDates()[0]->getEncoding());
+        self::assertEquals('021127', $recordInfos[0]->getRecordCreationDates()[0]->getValue());
+        self::assertNotEmpty($recordInfos[0]->getRecordChangeDates());
+        self::assertEquals('iso8601', $recordInfos[0]->getRecordChangeDates()[0]->getEncoding());
+        self::assertEquals('20080910160139.0', $recordInfos[0]->getRecordChangeDates()[0]->getValue());
+        self::assertNotEmpty($recordInfos[0]->getRecordIdentifiers());
+        self::assertEquals('15446420', $recordInfos[0]->getRecordIdentifiers()[0]->getValue());
+        self::assertStringContainsString('Converted from MARCXML to MODS', $recordInfos[0]->getRecordOrigins()[0]->getValue());
+        self::assertNotEmpty($recordInfos[0]->getRecordInfoNotes());
+        self::assertEquals(2, count($recordInfos[0]->getRecordInfoNotes()));
+        self::assertEquals('Some info', $recordInfos[0]->getRecordInfoNotes()[1]->getValue());
+        $languages = $recordInfos[0]->getLanguageOfCatalogings();
+        self::assertNotEmpty($languages);
+        self::assertNotNull($languages[0]->getLanguageTerm());
+        self::assertEquals('code', $languages[0]->getLanguageTerm()->getType());
+        self::assertEquals('iso639-2b', $languages[0]->getLanguageTerm()->getAuthority());
+        self::assertEquals('eng', $languages[0]->getLanguageTerm()->getValue());
+        self::assertNotNull($languages[0]->getScriptTerm());
+        self::assertEquals('code', $languages[0]->getScriptTerm()->getType());
+        self::assertEquals('iso15924', $languages[0]->getScriptTerm()->getAuthority());
+        self::assertEquals('Latn', $languages[0]->getScriptTerm()->getValue());
     }
 
     public function testGetRecordInfosByQueryForSerialDocument()
@@ -878,11 +922,33 @@ class ModsReaderTest extends TestCase
         self::assertNotEmpty($recordInfos);
         self::assertEquals(1, count($recordInfos));
         self::assertNotEmpty($recordInfos[0]->getValue());
-        //self::assertEquals('', $recordInfos[0]->getRecordIdentifier());
-        //self::assertNotEmpty($recordInfos[0]->getRecordOrigin());
-        //self::assertNotEmpty($recordInfos[0]->getLanguageOfCataloging());
-
-        // TODO: implement reading of elements
+        self::assertNotEmpty($recordInfos[0]->getDescriptionStandards());
+        self::assertEquals('aacr', $recordInfos[0]->getDescriptionStandards()[0]->getValue());
+        self::assertNotEmpty($recordInfos[0]->getRecordContentSources());
+        self::assertEquals('marcorg', $recordInfos[0]->getRecordContentSources()[0]->getAuthority());
+        self::assertEquals('NLC', $recordInfos[0]->getRecordContentSources()[0]->getValue());
+        self::assertNotEmpty($recordInfos[0]->getRecordCreationDates());
+        self::assertEquals('marc', $recordInfos[0]->getRecordCreationDates()[0]->getEncoding());
+        self::assertEquals('021127', $recordInfos[0]->getRecordCreationDates()[0]->getValue());
+        self::assertNotEmpty($recordInfos[0]->getRecordChangeDates());
+        self::assertEquals('iso8601', $recordInfos[0]->getRecordChangeDates()[0]->getEncoding());
+        self::assertEquals('20080910160139.0', $recordInfos[0]->getRecordChangeDates()[0]->getValue());
+        self::assertNotEmpty($recordInfos[0]->getRecordIdentifiers());
+        self::assertEquals('15446420', $recordInfos[0]->getRecordIdentifiers()[0]->getValue());
+        self::assertStringContainsString('Converted from MARCXML to MODS', $recordInfos[0]->getRecordOrigins()[0]->getValue());
+        self::assertNotEmpty($recordInfos[0]->getRecordInfoNotes());
+        self::assertEquals(2, count($recordInfos[0]->getRecordInfoNotes()));
+        self::assertEquals('Some info', $recordInfos[0]->getRecordInfoNotes()[1]->getValue());
+        $languages = $recordInfos[0]->getLanguageOfCatalogings();
+        self::assertNotEmpty($languages);
+        self::assertNotNull($languages[0]->getLanguageTerm());
+        self::assertEquals('code', $languages[0]->getLanguageTerm()->getType());
+        self::assertEquals('iso639-2b', $languages[0]->getLanguageTerm()->getAuthority());
+        self::assertEquals('eng', $languages[0]->getLanguageTerm()->getValue());
+        self::assertNotNull($languages[0]->getScriptTerm());
+        self::assertEquals('code', $languages[0]->getScriptTerm()->getType());
+        self::assertEquals('iso15924', $languages[0]->getScriptTerm()->getAuthority());
+        self::assertEquals('Latn', $languages[0]->getScriptTerm()->getValue());
     }
 
     public function testGetNoRecordInfosByQueryForSerialDocument()

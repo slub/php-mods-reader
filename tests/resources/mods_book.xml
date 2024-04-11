@@ -153,8 +153,7 @@
         <recordContentSource authority="marcorg">DLC</recordContentSource>
         <recordCreationDate encoding="marc">990730</recordCreationDate>
         <recordChangeDate encoding="iso8601">20060801143536.0</recordChangeDate>
-        <recordIdentifier>11761548</recordIdentifier>
-        <recordOrigin>Converted from MARCXML to MODS version 3.8 using MARC21slim2MODS3-8_XSLT1-0.xsl
-				(Revision 1.172 20230208)</recordOrigin>
+        <recordIdentifier source="DE-14">11761548</recordIdentifier>
+        <recordOrigin>Converted from MARCXML to MODS version 3.8 using MARC21slim2MODS3-8_XSLT1-0.xsl (Revision 1.172 20230208)</recordOrigin>
     </recordInfo>
 </mods>

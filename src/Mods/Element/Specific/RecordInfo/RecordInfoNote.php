@@ -45,7 +45,8 @@ class RecordInfoNote extends BaseElement
     }
 
     /**
-     * Get the value of type
+     * Get the value of the 'type' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/recordinfo.html#type
      *
      * @access public
      *

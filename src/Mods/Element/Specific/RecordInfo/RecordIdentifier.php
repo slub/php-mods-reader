@@ -17,6 +17,7 @@ use Slub\Mods\Element\Common\BaseElement;
 
 /**
  * RecordIdentifier MODS metadata element class for the 'php-mods-reader' library.
+ * @see https://www.loc.gov/standards/mods/userguide/recordinfo.html#recordidentifier
  *
  * @access public
  */
@@ -39,7 +40,8 @@ class RecordIdentifier extends BaseElement
     }
 
     /**
-     * Get the value of source
+     * Get the value of the 'source' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/recordinfo.html#source
      *
      * @access public
      *
@@ -47,11 +49,6 @@ class RecordIdentifier extends BaseElement
      */
     public function getSource(): string
     {
-        $value = $this->xml->attributes()->source;
-
-        if (!empty($value)) {
-            return $value;
-        }
-        return '';
+        return $this->getStringAttribute('source');
     }
 }

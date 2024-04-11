@@ -45,11 +45,11 @@ class LevelPeriodElement extends BaseElement
      *
      * @access public
      *
-     * @return string
+     * @return int
      */
-    public function getLevel(): string
+    public function getLevel(): int
     {
-        return $this->getStringAttribute('level');
+        return $this->getIntAttribute('level');
     }
 
     /**

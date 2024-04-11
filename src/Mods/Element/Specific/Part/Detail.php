@@ -76,12 +76,7 @@ class Detail extends BaseElement
      */
     public function getLevel(): int
     {
-        $value = $this->xml->attributes()->level;
-
-        if (!empty($value)) {
-            return (int) $value;
-        }
-        return 0;
+        return $this->getIntAttribute('level');
     }
 
     /**

@@ -41,7 +41,7 @@ class BaseElement
     }
 
     /**
-     * Get the text value of element
+     * Get the text value of element.
      *
      * @access public
      *
@@ -53,7 +53,13 @@ class BaseElement
     }
 
     /**
-     * Get the string value of attribute
+     * Get the string value of attribute.
+     *
+     * @access public
+     *
+     * @param string $attribute name
+     *
+     * @return string
      */
     protected function getStringAttribute($attribute): string
     {
@@ -65,5 +71,26 @@ class BaseElement
             }
         }
         return '';
+    }
+
+    /**
+     * Get the int value of attribute.
+     *
+     * @access public
+     *
+     * @param string $attribute name
+     *
+     * @return int
+     */
+    protected function getIntAttribute($attribute): int
+    {
+        if ($this->xml->attributes() != null) {
+            $value = $this->xml->attributes()->$attribute;
+
+            if (!empty($value)) {
+                return (int) $value;
+            }
+        }
+        return 0;
     }
 }

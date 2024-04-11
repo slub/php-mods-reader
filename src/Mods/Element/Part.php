@@ -90,12 +90,7 @@ class Part extends BaseElement
      */
     public function getOrder(): int
     {
-        $value = $this->xml->attributes()->order;
-
-        if (!empty($value)) {
-            return (int) $value;
-        }
-        return 0;
+        return $this->getIntAttribute('order');
     }
 
     /**

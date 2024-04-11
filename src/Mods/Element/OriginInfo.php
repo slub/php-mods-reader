@@ -24,93 +24,18 @@ use Slub\Mods\Element\Specific\OriginInfo\DisplayDate;
 use Slub\Mods\Element\Specific\OriginInfo\Edition;
 use Slub\Mods\Element\Specific\OriginInfo\Frequency;
 use Slub\Mods\Element\Specific\OriginInfo\Issuance;
+use Slub\Mods\Element\Specific\OriginInfo\Place;
+use Slub\Mods\Element\Xml\Element;
 
 /**
  * OriginInfo MODS metadata element class for the 'php-mods-reader' library.
+ * @see https://www.loc.gov/standards/mods/userguide/origininfo.html
  *
  * @access public
  */
 class OriginInfo extends BaseElement
 {
     use LanguageAttribute, IdAttribute, AltRepGroupAttribute, DisplayLabelAttribute;
-
-    /**
-     * @access private
-     * @var array
-     */
-    private array $places;
-
-    /**
-     * @access private
-     * @var Agent
-     */
-    private Agent $agent;
-
-    /**
-     * @access private
-     * @var DateElement
-     */
-    private DateElement $dateIssued;
-
-    /**
-     * @access private
-     * @var DateElement
-     */
-    private DateElement $dateCreated;
-
-    /**
-     * @access private
-     * @var DateElement
-     */
-    private DateElement $dateCaptured;
-
-    /**
-     * @access private
-     * @var DateElement
-     */
-    private DateElement $dateValid;
-
-    /**
-     * @access private
-     * @var DateElement
-     */
-    private DateElement $dateModified;
-
-    /**
-     * @access private
-     * @var DateElement
-     */
-    private DateElement $copyrightDate;
-
-    /**
-     * @access private
-     * @var DateOther
-     */
-    private DateOther $dateOther;
-
-    /**
-     * @access private
-     * @var DisplayDate
-     */
-    private DisplayDate $displayDate;
-
-    /**
-     * @access private
-     * @var Edition
-     */
-    private Edition $edition;
-
-    /**
-     * @access private
-     * @var Issuance
-     */
-    private Issuance $issuance;
-
-    /**
-     * @access private
-     * @var Frequency
-     */
-    private Frequency $frequency;
 
     /**
      * This extracts the essential MODS metadata from XML
@@ -124,24 +49,11 @@ class OriginInfo extends BaseElement
     public function __construct(\SimpleXMLElement $xml)
     {
         parent::__construct($xml);
-
-        $this->places = [];
-        $this->agent = new Agent($xml);
-        $this->dateIssued = new DateElement($xml);
-        $this->dateCreated = new DateElement($xml);
-        $this->dateCaptured = new DateElement($xml);
-        $this->dateValid = new DateElement($xml);
-        $this->dateModified = new DateElement($xml);
-        $this->copyrightDate = new DateElement($xml);
-        $this->dateOther = new DateOther($xml);
-        $this->displayDate = new DisplayDate($xml);
-        $this->edition = new Edition($xml);
-        $this->issuance = new Issuance($xml);
-        $this->frequency = new Frequency($xml);
     }
 
     /**
-     * Get the value of eventType
+     * Get the value of the 'eventType' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/origininfo.html#eventType
      *
      * @access public
      *
@@ -153,7 +65,8 @@ class OriginInfo extends BaseElement
     }
 
     /**
-     * Get the value of eventTypeURI
+     * Get the value of the 'eventTypeURI' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/origininfo.html#eventTypeURI
      *
      * @access public
      *
@@ -165,158 +78,253 @@ class OriginInfo extends BaseElement
     }
 
     /**
-     * Get the value of places
+     * Get the array of the <place> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/origininfo.html#place
      *
      * @access public
      *
-     * @return array
+     * @param string $query The XPath query for metadata search
+     *
+     * @return Place[]
      */
-    public function getPlaces(): array
+    public function getPlaces(string $query = ''): array
     {
-        return $this->places;
+        $places = [];
+        $xpath = './mods:place' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $places[] = new Place($value);
+            }
+        }
+        return $places;
     }
 
     /**
-     * Get the value of agent
+     * Get the array of the <agent> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/origininfo.html#agent
      *
      * @access public
      *
-     * @return Agent
+     * @param string $query The XPath query for metadata search
+     *
+     * @return Agent[]
      */
-    public function getAgent(): Agent
+    public function getAgents(string $query = ''): array
     {
-        return $this->agent;
+        $agents = [];
+        $xpath = './mods:agent' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $agents[] = new Agent($value);
+            }
+        }
+        return $agents;
     }
 
     /**
-     * Get the value of dateIssued
+     * Get the array of the <dateIssued> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/origininfo.html#dateissued
      *
      * @access public
      *
-     * @return DateElement
+     * @param string $query The XPath query for metadata search
+     *
+     * @return DateElement[]
      */
-    public function getDateIssued(): DateElement
+    public function getIssuedDates(string $query = ''): array
     {
-        return $this->dateIssued;
+        return $this->getDateElements('./mods:dateIssued' . $query);
     }
 
     /**
-     * Get the value of dateCreated
+     * Get the array of the <dateCreated> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/origininfo.html#datecreated
      *
      * @access public
      *
-     * @return DateElement
+     * @param string $query The XPath query for metadata search
+     *
+     * @return DateElement[]
      */
-    public function getDateCreated(): DateElement
+    public function getCreatedDates(string $query = ''): array
     {
-        return $this->dateCreated;
+        return $this->getDateElements('./mods:dateCreated' . $query);
     }
 
     /**
-     * Get the value of dateCaptured
+     * Get the the array of the <dateCaptured> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/origininfo.html#datecaptured
      *
      * @access public
      *
-     * @return DateElement
+     * @param string $query The XPath query for metadata search
+     *
+     * @return DateElement[]
      */
-    public function getDateCaptured(): DateElement
+    public function getCapturedDates(string $query = ''): array
     {
-        return $this->dateCaptured;
+        return $this->getDateElements('./mods:dateCaptured' . $query);
     }
 
     /**
-     * Get the value of dateValid
+     * Get the array of the <dateValid> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/origininfo.html#datevalid
      *
      * @access public
      *
-     * @return DateElement
+     * @param string $query The XPath query for metadata search
+     *
+     * @return DateElement[]
      */
-    public function getDateValid(): DateElement
+    public function getValidDates(string $query = ''): array
     {
-        return $this->dateValid;
+        return $this->getDateElements('./mods:dateValid' . $query);
     }
 
     /**
-     * Get the value of dateModified
+     * Get the array of the <dateModified> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/origininfo.html#datemodified
      *
      * @access public
      *
-     * @return DateElement
+     * @param string $query The XPath query for metadata search
+     *
+     * @return DateElement[]
      */
-    public function getDateModified(): DateElement
+    public function getModifiedDates(string $query = ''): array
     {
-        return $this->dateModified;
+        return $this->getDateElements('./mods:dateModified' . $query);
     }
 
     /**
-     * Get the value of copyrightDate
+     * Get the array of the <copyrightDate> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/origininfo.html#copyrightdate
      *
      * @access public
      *
-     * @return DateElement
+     * @param string $query The XPath query for metadata search
+     *
+     * @return DateElement[]
      */
-    public function getCopyrightDate(): DateElement
+    public function getCopyrightDates(string $query = ''): array
     {
-        return $this->copyrightDate;
+        return $this->getDateElements('./mods:copyrightDate' . $query);
     }
 
     /**
-     * Get the value of dateOther
+     * Get the array of the <dateOther> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/origininfo.html#dateother
      *
      * @access public
      *
-     * @return DateOther
+     * @param string $query The XPath query for metadata search
+     *
+     * @return DateOther[]
      */
-    public function getDateOther(): DateOther
+    public function getOtherDates(string $query = ''): array
     {
-        return $this->dateOther;
+        $otherDates = [];
+        $xpath = './mods:dateOther' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $otherDates[] = new DateOther($value);
+            }
+        }
+        return $otherDates;
     }
 
     /**
-     * Get the value of displayDate
+     * Get the array of the <displayDate> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/origininfo.html#displayDate
      *
      * @access public
      *
-     * @return DisplayDate
+     * @param string $query The XPath query for metadata search
+     *
+     * @return DisplayDate[]
      */
-    public function getDisplayDate(): DisplayDate
+    public function getDisplayDates(string $query = ''): array
     {
-        return $this->displayDate;
+        $displayDates = [];
+        $xpath = './mods:displayDate' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $displayDates[] = new DisplayDate($value);
+            }
+        }
+        return $displayDates;
     }
 
     /**
-     * Get the value of edition
+     * Get the array of the <edition> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/origininfo.html#edition
      *
      * @access public
      *
-     * @return Edition
+     * @param string $query The XPath query for metadata search
+     *
+     * @return Edition[]
      */
-    public function getEdition(): Edition
+    public function getEditions(string $query = ''): array
     {
-        return $this->edition;
+        $editions = [];
+        $xpath = './mods:edition' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $editions[] = new Edition($value);
+            }
+        }
+        return $editions;
     }
 
     /**
-     * Get the value of issuance
+     * Get the array of the <issuance> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/origininfo.html#issuance
      *
      * @access public
      *
-     * @return Issuance
+     * @param string $query The XPath query for metadata search
+     *
+     * @return Issuance[]
      */
-    public function getIssuance(): Issuance
+    public function getIssuances(string $query = ''): array
     {
-        return $this->issuance;
+        $issuances = [];
+        $xpath = './mods:issuance' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $issuances[] = new Issuance($value);
+            }
+        }
+        return $issuances;
     }
 
     /**
-     * Get the value of frequency
+     * Get the array of the <frequency> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/origininfo.html#frequency
      *
      * @access public
      *
-     * @return Frequency
+     * @param string $query The XPath query for metadata search
+     *
+     * @return Frequency[]
      */
-    public function getFrequency(): Frequency
+    public function getFrequencies(string $query = ''): array
     {
-        return $this->frequency;
+        $frequencies = [];
+        $xpath = './mods:frequency' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $frequencies[] = new Frequency($value);
+            }
+        }
+        return $frequencies;
     }
 }

@@ -18,36 +18,13 @@ use Slub\Mods\Element\Common\LanguageElement;
 
 /**
  * Cartographics MODS metadata element class for the 'php-mods-reader' library.
+ * @see https://www.loc.gov/standards/mods/userguide/origininfo.html#oiplacecartographics
  *
  * @access public
  */
 class Cartographics extends BaseElement
 {
     use AuthorityAttribute;
-
-    /**
-     * @access private
-     * @var array<LanguageElement>
-     */
-    private array $coordinates;
-
-    /**
-     * @access private
-     * @var LanguageElement
-     */
-    private LanguageElement $projection;
-
-    /**
-     * @access private
-     * @var LanguageElement
-     */
-    private LanguageElement $scale;
-
-    /**
-     * @access private
-     * @var LanguageElement
-     */
-    private LanguageElement $cartographicExtension;
 
     /**
      * This extracts the essential MODS metadata from XML
@@ -61,57 +38,63 @@ class Cartographics extends BaseElement
     public function __construct(\SimpleXMLElement $xml)
     {
         parent::__construct($xml);
-
-        $this->projection = new LanguageElement($xml);
-        $this->scale = new LanguageElement($xml);
-        $this->cartographicExtension = new LanguageElement($xml);
     }
 
     /**
-     * Get the value of coordinates
+     * Get the value of the <projection> element.
+     * @see https://www.loc.gov/standards/mods/userguide/origininfo.html#projection
      *
      * @access public
      *
-     * @return array
+     * @return ?LanguageElement
      */
-    public function getCoordinates(): array
+    public function getProjection(string $query = ''): ?LanguageElement
     {
-        return $this->coordinates;
+        return $this->getLanguageElement('./mods:projection' . $query);
     }
 
     /**
-     * Get the value of projection
+     * Get the value of the <scale> element.
+     * @see https://www.loc.gov/standards/mods/userguide/origininfo.html#scale
      *
      * @access public
      *
-     * @return LanguageElement
+     * @param string $query The XPath query for metadata search
+     *
+     * @return ?LanguageElement
      */
-    public function getProjection(): LanguageElement
+    public function getScale(string $query = ''): ?LanguageElement
     {
-        return $this->projection;
+        return $this->getLanguageElement('./mods:scale' . $query);
     }
 
     /**
-     * Get the value of scale
+     * Get the array of the <coordinates> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/origininfo.html#coordinates
      *
      * @access public
      *
-     * @return LanguageElement
+     * @param string $query The XPath query for metadata search
+     *
+     * @return LanguageElement[]
      */
-    public function getScale(): LanguageElement
+    public function getCoordinates(string $query = ''): array
     {
-        return $this->scale;
+        return $this->getLanguageElements('./mods:coordinates' . $query);
     }
 
     /**
-     * Get the value of cartographicExtension
+     * Get the array of the <cartographicExtension> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/origininfo.html#cartographicextension
      *
      * @access public
      *
-     * @return LanguageElement
+     * @param string $query The XPath query for metadata search
+     *
+     * @return LanguageElement[]
      */
-    public function getCartographicExtension(): LanguageElement
+    public function getCartographicExtensions(string $query = ''): array
     {
-        return $this->cartographicExtension;
+        return $this->getLanguageElements('./mods:cartographicExtension' . $query);
     }
 }

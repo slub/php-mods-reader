@@ -15,34 +15,18 @@ namespace Slub\Mods\Element\Specific\OriginInfo;
 use Slub\Mods\Attribute\Common\Miscellaneous\SuppliedAttribute;
 use Slub\Mods\Element\Common\BaseElement;
 use Slub\Mods\Element\Specific\OriginInfo\Place\Cartographics;
-use Slub\Mods\Element\Specific\OriginInfo\Place\PlaceIdentifier;
+use Slub\Mods\Element\Specific\OriginInfo\Place\PlaceTerm;
+use Slub\Mods\Element\Xml\Element;
 
 /**
  * Place MODS metadata element class for the 'php-mods-reader' library.
+ * @see https://www.loc.gov/standards/mods/userguide/origininfo.html#place
  *
  * @access public
  */
 class Place extends BaseElement
 {
     use SuppliedAttribute;
-
-    /**
-     * @access private
-     * @var array
-     */
-    private array $placeTerms;
-
-    /**
-     * @access private
-     * @var PlaceIdentifier
-     */
-    private PlaceIdentifier $placeIdentifier;
-
-    /**
-     * @access private
-     * @var Cartographics
-     */
-    private Cartographics $cartographics;
 
     /**
      * This extracts the essential MODS metadata from XML
@@ -59,38 +43,71 @@ class Place extends BaseElement
     }
 
     /**
-     * Get the value of placeTerms
+     * Get the array of the <placeTerms> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/origininfo.html#placeterm
      *
      * @access public
      *
-     * @return array
+     * @param string $query The XPath query for metadata search
+     *
+     * @return PlaceTerm[]
      */
-    public function getPlaceTerms(): array
+    public function getPlaceTerms(string $query = ''): array
     {
-        return $this->placeTerms;
+        $placeTerms = [];
+        $xpath = './mods:placeTerm' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $placeTerms[] = new PlaceTerm($value);
+            }
+        }
+        return $placeTerms;
     }
 
     /**
-     * Get the value of placeIdentifier
+     * Get the array of the <placeIdentifier> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/origininfo.html#placeidentifier
      *
      * @access public
      *
-     * @return PlaceIdentifier
+     * @param string $query The XPath query for metadata search
+     *
+     * @return BaseElement[]
      */
-    public function getPlaceIdentifier(): PlaceIdentifier
+    public function getPlaceIdentifiers(string $query = ''): array
     {
-        return $this->placeIdentifier;
+        $placeIdentifiers = [];
+        $xpath = './mods:placeIdentifier' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $placeIdentifiers[] = new BaseElement($value);
+            }
+        }
+        return $placeIdentifiers;
     }
 
     /**
-     * Get the value of cartographics
+     * Get the array of the <cartographics> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/origininfo.html#oiplacecartographics
      *
      * @access public
      *
-     * @return Cartographics
+     * @param string $query The XPath query for metadata search
+     *
+     * @return Cartographics[]
      */
-    public function getCartographics(): Cartographics
+    public function getCartographics(string $query = ''): array
     {
-        return $this->cartographics;
+        $cartographics = [];
+        $xpath = './mods:cartographics' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $cartographics[] = new Cartographics($value);
+            }
+        }
+        return $cartographics;
     }
 }

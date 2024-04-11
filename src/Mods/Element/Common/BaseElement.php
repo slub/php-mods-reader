@@ -12,6 +12,8 @@
 
 namespace Slub\Mods\Element\Common;
 
+use Slub\Mods\Element\Xml\Element;
+
 /**
  * MODS metadata element class for the 'php-mods-reader' library.
  *
@@ -55,7 +57,7 @@ class BaseElement
     /**
      * Get the string value of attribute.
      *
-     * @access public
+     * @access protected
      *
      * @param string $attribute name
      *
@@ -76,7 +78,7 @@ class BaseElement
     /**
      * Get the int value of attribute.
      *
-     * @access public
+     * @access protected
      *
      * @param string $attribute name
      *
@@ -92,5 +94,86 @@ class BaseElement
             }
         }
         return 0;
+    }
+
+    /**
+     * Get the array of the matching elements.
+     *
+     * @access protected
+     *
+     * @param string $xpath The XPath for metadata search
+     *
+     * @return AuthorityLanguageElement[]
+     */
+    protected function getAuthorityLanguageElements(string $xpath): array
+    {
+        $elements = [];
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $elements[] = new AuthorityLanguageElement($value);
+            }
+        }
+        return $elements;
+    }
+
+    /**
+     * Get the the array of the matching elements.
+     *
+     * @access protected
+     *
+     * @param string $xpath The XPath for metadata search
+     *
+     * @return DateElement[]
+     */
+    protected function getDateElements(string $xpath): array
+    {
+        $elements = [];
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $elements[] = new DateElement($value);
+            }
+        }
+        return $elements;
+    }
+
+    /**
+     * Get the matching element or null if there is not match.
+     *
+     * @access protected
+     *
+     * @param string $xpath The XPath for metadata search
+     *
+     * @return ?LanguageElement
+     */
+    protected function getLanguageElement(string $xpath): ?LanguageElement
+    {
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            return new LanguageElement($element->getValues()[0]);
+        }
+        return null;
+    }
+
+    /**
+     * Get the array of the matching elements.
+     *
+     * @access protected
+     *
+     * @param string $xpath The XPath for metadata search
+     *
+     * @return LanguageElement[]
+     */
+    protected function getLanguageElements(string $xpath): array
+    {
+        $elements = [];
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $elements[] = new LanguageElement($value);
+            }
+        }
+        return $elements;
     }
 }

@@ -19,6 +19,7 @@ use Slub\Mods\Element\Common\BaseElement;
 
 /**
  * PlaceTerm MODS metadata element class for the 'php-mods-reader' library.
+ * @see https://www.loc.gov/standards/mods/userguide/origininfo.html#placeterm
  *
  * @access public
  */

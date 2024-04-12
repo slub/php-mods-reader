@@ -52,7 +52,6 @@
             <placeTerm authority="marccountry" type="code">nyu</placeTerm>
         </place>
         <dateIssued encoding="marc">1999</dateIssued>
-        <issuance>monographic</issuance>
         <place>
             <placeTerm type="text">Ithaca, N.Y</placeTerm>
         </place>

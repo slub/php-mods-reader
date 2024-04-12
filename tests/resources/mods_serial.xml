@@ -112,10 +112,12 @@
         <recordCreationDate encoding="marc">021127</recordCreationDate>
         <recordChangeDate encoding="iso8601">20080910160139.0</recordChangeDate>
         <recordIdentifier>15446420</recordIdentifier>
-        <recordOrigin>Converted from MARCXML to MODS version 3.8 using MARC21slim2MODS3-8_XSLT1-0.xsl
-				(Revision 1.172 20230208)</recordOrigin>
+        <recordOrigin>Converted from MARCXML to MODS version 3.8 using MARC21slim2MODS3-8_XSLT1-0.xsl (Revision 1.172 20230208)</recordOrigin>
+        <recordInfoNote>Random note</recordInfoNote>
+        <recordInfoNote>Some info</recordInfoNote>
         <languageOfCataloging>
-            <languageTerm authority="iso639-2b" type="code">eng</languageTerm>
+            <languageTerm type="code" authority="iso639-2b">eng</languageTerm>
+            <scriptTerm type="code" authority="iso15924">Latn</scriptTerm>
         </languageOfCataloging>
     </recordInfo>
 </mods>

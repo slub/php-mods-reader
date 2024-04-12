@@ -19,27 +19,17 @@ use Slub\Mods\Attribute\Common\Miscellaneous\UsageAttribute;
 use Slub\Mods\Element\Common\BaseElement;
 use Slub\Mods\Element\Specific\Language\LanguageTerm;
 use Slub\Mods\Element\Specific\Language\ScriptTerm;
+use Slub\Mods\Element\Xml\Element;
 
 /**
  * LanguageOfCataloging MODS metadata element class for the 'php-mods-reader' library.
+ * @see https://www.loc.gov/standards/mods/userguide/recordinfo.html#languageofcataloging
  *
  * @access public
  */
 class LanguageOfCataloging extends BaseElement
 {
     use IdAttribute, AltRepGroupAttribute, DisplayLabelAttribute, UsageAttribute;
-
-    /**
-     * @access private
-     * @var LanguageTerm
-     */
-    private LanguageTerm $languageTerm;
-
-    /**
-     * @access private
-     * @var ScriptTerm
-     */
-    private ScriptTerm $scriptTerm;
 
     /**
      * This extracts the essential MODS metadata from XML
@@ -53,13 +43,11 @@ class LanguageOfCataloging extends BaseElement
     public function __construct(\SimpleXMLElement $xml)
     {
         parent::__construct($xml);
-
-        $this->languageTerm = new LanguageTerm($xml);
-        $this->scriptTerm = new ScriptTerm($xml);
     }
 
     /**
-     * Get the value of objectPart
+     * Get the value of 'objectPart' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/recordinfo.html#objectpart
      *
      * @access public
      *
@@ -71,26 +59,42 @@ class LanguageOfCataloging extends BaseElement
     }
 
     /**
-     * Get the value of languageTerm
+     * Get the value of the <languageTerm> element.
+     * @see https://www.loc.gov/standards/mods/userguide/recordinfo.html#languageterm
      *
      * @access public
      *
-     * @return LanguageTerm
+     * @param string $query The XPath query for metadata search
+     *
+     * @return ?LanguageTerm
      */
-    public function getLanguageTerm(): LanguageTerm
+    public function getLanguageTerm(string $query = ''): ?LanguageTerm
     {
-        return $this->languageTerm;
+        $xpath = './mods:languageTerm' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            return new LanguageTerm($element->getValues()[0]);
+        }
+        return null;
     }
 
     /**
-     * Get the value of scriptTerm
+     * Get the value of the <scriptTerm> element.
+     * @see https://www.loc.gov/standards/mods/userguide/recordinfo.html#scriptterm
      *
      * @access public
      *
-     * @return ScriptTerm
+     * @param string $query The XPath query for metadata search
+     *
+     * @return ?ScriptTerm
      */
-    public function getScriptTerm(): ScriptTerm
+    public function getScriptTerm(string $query = ''): ?ScriptTerm
     {
-        return $this->scriptTerm;
+        $xpath = './mods:scriptTerm' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            return new ScriptTerm($element->getValues()[0]);
+        }
+        return null;
     }
 }

@@ -25,75 +25,17 @@ use Slub\Mods\Element\Common\BaseElement;
 use Slub\Mods\Element\Name;
 use Slub\Mods\Element\Specific\OriginInfo\Place\Cartographics;
 use Slub\Mods\Element\Specific\Subject\HierarchicalGeographic;
+use Slub\Mods\Element\Xml\Element;
 
 /**
  * Subject MODS metadata element class for the 'php-mods-reader' library.
+ * @see https://www.loc.gov/standards/mods/userguide/subject.html
  *
  * @access public
  */
 class Subject extends BaseElement
 {
     use AuthorityAttribute, LanguageAttribute, IdAttribute, XlinkHrefAttribute, AltRepGroupAttribute, DisplayLabelAttribute, UsageAttribute;
-
-    /**
-     * @access private
-     * @var AuthorityLanguageElement
-     */
-    private AuthorityLanguageElement $topic;
-
-    /**
-     * @access private
-     * @var AuthorityLanguageElement
-     */
-    private AuthorityLanguageElement $geographic;
-
-    /**
-     * @access private
-     * @var AuthorityDateLanguageElement
-     */
-    private AuthorityDateLanguageElement $temporal;
-
-    /**
-     * @access private
-     * @var TitleInfo
-     */
-    private TitleInfo $titleInfo;
-
-    /**
-     * @access private
-     * @var Name
-     */
-    private Name $name;
-
-    /**
-     * @access private
-     * @var Genre
-     */
-    private Genre $genre;
-
-    /**
-     * @access private
-     * @var HierarchicalGeographic
-     */
-    private HierarchicalGeographic $hierarchicalGeographic;
-
-    /**
-     * @access private
-     * @var Cartographics
-     */
-    private Cartographics $cartographics;
-
-    /**
-     * @access private
-     * @var AuthorityLanguageElement
-     */
-    private AuthorityLanguageElement $geographicCode;
-
-    /**
-     * @access private
-     * @var AuthorityLanguageElement
-     */
-    private AuthorityLanguageElement $occupation;
 
     /**
      * This extracts the essential MODS metadata from XML
@@ -107,136 +49,235 @@ class Subject extends BaseElement
     public function __construct(\SimpleXMLElement $xml)
     {
         parent::__construct($xml);
-
-        $this->topic = new AuthorityLanguageElement($xml);
-        $this->geographic = new AuthorityLanguageElement($xml);
-        $this->temporal = new AuthorityDateLanguageElement($xml);
-        $this->titleInfo = new TitleInfo($xml);
-        $this->name = new Name($xml);
-        $this->genre = new Genre($xml);
-        $this->hierarchicalGeographic = new HierarchicalGeographic($xml);
-        $this->cartographics = new Cartographics($xml);
-        $this->geographicCode = new AuthorityLanguageElement($xml);
-        $this->occupation = new AuthorityLanguageElement($xml);
     }
 
     /**
-     * Get the value of topic
+     * Get the the array of the <topic> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/subject.html#topic
      *
      * @access public
      *
-     * @return AuthorityLanguageElement
+     * @param string $query The XPath query for metadata search
+     *
+     * @return AuthorityLanguageElement[]
      */
-    public function getTopic(): AuthorityLanguageElement
+    public function getTopics(string $query = ''): array
     {
-        return $this->topic;
+        $topics = [];
+        $xpath = './mods:topic' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $topics[] = new AuthorityLanguageElement($value);
+            }
+        }
+        return $topics;
     }
 
     /**
-     * Get the value of geographic
+     * Get the the array of the <geographic> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/subject.html#geographic
      *
      * @access public
      *
-     * @return AuthorityLanguageElement
+     * @param string $query The XPath query for metadata search
+     *
+     * @return AuthorityLanguageElement[]
      */
-    public function getGeographic(): AuthorityLanguageElement
+    public function getGeographics(string $query = ''): array
     {
-        return $this->geographic;
+        $geographics = [];
+        $xpath = './mods:geographic' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $geographics[] = new AuthorityLanguageElement($value);
+            }
+        }
+        return $geographics;
     }
 
     /**
-     * Get the value of temporal
+     * Get the value of the <temporal> element.
+     * @see https://www.loc.gov/standards/mods/userguide/subject.html#temporal
      *
      * @access public
      *
-     * @return AuthorityDateLanguageElement
+     * @param string $query The XPath query for metadata search
+     *
+     * @return AuthorityDateLanguageElement[]
      */
-    public function getTemporal(): AuthorityDateLanguageElement
+    public function getTemporals(string $query = ''): array
     {
-        return $this->temporal;
+        $temporals = [];
+        $xpath = './mods:temporal' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $temporals[] = new AuthorityLanguageElement($value);
+            }
+        }
+        return $temporals;
     }
 
     /**
-     * Get the value of titleInfo
+     * Get the the array of the <titleInfo> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/subject.html#titleinfo
      *
      * @access public
      *
-     * @return TitleInfo
+     * @param string $query The XPath query for metadata search
+     *
+     * @return TitleInfo[]
      */
-    public function getTitleInfo(): TitleInfo
+    public function getTitleInfos(string $query = ''): array
     {
-        return $this->titleInfo;
+        $titleInfos = [];
+        $xpath = './mods:titleInfo' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $titleInfos[] = new TitleInfo($value);
+            }
+        }
+        return $titleInfos;
     }
 
     /**
-     * Get the value of name
+     * Get the the array of the <name> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/subject.html#name
      *
      * @access public
      *
-     * @return Name
+     * @param string $query The XPath query for metadata search
+     *
+     * @return Name[]
      */
-    public function getName(): Name
+    public function getNames(string $query = ''): array
     {
-        return $this->name;
+        $names = [];
+        $xpath = './mods:name' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $names[] = new Name($value);
+            }
+        }
+        return $names;
     }
 
     /**
-     * Get the value of genre
+     * Get the the array of the <genre> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/subject.html#genre
      *
      * @access public
      *
-     * @return Genre
+     * @param string $query The XPath query for metadata search
+     *
+     * @return Genre[]
      */
-    public function getGenre(): Genre
+    public function getGenres(string $query = ''): array
     {
-        return $this->genre;
+        $genres = [];
+        $xpath = './mods:genre' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $genres[] = new Genre($value);
+            }
+        }
+        return $genres;
     }
 
     /**
-     * Get the value of hierarchicalGeographic
+     * Get the the array of the <hierarchicalGeographic> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/subject.html#hierarchicalgeographic
      *
      * @access public
      *
-     * @return HierarchicalGeographic
+     * @param string $query The XPath query for metadata search
+     *
+     * @return HierarchicalGeographic[]
      */
-    public function getHierarchicalGeographic(): HierarchicalGeographic
+    public function getHierarchicalGeographics(string $query = ''): array
     {
-        return $this->hierarchicalGeographic;
+        $hierarchicalGeographics = [];
+        $xpath = './mods:hierarchicalGeographic' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $hierarchicalGeographics[] = new HierarchicalGeographic($value);
+            }
+        }
+        return $hierarchicalGeographics;
     }
 
     /**
-     * Get the value of cartographics
+     * Get the the array of the <cartographics> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/subject.html#hierarchicalgeographic
      *
      * @access public
      *
-     * @return Cartographics
+     * @param string $query The XPath query for metadata search
+     *
+     * @return Cartographics[]
      */
-    public function getCartographics(): Cartographics
+    public function getCartographics(string $query = ''): array
     {
-        return $this->cartographics;
+        $cartographics = [];
+        $xpath = './mods:cartographics' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $cartographics[] = new Cartographics($value);
+            }
+        }
+        return $cartographics;
     }
 
     /**
-     * Get the value of geographicCode
+     * Get the the array of the <geographicCode> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/subject.html#geographiccode
      *
      * @access public
      *
-     * @return AuthorityLanguageElement
+     * @param string $query The XPath query for metadata search
+     *
+     * @return AuthorityLanguageElement[]
      */
-    public function getGeographicCode(): AuthorityLanguageElement
+    public function getGeographicCodes(string $query = ''): array
     {
-        return $this->geographicCode;
+        $geographicCodes = [];
+        $xpath = './mods:geographicCode' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $geographicCodes[] = new AuthorityLanguageElement($value);
+            }
+        }
+        return $geographicCodes;
     }
 
     /**
-     * Get the value of occupation
+     * Get the the array of the <occupation> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/subject.html#occupation
      *
      * @access public
      *
-     * @return AuthorityLanguageElement
+     * @param string $query The XPath query for metadata search
+     *
+     * @return AuthorityLanguageElement[]
      */
-    public function getOccupation(): AuthorityLanguageElement
+    public function getOccupations(string $query = ''): array
     {
-        return $this->occupation;
+        $occupations = [];
+        $xpath = './mods:occupation' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $occupations[] = new AuthorityLanguageElement($value);
+            }
+        }
+        return $occupations;
     }
 }

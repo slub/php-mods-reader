@@ -79,6 +79,18 @@
     <note type="statement of responsibility">Eric Alterman.</note>
     <note type="bibliography">Includes bibliographical references (p. 291-312) and index.</note>
     <subject>
+        <hierarchicalGeographic>
+            <country level="1">United Kingdom</country>
+            <country level="2">England</country>
+            <region>North West</region>
+            <county>Cumbria</county>
+            <city>Providence</city>
+            <citySection citySectionType="neighborhood" level="1">East Side</citySection>
+            <citySection citySectionType="neighborhood" level="2">Blackstone</citySection>
+            <area areaType="national park">Lake District</area>
+        </hierarchicalGeographic>
+    </subject>
+    <subject>
         <geographicCode authority="marcgac">n-us---</geographicCode>
     </subject>
     <subject authority="lcsh">

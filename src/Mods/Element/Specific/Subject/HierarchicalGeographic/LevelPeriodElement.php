@@ -21,7 +21,7 @@ use Slub\Mods\Element\Common\BaseElement;
  *
  * @access public
  */
-class Element extends BaseElement
+class LevelPeriodElement extends BaseElement
 {
     use AuthorityAttribute, LanguageAttribute;
 
@@ -40,19 +40,21 @@ class Element extends BaseElement
     }
 
     /**
-     * Get the value of level
+     * Get the value of the 'level' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/subject.html#level
      *
      * @access public
      *
-     * @return string
+     * @return int
      */
-    public function getLevel(): string
+    public function getLevel(): int
     {
-        return $this->getStringAttribute('level');
+        return $this->getIntAttribute('level');
     }
 
     /**
-     * Get the value of period
+     * Get the value of the 'period' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/subject.html#period
      *
      * @access public
      *

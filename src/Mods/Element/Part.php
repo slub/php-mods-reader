@@ -21,39 +21,17 @@ use Slub\Mods\Element\Common\DateElement;
 use Slub\Mods\Element\Specific\Part\Detail;
 use Slub\Mods\Element\Specific\Part\Extent;
 use Slub\Mods\Element\Specific\Part\Text;
+use Slub\Mods\Element\Xml\Element;
 
 /**
  * Part MODS metadata element class for the 'php-mods-reader' library.
+ * @see https://www.loc.gov/standards/mods/userguide/part.html
  *
  * @access public
  */
 class Part extends BaseElement
 {
     use LanguageAttribute, IdAttribute, AltRepGroupAttribute, DisplayLabelAttribute;
-
-    /**
-     * @access private
-     * @var Detail
-     */
-    private Detail $detail;
-
-    /**
-     * @access private
-     * @var Extent
-     */
-    private Extent $extent;
-
-    /**
-     * @access private
-     * @var DateElement
-     */
-    private DateElement $date;
-
-    /**
-     * @access private
-     * @var Text
-     */
-    private Text $text;
 
     /**
      * This extracts the essential MODS metadata from XML
@@ -70,7 +48,8 @@ class Part extends BaseElement
     }
 
     /**
-     * Get the value of type
+     * Get the value of the 'type' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/part.html#type
      *
      * @access public
      *
@@ -82,7 +61,8 @@ class Part extends BaseElement
     }
 
     /**
-     * Get the value of order
+     * Get the value of the 'order' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/part.html#order
      *
      * @access public
      *
@@ -94,50 +74,86 @@ class Part extends BaseElement
     }
 
     /**
-     * Get the value of detail
+     * Get the array of the <detail> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/part.html#detail
      *
      * @access public
      *
-     * @return Detail
+     * @param string $query The XPath query for metadata search
+     *
+     * @return Detail[]
      */
-    public function getDetail(): Detail
+    public function getDetails(string $query = ''): array
     {
-        return $this->detail;
+        $details = [];
+        $xpath = './mods:detail' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $details[] = new Detail($value);
+            }
+        }
+        return $details;
     }
 
     /**
-     * Get the value of extent
+     * Get the array of the <extent> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/part.html#extent
      *
      * @access public
      *
-     * @return Extent
+     * @param string $query The XPath query for metadata search
+     *
+     * @return Extent[]
      */
-    public function getExtent(): Extent
+    public function getExtents(string $query = ''): array
     {
-        return $this->extent;
+        $extents = [];
+        $xpath = './mods:extent' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $extents[] = new Extent($value);
+            }
+        }
+        return $extents;
     }
 
     /**
-     * Get the value of date
+     * Get the array of the <date> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/part.html#date
      *
      * @access public
      *
-     * @return DateElement
+     * @param string $query The XPath query for metadata search
+     *
+     * @return DateElement[]
      */
-    public function getDate(): DateElement
+    public function getDates(string $query = ''): array
     {
-        return $this->date;
+        return $this->getDateElements('./mods:date' . $query);
     }
 
     /**
-     * Get the value of text
+     * Get the array of the <text> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/part.html#text
      *
      * @access public
      *
-     * @return Text
+     * @param string $query The XPath query for metadata search
+     *
+     * @return Text[]
      */
-    public function getText(): Text
+    public function getTexts(string $query = ''): array
     {
-        return $this->text;
+        $texts = [];
+        $xpath = './mods:text' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $texts[] = new Text($value);
+            }
+        }
+        return $texts;
     }
 }

@@ -40,22 +40,25 @@ class HoldingSimple extends BaseElement
     }
 
     /**
-     * Get the value of the <copyInformation> element.
+     * Get the the array of the <copyInformation> elements.
      * @see https://www.loc.gov/standards/mods/userguide/location.html#copyinformation
      *
      * @access public
      *
      * @param string $query The XPath query for metadata search
      *
-     * @return ?CopyInformation
+     * @return CopyInformation[]
      */
-    public function getCopyInformation(string $query = ''): ?CopyInformation
+    public function getCopyInformation(string $query = ''): array
     {
+        $copyInformation = [];
         $xpath = './mods:copyInformation' . $query;
         $element = new Element($this->xml, $xpath);
         if ($element->exists()) {
-            return new CopyInformation($element->getValues()[0]);
+            foreach ($element->getValues() as $value) {
+                $copyInformation[] = new CopyInformation($value);
+            }
         }
-        return null;
+        return $copyInformation;
     }
 }

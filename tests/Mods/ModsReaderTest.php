@@ -474,12 +474,13 @@ class ModsReaderTest extends TestCase
         self::assertNotNull($holdingSimple);
 
         $copyInformation = $holdingSimple->getCopyInformation();
-        self::assertNotNull($copyInformation);
-        self::assertNotEmpty($copyInformation->getSubLocations());
-        self::assertEquals('Reading room', $copyInformation->getSubLocations()[0]->getValue());
-        self::assertEquals('QH511.A1J68', $copyInformation->getShelfLocator()->getValue());
-        self::assertEquals('1', $copyInformation->getEnumerationAndChronology()->getUnitType());
-        self::assertEquals('v.1-v.2 1999-2002', $copyInformation->getEnumerationAndChronology()->getValue());
+        self::assertNotEmpty($copyInformation);
+        self::assertNotEmpty($copyInformation[0]->getSubLocations());
+        self::assertEquals('Reading room', $copyInformation[0]->getSubLocations()[0]->getValue());
+        self::assertNotEmpty($copyInformation[0]->getShelfLocators());
+        self::assertEquals('QH511.A1J68', $copyInformation[0]->getShelfLocators()[0]->getValue());
+        self::assertEquals('1', $copyInformation[0]->getEnumerationAndChronologies()[0]->getUnitType());
+        self::assertEquals('v.1-v.2 1999-2002', $copyInformation[0]->getEnumerationAndChronologies()[0]->getValue());
     }
 
     public function testGetLocationsByQueryForBookDocument()

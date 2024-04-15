@@ -671,8 +671,19 @@ class ModsReaderTest extends TestCase
         self::assertNotEmpty($originInfos[0]->getValue());
         self::assertNotEmpty($originInfos[0]->getEventType());
         self::assertEquals('publication', $originInfos[0]->getEventType());
-
-        // TODO: implement reading of elements
+        self::assertNotEmpty($originInfos[0]->getPlaces());
+        self::assertEquals(2, count($originInfos[0]->getPlaces()));
+        $placeTerms = $originInfos[0]->getPlaces()[0]->getPlaceTerms();
+        self::assertNotEmpty($placeTerms);
+        self::assertEquals('marccountry', $placeTerms[0]->getAuthority());
+        self::assertEquals('code', $placeTerms[0]->getType());
+        self::assertEquals('nyu', $placeTerms[0]->getValue());
+        self::assertNotEmpty($originInfos[0]->getIssuedDates());
+        self::assertEquals(2, count($originInfos[0]->getIssuedDates()));
+        self::assertEquals('marc', $originInfos[0]->getIssuedDates()[0]->getEncoding());
+        self::assertEquals('2000', $originInfos[0]->getIssuedDates()[0]->getValue());
+        self::assertNotEmpty($originInfos[0]->getIssuances());
+        self::assertEquals('monographic', $originInfos[0]->getIssuances()[0]->getValue());
     }
 
     public function testGetOriginInfosByQueryForBookDocument()
@@ -683,8 +694,17 @@ class ModsReaderTest extends TestCase
         self::assertNotEmpty($originInfos[0]->getValue());
         self::assertNotEmpty($originInfos[0]->getEventType());
         self::assertEquals('redaction', $originInfos[0]->getEventType());
-
-        // TODO: implement reading of elements
+        self::assertNotEmpty($originInfos[0]->getPlaces());
+        self::assertEquals(2, count($originInfos[0]->getPlaces()));
+        $placeTerms = $originInfos[0]->getPlaces()[1]->getPlaceTerms();
+        self::assertNotEmpty($placeTerms);
+        self::assertEquals('text', $placeTerms[0]->getType());
+        self::assertEquals('Ithaca, N.Y', $placeTerms[0]->getValue());
+        self::assertNotEmpty($originInfos[0]->getIssuedDates());
+        self::assertEquals(2, count($originInfos[0]->getIssuedDates()));
+        self::assertEquals('marc', $originInfos[0]->getIssuedDates()[0]->getEncoding());
+        self::assertEquals('1999', $originInfos[0]->getIssuedDates()[0]->getValue());
+        self::assertEmpty($originInfos[0]->getIssuances());
     }
 
     public function testGetNoOriginInfosByQueryForBookDocument()
@@ -701,8 +721,25 @@ class ModsReaderTest extends TestCase
         self::assertNotEmpty($originInfos[0]->getValue());
         self::assertNotEmpty($originInfos[0]->getEventType());
         self::assertEquals('publication', $originInfos[0]->getEventType());
-
-        // TODO: implement reading of elements
+        self::assertNotEmpty($originInfos[0]->getPlaces());
+        self::assertEquals(2, count($originInfos[0]->getPlaces()));
+        $placeTerms = $originInfos[0]->getPlaces()[0]->getPlaceTerms();
+        self::assertNotEmpty($placeTerms);
+        self::assertEquals('marccountry', $placeTerms[0]->getAuthority());
+        self::assertEquals('code', $placeTerms[0]->getType());
+        self::assertEquals('abc', $placeTerms[0]->getValue());
+        self::assertNotEmpty($originInfos[0]->getIssuedDates());
+        self::assertEquals(3, count($originInfos[0]->getIssuedDates()));
+        self::assertEquals('marc', $originInfos[0]->getIssuedDates()[0]->getEncoding());
+        self::assertEquals('start', $originInfos[0]->getIssuedDates()[0]->getPoint());
+        self::assertEquals('2002', $originInfos[0]->getIssuedDates()[0]->getValue());
+        self::assertNotEmpty($originInfos[0]->getIssuances());
+        self::assertEquals('serial', $originInfos[0]->getIssuances()[0]->getValue());
+        self::assertNotEmpty($originInfos[0]->getFrequencies());
+        self::assertEquals(2, count($originInfos[0]->getFrequencies()));
+        self::assertEquals('Three times a year', $originInfos[0]->getFrequencies()[0]->getValue());
+        self::assertNotEmpty($originInfos[0]->getAgents());
+        //self::assertNotEmpty($originInfos[0]->getAgents()[0]->getNamePart());
     }
 
     public function testGetOriginInfosByQueryForSerialDocument()
@@ -713,8 +750,25 @@ class ModsReaderTest extends TestCase
         self::assertNotEmpty($originInfos[0]->getValue());
         self::assertNotEmpty($originInfos[0]->getEventType());
         self::assertEquals('publication', $originInfos[0]->getEventType());
-
-        // TODO: implement reading of elements
+        self::assertNotEmpty($originInfos[0]->getPlaces());
+        self::assertEquals(2, count($originInfos[0]->getPlaces()));
+        $placeTerms = $originInfos[0]->getPlaces()[0]->getPlaceTerms();
+        self::assertNotEmpty($placeTerms);
+        self::assertEquals('marccountry', $placeTerms[0]->getAuthority());
+        self::assertEquals('code', $placeTerms[0]->getType());
+        self::assertEquals('abc', $placeTerms[0]->getValue());
+        self::assertNotEmpty($originInfos[0]->getIssuedDates());
+        self::assertEquals(3, count($originInfos[0]->getIssuedDates()));
+        self::assertEquals('marc', $originInfos[0]->getIssuedDates()[0]->getEncoding());
+        self::assertEquals('start', $originInfos[0]->getIssuedDates()[0]->getPoint());
+        self::assertEquals('2002', $originInfos[0]->getIssuedDates()[0]->getValue());
+        self::assertNotEmpty($originInfos[0]->getIssuances());
+        self::assertEquals('serial', $originInfos[0]->getIssuances()[0]->getValue());
+        self::assertNotEmpty($originInfos[0]->getFrequencies());
+        self::assertEquals(2, count($originInfos[0]->getFrequencies()));
+        self::assertEquals('Three times a year', $originInfos[0]->getFrequencies()[0]->getValue());
+        self::assertNotEmpty($originInfos[0]->getAgents());
+        //self::assertNotEmpty($originInfos[0]->getAgents()[0]->getNamePart());
     }
 
     public function testGetNoOriginInfosByQueryForSerialDocument()

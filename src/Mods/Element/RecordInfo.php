@@ -37,12 +37,6 @@ class RecordInfo extends BaseElement
     use LanguageAttribute, IdAttribute, AltRepGroupAttribute, DisplayLabelAttribute, UsageAttribute;
 
     /**
-     * @access private
-     * @var AuthorityLanguageElement
-     */
-    private AuthorityLanguageElement $descriptionStandard;
-
-    /**
      * This extracts the essential MODS metadata from XML
      *
      * @access public
@@ -148,14 +142,14 @@ class RecordInfo extends BaseElement
     }
 
     /**
-     * Get the array of the <recordIdentifier> elements.
-     * @see https://www.loc.gov/standards/mods/userguide/recordinfo.html#recordidentifier
+     * Get the array of the <recordInfoNote> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/recordinfo.html#recordinfonote
      *
      * @access public
      *
      * @param string $query The XPath query for metadata search
      *
-     * @return RecordIdentifier[]
+     * @return RecordInfoNote[]
      */
     public function getRecordInfoNotes(string $query = ''): array
     {
@@ -206,47 +200,5 @@ class RecordInfo extends BaseElement
     public function getDescriptionStandards(string $query = ''): array
     {
         return $this->getAuthorityLanguageElements('./mods:descriptionStandard' . $query);
-    }
-
-    /**
-     * Get the array of the matching elements.
-     *
-     * @access public
-     *
-     * @param string $xpath The XPath for metadata search
-     *
-     * @return AuthorityLanguageElement[]
-     */
-    private function getAuthorityLanguageElements(string $xpath): array
-    {
-        $elements = [];
-        $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $elements[] = new AuthorityLanguageElement($value);
-            }
-        }
-        return $elements;
-    }
-
-    /**
-     * Get the array of the matching elements.
-     *
-     * @access public
-     *
-     * @param string $xpath The XPath for metadata search
-     *
-     * @return DateElement[]
-     */
-    private function getDateElements(string $xpath): array
-    {
-        $elements = [];
-        $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $elements[] = new DateElement($value);
-            }
-        }
-        return $elements;
     }
 }

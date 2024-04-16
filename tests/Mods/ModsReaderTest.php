@@ -12,6 +12,7 @@
 namespace Slub\Mods;
 
 use PHPUnit\Framework\TestCase;
+use Slub\Mods\Exception\IncorrectValueInAttributeException;
 
 class ModsReaderTest extends TestCase
 {
@@ -497,6 +498,9 @@ class ModsReaderTest extends TestCase
         self::assertEquals('http://www.slub-dresden.de/some-url', $urls[0]->getValue());
         self::assertEquals('preview', $urls[1]->getAccess());
         self::assertEquals('http://www.slub-dresden.de/some-url/SLO-0000', $urls[1]->getValue());
+
+        $this->expectException(IncorrectValueInAttributeException::class);
+        $urls[3]->getAccess();
     }
 
     public function testGetNoLocationsByQueryForBookDocument()
@@ -512,18 +516,18 @@ class ModsReaderTest extends TestCase
         self::assertEquals(2, count($locations));
         self::assertNotEmpty($locations[0]->getUrls());
         self::assertEquals('electronic resource', $locations[0]->getUrls()[0]->getDisplayLabel());
-        self::assertEquals('primary display', $locations[0]->getUrls()[0]->getUsage());
+        self::assertEquals('primaryDisplay', $locations[0]->getUrls()[0]->getUsage());
         self::assertEquals('http://bibpurl.oclc.org/web/7085', $locations[0]->getUrls()[0]->getValue());
     }
 
     public function testGetLocationsByQueryForSerialDocument()
     {
-        $locations = $this->serialReader->getLocations('[./mods:url[@usage="primary display"]]');
+        $locations = $this->serialReader->getLocations('[./mods:url[@usage="primaryDisplay"]]');
         self::assertNotEmpty($locations);
         self::assertEquals(1, count($locations));
         self::assertNotEmpty($locations[0]->getUrls());
         self::assertEquals('electronic resource', $locations[0]->getUrls()[0]->getDisplayLabel());
-        self::assertEquals('primary display', $locations[0]->getUrls()[0]->getUsage());
+        self::assertEquals('primaryDisplay', $locations[0]->getUrls()[0]->getUsage());
         self::assertEquals('http://bibpurl.oclc.org/web/7085', $locations[0]->getUrls()[0]->getValue());
     }
 
@@ -968,7 +972,10 @@ class ModsReaderTest extends TestCase
         self::assertEquals('marcorg', $recordInfos[0]->getRecordContentSources()[0]->getAuthority());
         self::assertEquals('NLC', $recordInfos[0]->getRecordContentSources()[0]->getValue());
         self::assertNotEmpty($recordInfos[0]->getRecordCreationDates());
-        self::assertEquals('marc', $recordInfos[0]->getRecordCreationDates()[0]->getEncoding());
+
+        $this->expectException(IncorrectValueInAttributeException::class);
+        $recordInfos[0]->getRecordCreationDates()[0]->getEncoding();
+
         self::assertEquals('021127', $recordInfos[0]->getRecordCreationDates()[0]->getValue());
         self::assertNotEmpty($recordInfos[0]->getRecordChangeDates());
         self::assertEquals('iso8601', $recordInfos[0]->getRecordChangeDates()[0]->getEncoding());
@@ -979,6 +986,7 @@ class ModsReaderTest extends TestCase
         self::assertNotEmpty($recordInfos[0]->getRecordInfoNotes());
         self::assertEquals(2, count($recordInfos[0]->getRecordInfoNotes()));
         self::assertEquals('Some info', $recordInfos[0]->getRecordInfoNotes()[1]->getValue());
+
         $languages = $recordInfos[0]->getLanguageOfCatalogings();
         self::assertNotEmpty($languages);
         self::assertNotNull($languages[0]->getLanguageTerm());
@@ -1003,7 +1011,10 @@ class ModsReaderTest extends TestCase
         self::assertEquals('marcorg', $recordInfos[0]->getRecordContentSources()[0]->getAuthority());
         self::assertEquals('NLC', $recordInfos[0]->getRecordContentSources()[0]->getValue());
         self::assertNotEmpty($recordInfos[0]->getRecordCreationDates());
-        self::assertEquals('marc', $recordInfos[0]->getRecordCreationDates()[0]->getEncoding());
+
+        $this->expectException(IncorrectValueInAttributeException::class);
+        $recordInfos[0]->getRecordCreationDates()[0]->getEncoding();
+
         self::assertEquals('021127', $recordInfos[0]->getRecordCreationDates()[0]->getValue());
         self::assertNotEmpty($recordInfos[0]->getRecordChangeDates());
         self::assertEquals('iso8601', $recordInfos[0]->getRecordChangeDates()[0]->getEncoding());
@@ -1014,6 +1025,7 @@ class ModsReaderTest extends TestCase
         self::assertNotEmpty($recordInfos[0]->getRecordInfoNotes());
         self::assertEquals(2, count($recordInfos[0]->getRecordInfoNotes()));
         self::assertEquals('Some info', $recordInfos[0]->getRecordInfoNotes()[1]->getValue());
+
         $languages = $recordInfos[0]->getLanguageOfCatalogings();
         self::assertNotEmpty($languages);
         self::assertNotNull($languages[0]->getLanguageTerm());

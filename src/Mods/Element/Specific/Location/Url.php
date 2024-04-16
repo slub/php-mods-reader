@@ -57,18 +57,10 @@ class Url extends BaseElement
      * @access public
      *
      * @return string
-     *
-     * @throws IncorrectValueInAttributeException
      */
     public function getDateLastAccessed(): string
     {
-        $dateLastAccessed = $this->getStringAttribute('dateLastAccessed');
-
-        if (empty($dateLastAccessed) || in_array($dateLastAccessed, $this->allowedAccess)) {
-            return $dateLastAccessed;
-        }
-
-        throw new IncorrectValueInAttributeException('dateLastAccessed', $dateLastAccessed);
+        return $this->getStringAttribute('dateLastAccessed');
     }
 
     /**

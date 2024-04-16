@@ -16,6 +16,7 @@ use Slub\Mods\Attribute\Common\LanguageAttribute;
 use Slub\Mods\Attribute\Common\Linking\AltRepGroupAttribute;
 use Slub\Mods\Attribute\Common\Miscellaneous\DisplayLabelAttribute;
 use Slub\Mods\Element\Common\BaseElement;
+use Slub\Mods\Exception\IncorrectValueInAttributeException;
 
 /**
  * NamePart MODS metadata element class for the 'php-mods-reader' library.
@@ -53,15 +54,23 @@ class NamePart extends BaseElement
     }
 
     /**
-     * Get the value of the 'tpe' attribute.
+     * Get the value of the 'type' attribute.
      * @see https://www.loc.gov/standards/mods/userguide/name.html#nameParttype
      *
      * @access public
      *
      * @return string
+     *
+     * @throws IncorrectValueInAttributeException
      */
     public function getType(): string
     {
-        return $this->getStringAttribute('type');
+        $type = $this->getStringAttribute('type');
+
+        if (empty($type) || in_array($type, $this->allowedTypes)) {
+            return $type;
+        }
+
+        throw new IncorrectValueInAttributeException('type', $type);
     }
 }

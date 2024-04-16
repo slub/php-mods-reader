@@ -12,6 +12,8 @@
 
 namespace Slub\Mods\Attribute\Specific;
 
+use Slub\Mods\Exception\IncorrectValueInAttributeException;
+
 /**
  * Trait for type specific attribute
  */
@@ -28,14 +30,22 @@ trait TypeAttribute
     ];
 
     /**
-     * Get the value of type
+     * Get the value of the 'type' attribute.
      *
      * @access public
      *
      * @return string
+     *
+     * @throws IncorrectValueInAttributeException
      */
     public function getType(): string
     {
-        return $this->getStringAttribute('type');
+        $type = $this->getStringAttribute('type');
+
+        if (empty($type) || in_array($type, $this->allowedTypes)) {
+            return $type;
+        }
+
+        throw new IncorrectValueInAttributeException('type', $type);
     }
 }

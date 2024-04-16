@@ -27,9 +27,11 @@ use Slub\Mods\Element\Specific\Name\AlternativeName;
 use Slub\Mods\Element\Specific\Name\NameIdentifier;
 use Slub\Mods\Element\Specific\Name\NamePart;
 use Slub\Mods\Element\Specific\Name\Role;
+use Slub\Mods\Exception\IncorrectValueInAttributeException;
 
 /**
  * Agent MODS metadata element class for the 'php-mods-reader' library.
+ * @see https://www.loc.gov/standards/mods/userguide/origininfo.html#agent
  *
  * @access public
  */
@@ -120,15 +122,24 @@ class Agent extends BaseElement
     }
 
     /**
-     * Get the value of type
+     * Get the value of the 'type' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/name.html#type
      *
      * @access public
      *
      * @return string
+     * 
+     * @throws IncorrectValueInAttributeException
      */
     public function getType(): string
     {
-        return $this->getStringAttribute('type');
+        $type = $this->getStringAttribute('type');
+
+        if (empty($type) || in_array($type, $this->allowedTypes)) {
+            return $type;
+        }
+
+        throw new IncorrectValueInAttributeException('type', $type);
     }
 
     /**

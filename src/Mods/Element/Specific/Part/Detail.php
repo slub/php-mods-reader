@@ -17,29 +17,12 @@ use Slub\Mods\Element\Common\LanguageElement;
 
 /**
  * Detail MODS metadata element class for the 'php-mods-reader' library.
+ * @see https://www.loc.gov/standards/mods/userguide/part.html#detail
  *
  * @access public
  */
 class Detail extends BaseElement
 {
-
-    /**
-     * @access private
-     * @var LanguageElement
-     */
-    private LanguageElement $number;
-
-    /**
-     * @access private
-     * @var LanguageElement
-     */
-    private LanguageElement $caption;
-
-    /**
-     * @access private
-     * @var LanguageElement
-     */
-    private LanguageElement $title;
 
     /**
      * This extracts the essential MODS metadata from XML
@@ -56,7 +39,8 @@ class Detail extends BaseElement
     }
 
     /**
-     * Get the value of type
+     * Get the value of the 'type' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/part.html#detailtype
      *
      * @access public
      *
@@ -68,7 +52,8 @@ class Detail extends BaseElement
     }
 
     /**
-     * Get the value of level
+     * Get the value of the 'level' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/part.html#level
      *
      * @access public
      *
@@ -80,38 +65,47 @@ class Detail extends BaseElement
     }
 
     /**
-     * Get the value of number
+     * Get the array of the <number> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/part.html#number
      *
      * @access public
      *
+     * @param string $query The XPath query for metadata search
+     *
      * @return LanguageElement
      */
-    public function getNumber(): LanguageElement
+    public function getNumbers(string $query = ''): array
     {
-        return $this->number;
+        return $this->getLanguageElements('./mods:number' . $query);
     }
 
     /**
-     * Get the value of caption
+     * Get the array of the <caption> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/part.html#caption
      *
      * @access public
      *
+     * @param string $query The XPath query for metadata search
+     *
      * @return LanguageElement
      */
-    public function getCaption(): LanguageElement
+    public function getCaptions(string $query = ''): array
     {
-        return $this->caption;
+        return $this->getLanguageElements('./mods:caption' . $query);
     }
 
     /**
-     * Get the value of title
+     * Get the array of the <title> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/part.html#title
      *
      * @access public
      *
+     * @param string $query The XPath query for metadata search
+     *
      * @return LanguageElement
      */
-    public function getTitle(): LanguageElement
+    public function getTitles(string $query = ''): array
     {
-        return $this->title;
+        return $this->getLanguageElements('./mods:title' . $query);
     }
 }

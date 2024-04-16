@@ -787,8 +787,18 @@ class ModsReaderTest extends TestCase
         self::assertEquals('poem', $parts[0]->getType());
         self::assertNotEmpty($parts[0]->getOrder());
         self::assertEquals(1, $parts[0]->getOrder());
-
-        // TODO: implement reading of elements
+        self::assertNotEmpty($parts[0]->getDetails());
+        self::assertNotEmpty($parts[0]->getDetails()[0]->getTitles());
+        self::assertEquals('Wayfarers', $parts[0]->getDetails()[0]->getTitles()[0]->getValue());
+        self::assertNotEmpty($parts[0]->getExtents());
+        self::assertEquals('pages', $parts[0]->getExtents()[0]->getUnit());
+        self::assertEquals('97', $parts[0]->getExtents()[0]->getStart()->getValue());
+        self::assertEquals('98', $parts[0]->getExtents()[0]->getEnd()->getValue());
+        self::assertNotEmpty($parts[0]->getDates());
+        self::assertEquals('marc', $parts[0]->getDates()[0]->getEncoding());
+        self::assertEquals('1989', $parts[0]->getDates()[0]->getValue());
+        self::assertNotEmpty($parts[0]->getTexts());
+        self::assertEquals('Some random text', $parts[0]->getTexts()[0]->getValue());
     }
 
     public function testGetPartsByQueryForBookDocument()
@@ -801,8 +811,18 @@ class ModsReaderTest extends TestCase
         self::assertEquals('poem', $parts[0]->getType());
         self::assertNotEmpty($parts[0]->getOrder());
         self::assertEquals(2, $parts[0]->getOrder());
-
-        // TODO: implement reading of elements
+        $details = $parts[0]->getDetails();
+        self::assertNotEmpty($details);
+        self::assertEquals(2, count($details));
+        self::assertEquals('begin', $details[0]->getType());
+        self::assertEquals(1, $details[0]->getLevel());
+        self::assertNotEmpty($details[0]->getTitles());
+        self::assertEquals('Vagabonds', $details[0]->getTitles()[0]->getValue());
+        self::assertNotEmpty($parts[0]->getExtents());
+        self::assertEquals('pages', $parts[0]->getExtents()[0]->getUnit());
+        self::assertEquals('99', $parts[0]->getExtents()[0]->getStart()->getValue());
+        self::assertEquals('100', $parts[0]->getExtents()[0]->getEnd()->getValue());
+        self::assertEquals(2, $parts[0]->getExtents()[0]->getTotal());
     }
 
     public function testGetNoPartsByQueryForBookDocument()

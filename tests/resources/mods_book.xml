@@ -148,14 +148,22 @@
             <start>97</start>
             <end>98</end>
         </extent>
+        <date encoding="marc">1989</date>
+        <text>Some random text</text>
     </part>
     <part type="poem" order="2">
-        <detail>
+        <detail type="begin" level="1">
             <title>Vagabonds</title>
+            <caption>Vavava Gagaga Bonds</caption>
+        </detail>
+        <detail type="end" level="2">
+            <title>Vagabonds</title>
+            <caption>Vavava Gagaga Bonds</caption>
         </detail>
         <extent unit="pages">
             <start>99</start>
             <end>100</end>
+            <total>2</total>
         </extent>
     </part>
     <tableOfContents displayLabel="Chapters">Bluegrass odyssey -- Hills of Tennessee -- Sassafrass -- Muddy river -- Take your shoes off Moses -- Let Smokey Mountain smoke get in your eyes -- Farewell party -- Faded love</tableOfContents>

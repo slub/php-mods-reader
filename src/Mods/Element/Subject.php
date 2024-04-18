@@ -114,7 +114,7 @@ class Subject extends BaseElement
         $element = new Element($this->xml, $xpath);
         if ($element->exists()) {
             foreach ($element->getValues() as $value) {
-                $temporals[] = new AuthorityLanguageElement($value);
+                $temporals[] = new AuthorityDateLanguageElement($value);
             }
         }
         return $temporals;

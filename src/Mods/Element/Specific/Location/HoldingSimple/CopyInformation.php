@@ -55,7 +55,12 @@ class CopyInformation extends BaseElement
      */
     public function getForm(string $query = ''): ?Form
     {
-        return $this->getLanguageElement('./mods:form' . $query);
+        $xpath = './mods:form' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            return new Form($element->getValues()[0]);
+        }
+        return null;
     }
 
     /**

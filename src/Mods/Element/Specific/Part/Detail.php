@@ -72,7 +72,7 @@ class Detail extends BaseElement
      *
      * @param string $query The XPath query for metadata search
      *
-     * @return LanguageElement
+     * @return LanguageElement[]
      */
     public function getNumbers(string $query = ''): array
     {
@@ -87,7 +87,7 @@ class Detail extends BaseElement
      *
      * @param string $query The XPath query for metadata search
      *
-     * @return LanguageElement
+     * @return LanguageElement[]
      */
     public function getCaptions(string $query = ''): array
     {
@@ -102,7 +102,7 @@ class Detail extends BaseElement
      *
      * @param string $query The XPath query for metadata search
      *
-     * @return LanguageElement
+     * @return LanguageElement[]
      */
     public function getTitles(string $query = ''): array
     {

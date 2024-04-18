@@ -84,7 +84,7 @@
     </subject>
     <classification authority="ddc" edition="21">027.7/05</classification>
     <location>
-        <url displayLabel="electronic resource" usage="primary display">http://bibpurl.oclc.org/web/7085</url>
+        <url displayLabel="electronic resource" usage="primaryDisplay">http://bibpurl.oclc.org/web/7085</url>
     </location>
     <location>
         <url displayLabel="electronic resource">http://collection.nlc-bnc.ca/100/201/300/ejasl/index.html</url>
@@ -109,7 +109,7 @@
     <recordInfo>
         <descriptionStandard>aacr</descriptionStandard>
         <recordContentSource authority="marcorg">NLC</recordContentSource>
-        <recordCreationDate encoding="marc">021127</recordCreationDate>
+        <recordCreationDate encoding="not allowed">021127</recordCreationDate>
         <recordChangeDate encoding="iso8601">20080910160139.0</recordChangeDate>
         <recordIdentifier>15446420</recordIdentifier>
         <recordOrigin>Converted from MARCXML to MODS version 3.8 using MARC21slim2MODS3-8_XSLT1-0.xsl (Revision 1.172 20230208)</recordOrigin>

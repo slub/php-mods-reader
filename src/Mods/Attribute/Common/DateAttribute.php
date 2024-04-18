@@ -12,6 +12,8 @@
 
 namespace Slub\Mods\Attribute\Common;
 
+use Slub\Mods\Exception\IncorrectValueInAttributeException;
+
 trait DateAttribute
 {
 
@@ -47,31 +49,50 @@ trait DateAttribute
     ];
 
     /**
-     * Get the value of encoding
+     * Get the value of the 'encoding' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/attributes.html#encoding
      *
      * @access public
      *
      * @return string
+     *
+     * @throws IncorrectValueInAttributeException
      */
     public function getEncoding(): string
     {
-        return $this->getStringAttribute('encoding');
+        $encoding = $this->getStringAttribute('encoding');
+
+        if (empty($encoding) || in_array($encoding, $this->allowedEncodings)) {
+            return $encoding;
+        }
+
+        throw new IncorrectValueInAttributeException('encoding', $encoding);
     }
 
     /**
-     * Get the value of point
+     * Get the value of the 'point' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/attributes.html#point
      *
      * @access public
      *
      * @return string
+     *
+     * @throws IncorrectValueInAttributeException
      */
     public function getPoint(): string
     {
-        return $this->getStringAttribute('point');
+        $point = $this->getStringAttribute('point');
+
+        if (empty($point) || in_array($point, $this->allowedPoints)) {
+            return $point;
+        }
+
+        throw new IncorrectValueInAttributeException('point', $point);
     }
 
     /**
-     * Get the value of keyDate
+     * Get the value of the 'keyDate' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/attributes.html#keyDate
      *
      * @access public
      *
@@ -83,19 +104,29 @@ trait DateAttribute
     }
 
     /**
-     * Get the value of qualifier
+     * Get the value of the 'qualifier' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/attributes.html#qualifier
      *
      * @access public
      *
      * @return string
+     * 
+     * @throws IncorrectValueInAttributeException
      */
     public function getQualifier(): string
     {
-        return $this->getStringAttribute('qualifier');
+        $qualifier = $this->getStringAttribute('qualifier');
+
+        if (empty($qualifier) || in_array($qualifier, $this->allowedQualifiers)) {
+            return $qualifier;
+        }
+
+        throw new IncorrectValueInAttributeException('qualifier', $qualifier);
     }
 
     /**
-     * Get the value of calendar
+     * Get the value of the 'calendar' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/attributes.html#calendar
      *
      * @access public
      *

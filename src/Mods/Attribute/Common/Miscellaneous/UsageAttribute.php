@@ -12,6 +12,8 @@
 
 namespace Slub\Mods\Attribute\Common\Miscellaneous;
 
+use Slub\Mods\Exception\IncorrectValueInAttributeException;
+
 /**
  * Trait for usage common attribute
  */
@@ -28,14 +30,23 @@ trait UsageAttribute
     ];
 
     /**
-     * Get the value of usage
+     * Get the value of the 'usage' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/attributes.html#usage
      *
      * @access public
      *
      * @return string
+     *
+     * @throws IncorrectValueInAttributeException
      */
     public function getUsage(): string
     {
-        return $this->getStringAttribute('usage');
+        $usage = $this->getStringAttribute('usage');
+
+        if (empty($usage) || in_array($usage, $this->allowedUsages)) {
+            return $usage;
+        }
+
+        throw new IncorrectValueInAttributeException('usage', $usage);
     }
 }

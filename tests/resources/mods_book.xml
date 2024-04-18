@@ -137,7 +137,7 @@
         <url dateLastAccessed="2024-01-27">http://www.slub-dresden.de/some-url</url>
         <url access="preview">http://www.slub-dresden.de/some-url/SLO-0000</url>
         <url access="object in context">http://www.slub-dresden.de/some-url/SLO-0000</url>
-        <url access="raw object">http://www.slub-dresden.de/some-url/SLO-0000</url>
+        <url access="raw">http://www.slub-dresden.de/some-url/SLO-0000</url>
     </location>
     <accessCondition type="use and reproduction">Use of this public-domain resource is unrestricted.</accessCondition>
     <part type="poem" order="1">

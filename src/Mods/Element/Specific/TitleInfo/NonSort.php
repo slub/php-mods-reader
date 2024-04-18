@@ -14,6 +14,7 @@ namespace Slub\Mods\Element\Specific\TitleInfo;
 
 use Slub\Mods\Attribute\Common\LanguageAttribute;
 use Slub\Mods\Element\Common\BaseElement;
+use Slub\Mods\Exception\IncorrectValueInAttributeException;
 
 /**
  * NonSort MODS metadata element class for the 'php-mods-reader' library.
@@ -49,14 +50,23 @@ class NonSort extends BaseElement
     }
 
     /**
-     * Get the value of xmlSpace
+     * Get the value of the 'xmlSpace' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/attributes.html#xmlspace
      *
      * @access public
      *
      * @return string
+     *
+     * @throws IncorrectValueInAttributeException
      */
     public function getXmlSpace(): string
     {
-        return $this->getStringAttribute('xmlSpace');
+        $xmlSpace = $this->getStringAttribute('xml:space');
+
+        if (empty($xmlSpace) || in_array($xmlSpace, $this->allowedXmlSpaces)) {
+            return $xmlSpace;
+        }
+
+        throw new IncorrectValueInAttributeException('xml:space', $xmlSpace);
     }
 }

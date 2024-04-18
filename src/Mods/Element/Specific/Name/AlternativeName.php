@@ -16,6 +16,7 @@ use Slub\Mods\Attribute\Common\LanguageAttribute;
 use Slub\Mods\Attribute\Common\Linking\IdAttribute;
 use Slub\Mods\Attribute\Common\Linking\XlinkHrefAttribute;
 use Slub\Mods\Attribute\Common\Miscellaneous\DisplayLabelAttribute;
+use Slub\Mods\Exception\IncorrectValueInAttributeException;
 
 /**
  * AlternativeName MODS metadata element class for the 'php-mods-reader' library.
@@ -60,9 +61,17 @@ class AlternativeName extends BaseNameElement
      * @access public
      *
      * @return string
+     *
+     * @throws IncorrectValueInAttributeException
      */
     public function getAlternativeType(): string
     {
-        return $this->getStringAttribute('altType');
+        $altType = $this->getStringAttribute('altType');
+
+        if (empty($altType) || in_array($altType, $this->allowedAlternativeTypes)) {
+            return $altType;
+        }
+
+        throw new IncorrectValueInAttributeException('altType', $altType);
     }
 }

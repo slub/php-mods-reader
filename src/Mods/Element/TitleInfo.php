@@ -28,6 +28,7 @@ use Slub\Mods\Element\Common\BaseElement;
 use Slub\Mods\Element\Common\LanguageElement;
 use Slub\Mods\Element\Specific\TitleInfo\NonSort;
 use Slub\Mods\Element\Xml\Element;
+use Slub\Mods\Exception\IncorrectValueInAttributeException;
 
 /**
  * TitleInfo MODS metadata element class for the 'php-mods-reader' library.
@@ -71,10 +72,18 @@ class TitleInfo extends BaseElement
      * @access public
      *
      * @return string
+     *
+     * @throws IncorrectValueInAttributeException
      */
     public function getType(): string
     {
-        return $this->getStringAttribute('type');
+        $type = $this->getStringAttribute('type');
+
+        if (empty($type) || in_array($type, $this->allowedTypes)) {
+            return $type;
+        }
+
+        throw new IncorrectValueInAttributeException('type', $type);
     }
 
     /**

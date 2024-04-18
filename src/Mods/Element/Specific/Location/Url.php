@@ -15,6 +15,7 @@ namespace Slub\Mods\Element\Specific\Location;
 use Slub\Mods\Attribute\Common\Miscellaneous\DisplayLabelAttribute;
 use Slub\Mods\Attribute\Common\Miscellaneous\UsageAttribute;
 use Slub\Mods\Element\Common\BaseElement;
+use Slub\Mods\Exception\IncorrectValueInAttributeException;
 
 /**
  * Url MODS metadata element class for the 'php-mods-reader' library.
@@ -50,7 +51,8 @@ class Url extends BaseElement
     }
 
     /**
-     * Get the value of dateLastAccessed
+     * Get the value of the 'dateLastAccessed' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/location.html#datelastaccessed
      *
      * @access public
      *
@@ -62,7 +64,7 @@ class Url extends BaseElement
     }
 
     /**
-     * Get the value of note
+     * Get the value of the 'note' attribute.
      *
      * @access public
      *
@@ -74,14 +76,22 @@ class Url extends BaseElement
     }
 
     /**
-     * Get the value of access
+     * Get the value of the 'access' attribute.
      *
      * @access public
      *
      * @return string
+     * 
+     * @throws IncorrectValueInAttributeException
      */
     public function getAccess(): string
     {
-        return $this->getStringAttribute('access');
+        $access = $this->getStringAttribute('access');
+
+        if (empty($access) || in_array($access, $this->allowedAccess)) {
+            return $access;
+        }
+
+        throw new IncorrectValueInAttributeException('access', $access);
     }
 }

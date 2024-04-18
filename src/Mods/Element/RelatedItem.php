@@ -17,6 +17,7 @@ use Slub\Mods\Attribute\Common\Linking\XlinkHrefAttribute;
 use Slub\Mods\Attribute\Common\Miscellaneous\DisplayLabelAttribute;
 use Slub\Mods\Attribute\Specific\OtherTypeAttribute;
 use Slub\Mods\Element\Common\BaseElement;
+use Slub\Mods\Exception\IncorrectValueInAttributeException;
 
 /**
  * RelatedItem MODS metadata element class for the 'php-mods-reader' library.
@@ -62,14 +63,23 @@ class RelatedItem extends BaseElement
     }
 
     /**
-     * Get the value of type
+     * Get the value of the 'type' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/relateditem.html#type
      *
      * @access public
      *
      * @return string
+     *
+     * @throws IncorrectValueInAttributeException
      */
     public function getType(): string
     {
-        return $this->getStringAttribute('type');
+        $type = $this->getStringAttribute('type');
+
+        if (empty($type) || in_array($type, $this->allowedTypes)) {
+            return $type;
+        }
+
+        throw new IncorrectValueInAttributeException('type', $type);
     }
 }

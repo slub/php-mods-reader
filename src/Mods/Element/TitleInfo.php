@@ -134,9 +134,9 @@ class TitleInfo extends BaseElement
      *
      * @param string $query The XPath query for metadata search
      *
-     * @return LanguageElement
+     * @return ?LanguageElement
      */
-    public function getPartNumber(string $query = ''): LanguageElement
+    public function getPartNumber(string $query = ''): ?LanguageElement
     {
         $xpath = './mods:partNumber' . $query;
         $element = new Element($this->xml, $xpath);

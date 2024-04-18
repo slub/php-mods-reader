@@ -2,6 +2,7 @@ parameters:
     ignoreErrors:
         - '#PHPDoc tag @var for property Slub\\Mods\\Element\\Xml\\Element::\$values with type array\|false is not subtype of native type array\.#'
         - '#PHPDoc tag @return with type array\|false is not subtype of native type array\.#'
+        - '#Property Slub\\Mods\\Element\\Specific\\OriginInfo\\Issuance::\$allowedValues is never read, only written\.#'
     level: 5
     paths:
         - ../src/

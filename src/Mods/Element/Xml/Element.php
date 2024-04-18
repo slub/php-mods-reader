@@ -64,12 +64,13 @@ class Element
     }
 
     /**
-     * Get the value of the queried element
+     * Get the array of values of the queried element.
      *
      * @access public
      *
-     * @return array|false
+     * @return array|false array if element exists, false otherwise
      */
+    // TODO: change return type after upgrade to PHP 8.x
     public function getValues(): array
     {
         return $this->values;

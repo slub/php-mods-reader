@@ -848,11 +848,16 @@ class ModsReaderTest extends TestCase
         self::assertNotEmpty($physicalDescriptions);
         self::assertEquals(1, count($physicalDescriptions));
         self::assertNotEmpty($physicalDescriptions[0]->getValue());
-        //self::assertEquals('', $physicalDescriptions[0]->getValue());
-        //self::assertNotEmpty($physicalDescriptions[0]->getForm());
-        //self::assertNotEmpty($physicalDescriptions[0]->getExtent());
-
-        // TODO: implement reading of elements
+        self::assertNotEmpty($physicalDescriptions[0]->getForms());
+        self::assertEquals('marcform', $physicalDescriptions[0]->getForms()[0]->getAuthority());
+        self::assertEquals('print', $physicalDescriptions[0]->getForms()[0]->getValue());
+        self::assertNotEmpty($physicalDescriptions[0]->getExtents());
+        self::assertEquals('vii, 322 p. ; 23 cm.', $physicalDescriptions[0]->getExtents()[0]->getValue());
+        self::assertNotEmpty($physicalDescriptions[0]->getReformattingQualities());
+        self::assertEquals('replacement', $physicalDescriptions[0]->getReformattingQualities()[0]);
+        self::assertNotEmpty($physicalDescriptions[0]->getDigitalOrigins());
+        self::assertEquals('born digital', $physicalDescriptions[0]->getDigitalOrigins()[0]);
+        self::assertEmpty($physicalDescriptions[0]->getNotes());
     }
 
     public function testGetPhysicalDescriptionsByQueryForBookDocument()
@@ -861,11 +866,16 @@ class ModsReaderTest extends TestCase
         self::assertNotEmpty($physicalDescriptions);
         self::assertEquals(1, count($physicalDescriptions));
         self::assertNotEmpty($physicalDescriptions[0]->getValue());
-        //self::assertEquals('', $physicalDescriptions[0]->getValue());
-        //self::assertNotEmpty($physicalDescriptions[0]->getForm());
-        //self::assertNotEmpty($physicalDescriptions[0]->getExtent());
-
-        // TODO: implement reading of elements
+        self::assertNotEmpty($physicalDescriptions[0]->getForms());
+        self::assertEquals('marcform', $physicalDescriptions[0]->getForms()[0]->getAuthority());
+        self::assertEquals('print', $physicalDescriptions[0]->getForms()[0]->getValue());
+        self::assertNotEmpty($physicalDescriptions[0]->getExtents());
+        self::assertEquals('vii, 322 p. ; 23 cm.', $physicalDescriptions[0]->getExtents()[0]->getValue());
+        self::assertNotEmpty($physicalDescriptions[0]->getReformattingQualities());
+        self::assertEquals('replacement', $physicalDescriptions[0]->getReformattingQualities()[0]);
+        self::assertNotEmpty($physicalDescriptions[0]->getDigitalOrigins());
+        self::assertEquals('born digital', $physicalDescriptions[0]->getDigitalOrigins()[0]);
+        self::assertEmpty($physicalDescriptions[0]->getNotes());
     }
 
     public function testGetNoPhysicalDescriptionsByQueryForBookDocument()
@@ -880,11 +890,16 @@ class ModsReaderTest extends TestCase
         self::assertNotEmpty($physicalDescriptions);
         self::assertEquals(1, count($physicalDescriptions));
         self::assertNotEmpty($physicalDescriptions[0]->getValue());
-        //self::assertEquals('', $physicalDescriptions[0]->getValue());
-        //self::assertNotEmpty($physicalDescriptions[0]->getForm());
-        //self::assertNotEmpty($physicalDescriptions[0]->getExtent());
-
-        // TODO: implement reading of elements
+        self::assertNotEmpty($physicalDescriptions[0]->getForms());
+        self::assertEquals(2, count($physicalDescriptions[0]->getForms()));
+        self::assertEquals('gmd', $physicalDescriptions[0]->getForms()[1]->getAuthority());
+        self::assertEquals('electronic resource', $physicalDescriptions[0]->getForms()[1]->getValue());
+        self::assertNotEmpty($physicalDescriptions[0]->getInternetMediaTypes());
+        self::assertEquals('text/html', $physicalDescriptions[0]->getInternetMediaTypes()[0]->getValue());
+        self::assertEmpty($physicalDescriptions[0]->getExtents());
+        self::assertEmpty($physicalDescriptions[0]->getReformattingQualities());
+        self::assertEmpty($physicalDescriptions[0]->getDigitalOrigins());
+        self::assertEmpty($physicalDescriptions[0]->getNotes());
     }
 
     public function testGetPhysicalDescriptionsByQueryForSerialDocument()
@@ -893,11 +908,16 @@ class ModsReaderTest extends TestCase
         self::assertNotEmpty($physicalDescriptions);
         self::assertEquals(1, count($physicalDescriptions));
         self::assertNotEmpty($physicalDescriptions[0]->getValue());
-        //self::assertEquals('', $physicalDescriptions[0]->getValue());
-        //self::assertNotEmpty($physicalDescriptions[0]->getForm());
-        //self::assertNotEmpty($physicalDescriptions[0]->getExtent());
-
-        // TODO: implement reading of elements
+        self::assertNotEmpty($physicalDescriptions[0]->getForms());
+        self::assertEquals(2, count($physicalDescriptions[0]->getForms()));
+        self::assertEquals('gmd', $physicalDescriptions[0]->getForms()[1]->getAuthority());
+        self::assertEquals('electronic resource', $physicalDescriptions[0]->getForms()[1]->getValue());
+        self::assertNotEmpty($physicalDescriptions[0]->getInternetMediaTypes());
+        self::assertEquals('text/html', $physicalDescriptions[0]->getInternetMediaTypes()[0]->getValue());
+        self::assertEmpty($physicalDescriptions[0]->getExtents());
+        self::assertEmpty($physicalDescriptions[0]->getReformattingQualities());
+        self::assertEmpty($physicalDescriptions[0]->getDigitalOrigins());
+        self::assertEmpty($physicalDescriptions[0]->getNotes());
     }
 
     public function testGetNoPhysicalDescriptionsByQueryForSerialDocument()

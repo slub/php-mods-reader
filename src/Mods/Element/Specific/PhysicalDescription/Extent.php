@@ -18,6 +18,7 @@ use Slub\Mods\Element\Common\BaseElement;
 
 /**
  * Extent MODS metadata element class for the 'php-mods-reader' library.
+ * @see https://www.loc.gov/standards/mods/userguide/physicaldescription.html#extent
  *
  * @access public
  */
@@ -40,7 +41,8 @@ class Extent extends BaseElement
     }
 
     /**
-     * Get the value of unit
+     * Get the value of the 'unit' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/physicaldescription.html#unit
      *
      * @access public
      *
@@ -48,11 +50,6 @@ class Extent extends BaseElement
      */
     public function getUnit(): string
     {
-        $value = $this->xml->attributes()->unit;
-
-        if (!empty($value)) {
-            return $value;
-        }
-        return '';
+        return $this->getStringAttribute('unit');
     }
 }

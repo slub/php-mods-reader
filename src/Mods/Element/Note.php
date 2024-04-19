@@ -21,6 +21,7 @@ use Slub\Mods\Element\Common\BaseElement;
 
 /**
  * Note MODS metadata element class for the 'php-mods-reader' library.
+ * @see https://www.loc.gov/standards/mods/userguide/note.html
  *
  * @access public
  */
@@ -43,7 +44,8 @@ class Note extends BaseElement
     }
 
     /**
-     * Get the value of type
+     * Get the value of the 'type' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/note.html
      *
      * @access public
      *

@@ -36,6 +36,7 @@ use Slub\Mods\Element\Xml\Element;
 
 /**
  * Metadata MODS reader class for the 'php-mods-reader' library.
+ * @see https://www.loc.gov/standards/mods/userguide/generalapp.html
  *
  * @access public
  */
@@ -62,7 +63,8 @@ class ModsReader
     }
 
     /**
-     * Get 
+     * Get the value of the <abstract> element.
+     * @see https://www.loc.gov/standards/mods/userguide/abstract.html
      *
      * @access public
      *
@@ -81,7 +83,8 @@ class ModsReader
     }
 
     /**
-     * Get 
+     * Get the the array of the <accessCondition> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/accesscondition.html
      *
      * @access public
      *
@@ -103,7 +106,8 @@ class ModsReader
     }
 
     /**
-     * Get 
+     * Get the the array of the <classification> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/classification.html
      *
      * @access public
      *
@@ -125,7 +129,8 @@ class ModsReader
     }
 
     /**
-     * Get 
+     * Get the the array of the <extension> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/extension.html
      *
      * @access public
      *
@@ -147,7 +152,8 @@ class ModsReader
     }
 
     /**
-     * Get 
+     * Get the the array of the <genre> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/genre.html
      *
      * @access public
      *
@@ -169,7 +175,8 @@ class ModsReader
     }
 
     /**
-     * Get 
+     * Get the the array of the <identifier> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/identifier.html
      *
      * @access public
      *
@@ -214,7 +221,8 @@ class ModsReader
     }
 
     /**
-     * Get 
+     * Get the the array of the <location> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/location.html
      *
      * @access public
      *
@@ -236,7 +244,8 @@ class ModsReader
     }
 
     /**
-     * Get 
+     * Get the the array of the <name> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/name.html
      *
      * @access public
      *
@@ -258,7 +267,8 @@ class ModsReader
     }
 
     /**
-     * Get 
+     * Get the the array of the <note> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/note.html
      *
      * @access public
      *
@@ -280,7 +290,8 @@ class ModsReader
     }
 
      /**
-     * Get 
+     * Get the the array of the <originInfo> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/origininfo.html
      *
      * @access public
      *
@@ -302,7 +313,8 @@ class ModsReader
     }
 
     /**
-     * Get 
+     * Get the the array of the <part> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/part.html
      *
      * @access public
      *
@@ -324,7 +336,8 @@ class ModsReader
     }
 
     /**
-     * Get 
+     * Get the the array of the <physicalDescription> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/physicaldescription.html
      *
      * @access public
      *
@@ -346,10 +359,11 @@ class ModsReader
     }
 
     /**
-     * Get 
+     * Get the the array of the <recordInfo> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/recordinfo.html
      *
      * @access public
-     * 
+     *
      * @param string $query The XPath query for metadata search
      *
      * @return RecordInfo[]
@@ -368,7 +382,8 @@ class ModsReader
     }
 
     /**
-     * Get 
+     * Get the the array of the <relatedItem> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/relateditem.html
      *
      * @access public
      *
@@ -390,7 +405,8 @@ class ModsReader
     }
 
     /**
-     * Get 
+     * Get the the array of the <subject> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/subject.html
      *
      * @access public
      *
@@ -412,7 +428,8 @@ class ModsReader
     }
 
     /**
-     * Get 
+     * Get the the array of the <tableOfContents> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/tableofcontents.html
      *
      * @access public
      *
@@ -434,7 +451,8 @@ class ModsReader
     }
 
     /**
-     * Get 
+     * Get the the array of the <targetAudience> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/targetaudience.html
      *
      * @access public
      *
@@ -456,7 +474,8 @@ class ModsReader
     }
 
     /**
-     * Get title info
+     * Get the the array of the <titleInfo> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/titleinfo.html
      *
      * @access public
      *
@@ -478,7 +497,8 @@ class ModsReader
     }
 
     /**
-     * Get 
+     * Get the value of the <typeOfResource> element.
+     * @see https://www.loc.gov/standards/mods/userguide/typeofresource.html
      *
      * @access public
      * 

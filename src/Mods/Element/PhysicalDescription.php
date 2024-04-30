@@ -22,51 +22,17 @@ use Slub\Mods\Element\Common\LanguageElement;
 use Slub\Mods\Element\Note;
 use Slub\Mods\Element\Specific\PhysicalDescription\Extent;
 use Slub\Mods\Element\Specific\PhysicalDescription\Form;
+use Slub\Mods\Element\Xml\Element;
 
 /**
  * PhysicalDescription MODS metadata element class for the 'php-mods-reader' library.
+ * @see https://www.loc.gov/standards/mods/userguide/physicaldescription.html
  *
  * @access public
  */
 class PhysicalDescription extends BaseElement
 {
     use LanguageAttribute, IdAttribute, XlinkHrefAttribute, AltRepGroupAttribute, DisplayLabelAttribute;
-
-    /**
-     * @access private
-     * @var Form
-     */
-    private Form $form;
-
-    /**
-     * @access private
-     * @var string
-     */
-    private string $reformattingQuality;
-
-    /**
-     * @access private
-     * @var LanguageElement
-     */
-    private LanguageElement $internetMediaType;
-
-    /**
-     * @access private
-     * @var Extent
-     */
-    private Extent $extent;
-
-    /**
-     * @access private
-     * @var string
-     */
-    private string $digitalOrigin;
-
-    /**
-     * @access private
-     * @var Note
-     */
-    private Note $note;
 
     /**
      * This extracts the essential MODS metadata from XML
@@ -80,84 +46,134 @@ class PhysicalDescription extends BaseElement
     public function __construct(\SimpleXMLElement $xml)
     {
         parent::__construct($xml);
-
-        $this->form = new Form($xml);
-        $this->reformattingQuality = '';
-        $this->internetMediaType = new LanguageElement($xml);
-        $this->extent = new Extent($xml);
-        $this->digitalOrigin = '';
-        $this->note = new Note($xml);
     }
 
     /**
-     * Get the value of form
+     * Get the array of the <form> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/physicaldescription.html#form
      *
      * @access public
      *
-     * @return Form
+     * @param string $query The XPath query for metadata search
+     *
+     * @return Form[]
      */
-    public function getForm(): Form
+    public function getForms(string $query = ''): array
     {
-        return $this->form;
+        $forms = [];
+        $xpath = './mods:form' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $forms[] = new Form($value);
+            }
+        }
+        return $forms;
     }
 
     /**
-     * Get the value of reformattingQuality
+     * Get the array of the <reformattingQuality> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/physicaldescription.html#reformattingquality
      *
      * @access public
      *
-     * @return string
+     * @param string $query The XPath query for metadata search
+     *
+     * @return string[]
      */
-    public function getReformattingQuality(): string
+    public function getReformattingQualities(string $query = ''): array
     {
-        return $this->reformattingQuality;
+        $reformattingQualities = [];
+        $xpath = './mods:reformattingQuality' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $reformattingQualities[] = $value;
+            }
+        }
+        return $reformattingQualities;
     }
 
     /**
-     * Get the value of internetMediaType
+     * Get the array of the <internetMediaType> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/physicaldescription.html#internetmediatype
      *
      * @access public
      *
-     * @return LanguageElement
+     * @param string $query The XPath query for metadata search
+     *
+     * @return LanguageElement[]
      */
-    public function getInternetMediaType(): LanguageElement
+    public function getInternetMediaTypes(string $query = ''): array
     {
-        return $this->internetMediaType;
+        return $this->getLanguageElements('./mods:internetMediaType' . $query);
     }
 
     /**
-     * Get the value of extent
+     * Get the array of the <extent> elements.
      *
      * @access public
      *
-     * @return Extent
+     * @param string $query The XPath query for metadata search
+     *
+     * @return Extent[]
      */
-    public function getExtent(): Extent
+    public function getExtents(string $query = ''): array
     {
-        return $this->extent;
+        $forms = [];
+        $xpath = './mods:extent' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $forms[] = new Extent($value);
+            }
+        }
+        return $forms;
     }
 
     /**
-     * Get the value of digitalOrigin
+     * Get the array of the <digitalOrigin> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/physicaldescription.html#digitalorigin
      *
      * @access public
      *
-     * @return string
+     * @param string $query The XPath query for metadata search
+     *
+     * @return string[]
      */
-    public function getDigitalOrigin(): string
+    public function getDigitalOrigins(string $query = ''): array
     {
-        return $this->digitalOrigin;
+        $digitalOrigins = [];
+        $xpath = './mods:digitalOrigin' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $digitalOrigins[] = $value;
+            }
+        }
+        return $digitalOrigins;
     }
 
     /**
-     * Get the value of note
+     * Get the array of the <note> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/physicaldescription.html#note
      *
      * @access public
      *
-     * @return Note
+     * @param string $query The XPath query for metadata search
+     *
+     * @return Note[]
      */
-    public function getNote(): Note
+    public function getNotes(string $query = ''): array
     {
-        return $this->note;
+        $notes = [];
+        $xpath = './mods:note' . $query;
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            foreach ($element->getValues() as $value) {
+                $notes[] = new Note($value);
+            }
+        }
+        return $notes;
     }
 }

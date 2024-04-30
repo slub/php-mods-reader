@@ -18,6 +18,7 @@ use Slub\Mods\Element\Common\BaseElement;
 
 /**
  * Form MODS metadata element class for the 'php-mods-reader' library.
+ * @see https://www.loc.gov/standards/mods/userguide/physicaldescription.html#note
  *
  * @access public
  */
@@ -40,7 +41,8 @@ class Form extends BaseElement
     }
 
     /**
-     * Get the value of type
+     * Get the value of the 'type' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/physicaldescription.html#type
      *
      * @access public
      *
@@ -48,11 +50,6 @@ class Form extends BaseElement
      */
     public function getType(): string
     {
-        $value = $this->xml->attributes()->type;
-
-        if (!empty($value)) {
-            return $value;
-        }
-        return '';
+        return $this->getStringAttribute('type');
     }
 }

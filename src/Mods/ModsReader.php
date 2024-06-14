@@ -43,10 +43,10 @@ use Slub\Mods\Element\Xml\Element;
 class ModsReader
 {
     /**
-     * @access private
+     * @access protected
      * @var \SimpleXMLElement The metadata XML
      **/
-    private $xml;
+    protected $xml;
 
     /**
      * This creates the MODS Reader for given XML

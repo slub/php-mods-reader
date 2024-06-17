@@ -19,7 +19,13 @@ The library requires at least PHP 7.4.
 $modsReader = new ModsReader($this->xml);
 
 // get all titleInfo elements
-$authors = $modsReader->getTitleInfos();
+$titleInfos = $modsReader->getTitleInfos();
+
+// get first titleInfo element
+$firstTitleInfo = $modsReader->getFirstTitleInfo();
+
+// get first titleInfo element
+$lastTitleInfo = $modsReader->getLastTitleInfo();
 
 // get name elements which match to give string query
 $authors = $modsReader->getNames('[./mods:role/mods:roleTerm[@type="code" and @authority="marcrelator"]="aut"]');
@@ -29,6 +35,20 @@ $identifier = $authors[0]->getNameIdentifier('[@type="orcid"]');
 
 // get string value of element
 $value = $identifier->getValue();
+
+// get 'type' attribute of element
+$type = $identifier->getType();
+
+// get child elements of element
+$places = [];
+$originInfos = $this->modsReader->getOriginInfos('[not(./mods:edition="[Electronic ed.]")]');
+foreach ($originInfos as $originInfo) {
+    foreach ($originInfo->getPlaces() as $place) {
+        foreach ($place->getPlaceTerms() as $placeTerm) {
+            $places[] = $placeTerm->getValue();
+        }
+    }
+}
 ```
 
 ## TODOs:

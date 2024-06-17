@@ -2,6 +2,7 @@
     "name": "slub/php-mods-reader",
     "description": "Read MODS metadata into PHP objects that offer some convenient data extraction methods",
     "type": "library",
+    "readme": "README.md",
     "keywords": [
         "mods",
         "mods-reader"

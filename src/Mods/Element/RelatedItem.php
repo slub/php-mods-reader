@@ -12,23 +12,22 @@
 
 namespace Slub\Mods\Element;
 
+use Slub\Mods\Attribute\Common\Attribute;
 use Slub\Mods\Attribute\Common\Linking\IdAttribute;
 use Slub\Mods\Attribute\Common\Linking\XlinkHrefAttribute;
 use Slub\Mods\Attribute\Common\Miscellaneous\DisplayLabelAttribute;
 use Slub\Mods\Attribute\Specific\OtherTypeAttribute;
-use Slub\Mods\Element\Common\BaseElement;
 use Slub\Mods\Exception\IncorrectValueInAttributeException;
+use Slub\Mods\ModsReader;
 
 /**
  * RelatedItem MODS metadata element class for the 'php-mods-reader' library.
  *
  * @access public
  */
-class RelatedItem extends BaseElement
+class RelatedItem extends ModsReader
 {
-    use IdAttribute, XlinkHrefAttribute, DisplayLabelAttribute, OtherTypeAttribute;
-
-    //TODO: all elements can appear
+    use Attribute, IdAttribute, XlinkHrefAttribute, DisplayLabelAttribute, OtherTypeAttribute;
 
         /**
      * @access private

@@ -1075,11 +1075,23 @@ class ModsReaderTest extends TestCase
         $relatedItems = $this->serialReader->getRelatedItems();
         self::assertNotEmpty($relatedItems);
         self::assertEquals(1, count($relatedItems));
-        self::assertNotEmpty($relatedItems[0]->getValue());
-        self::assertNotEmpty($relatedItems[0]->getType());
-        self::assertEquals('preceding', $relatedItems[0]->getType());
 
-        // TODO: implement reading of elements
+        $relatedItem = $relatedItems[0];
+        self::assertNotEmpty($relatedItem->getType());
+        self::assertEquals('preceding', $relatedItem->getType());
+        self::assertNotEmpty($relatedItem->getTitleInfos());
+        self::assertEquals('Journal of southern academic and special librarianship', $relatedItem->getTitleInfos()[0]->getTitle()->getValue());
+        self::assertNotEmpty($relatedItem->getOriginInfos());
+        //TODO: implement back compatibility for 'publisher' element
+        //self::assertEquals('Journal of southern academic and special librarianship', $relatedItem->getOriginInfos()[0]->getPublisher());
+        self::assertNotEmpty($relatedItem->getIdentifiers());
+        self::assertEquals(4, count($relatedItem->getIdentifiers()));
+        self::assertEquals('1525-321X', $relatedItem->getIdentifiers()[0]->getValue());
+
+        $localIdentifiers = $relatedItem->getIdentifiers('[@type="local"]');
+        self::assertNotEmpty($localIdentifiers);
+        self::assertEquals(3, count($localIdentifiers));
+        self::assertEquals('(OCoLC)41477508', $localIdentifiers[0]->getValue());
     }
 
     public function testGetRelatedItemsByQueryForSerialDocument()
@@ -1087,11 +1099,23 @@ class ModsReaderTest extends TestCase
         $relatedItems = $this->serialReader->getRelatedItems('[./mods:identifier="1525-321X"]');
         self::assertNotEmpty($relatedItems);
         self::assertEquals(1, count($relatedItems));
-        self::assertNotEmpty($relatedItems[0]->getValue());
-        self::assertNotEmpty($relatedItems[0]->getType());
-        self::assertEquals('preceding', $relatedItems[0]->getType());
 
-        // TODO: implement reading of elements
+        $relatedItem = $relatedItems[0];
+        self::assertNotEmpty($relatedItem->getType());
+        self::assertEquals('preceding', $relatedItem->getType());
+        self::assertNotEmpty($relatedItem->getTitleInfos());
+        self::assertEquals('Journal of southern academic and special librarianship', $relatedItem->getTitleInfos()[0]->getTitle()->getValue());
+        self::assertNotEmpty($relatedItem->getOriginInfos());
+        //TODO: implement back compatibility for 'publisher' element
+        //self::assertEquals('Journal of southern academic and special librarianship', $relatedItem->getOriginInfos()[0]->getPublisher());
+        self::assertNotEmpty($relatedItem->getIdentifiers());
+        self::assertEquals(4, count($relatedItem->getIdentifiers()));
+        self::assertEquals('1525-321X', $relatedItem->getIdentifiers()[0]->getValue());
+
+        $localIdentifiers = $relatedItem->getIdentifiers('[@type="local"]');
+        self::assertNotEmpty($localIdentifiers);
+        self::assertEquals(3, count($localIdentifiers));
+        self::assertEquals('(OCoLC)41477508', $localIdentifiers[0]->getValue());
     }
 
     public function testGetNoRelatedItemsByQueryForSerialDocument()

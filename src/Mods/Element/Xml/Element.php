@@ -24,7 +24,7 @@ class Element
      * @access protected
      * @var static[]|false|null
      */
-    protected array $values;
+    protected array $values; // @phpstan-ignore-line
 
     /**
      * @access protected

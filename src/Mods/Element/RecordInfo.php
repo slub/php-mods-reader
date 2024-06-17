@@ -110,10 +110,8 @@ class RecordInfo extends BaseElement
         $recordIdentifiers = [];
         $xpath = './mods:recordIdentifier' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $recordIdentifiers[] = new RecordIdentifier($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $recordIdentifiers[] = new RecordIdentifier($value);
         }
         return $recordIdentifiers;
     }
@@ -133,10 +131,8 @@ class RecordInfo extends BaseElement
         $recordOrigins = [];
         $xpath = './mods:recordOrigin' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $recordOrigins[] = new LanguageElement($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $recordOrigins[] = new LanguageElement($value);
         }
         return $recordOrigins;
     }
@@ -156,10 +152,8 @@ class RecordInfo extends BaseElement
         $recordInfoNotes = [];
         $xpath = './mods:recordInfoNote' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $recordInfoNotes[] = new RecordInfoNote($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $recordInfoNotes[] = new RecordInfoNote($value);
         }
         return $recordInfoNotes;
     }
@@ -179,10 +173,8 @@ class RecordInfo extends BaseElement
         $languageOfCatalogings = [];
         $xpath = './mods:languageOfCataloging' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $languageOfCatalogings[] = new LanguageOfCataloging($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $languageOfCatalogings[] = new LanguageOfCataloging($value);
         }
         return $languageOfCatalogings;
     }

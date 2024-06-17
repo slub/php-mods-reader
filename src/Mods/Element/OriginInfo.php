@@ -92,10 +92,8 @@ class OriginInfo extends BaseElement
         $places = [];
         $xpath = './mods:place' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $places[] = new Place($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $places[] = new Place($value);
         }
         return $places;
     }
@@ -115,10 +113,8 @@ class OriginInfo extends BaseElement
         $agents = [];
         $xpath = './mods:agent' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $agents[] = new Agent($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $agents[] = new Agent($value);
         }
         return $agents;
     }
@@ -228,10 +224,8 @@ class OriginInfo extends BaseElement
         $otherDates = [];
         $xpath = './mods:dateOther' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $otherDates[] = new DateOther($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $otherDates[] = new DateOther($value);
         }
         return $otherDates;
     }
@@ -251,10 +245,8 @@ class OriginInfo extends BaseElement
         $displayDates = [];
         $xpath = './mods:displayDate' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $displayDates[] = new DisplayDate($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $displayDates[] = new DisplayDate($value);
         }
         return $displayDates;
     }
@@ -274,10 +266,8 @@ class OriginInfo extends BaseElement
         $editions = [];
         $xpath = './mods:edition' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $editions[] = new Edition($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $editions[] = new Edition($value);
         }
         return $editions;
     }
@@ -297,10 +287,8 @@ class OriginInfo extends BaseElement
         $issuances = [];
         $xpath = './mods:issuance' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $issuances[] = new Issuance($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $issuances[] = new Issuance($value);
         }
         return $issuances;
     }
@@ -320,10 +308,8 @@ class OriginInfo extends BaseElement
         $frequencies = [];
         $xpath = './mods:frequency' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $frequencies[] = new Frequency($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $frequencies[] = new Frequency($value);
         }
         return $frequencies;
     }

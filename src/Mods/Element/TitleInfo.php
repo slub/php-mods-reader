@@ -161,10 +161,8 @@ class TitleInfo extends BaseElement
         $partNames = [];
         $xpath = './mods:partName' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $partNames[] = new LanguageElement($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $partNames[] = new LanguageElement($value);
         }
         return $partNames;
     }

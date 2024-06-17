@@ -57,10 +57,8 @@ class Place extends BaseElement
         $placeTerms = [];
         $xpath = './mods:placeTerm' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $placeTerms[] = new PlaceTerm($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $placeTerms[] = new PlaceTerm($value);
         }
         return $placeTerms;
     }
@@ -80,10 +78,8 @@ class Place extends BaseElement
         $placeIdentifiers = [];
         $xpath = './mods:placeIdentifier' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $placeIdentifiers[] = new BaseElement($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $placeIdentifiers[] = new BaseElement($value);
         }
         return $placeIdentifiers;
     }
@@ -103,10 +99,8 @@ class Place extends BaseElement
         $cartographics = [];
         $xpath = './mods:cartographics' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $cartographics[] = new Cartographics($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $cartographics[] = new Cartographics($value);
         }
         return $cartographics;
     }

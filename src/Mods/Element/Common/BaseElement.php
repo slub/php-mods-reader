@@ -69,10 +69,8 @@ class BaseElement
     {
         $elements = [];
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $elements[] = new AuthorityLanguageElement($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $elements[] = new AuthorityLanguageElement($value);
         }
         return $elements;
     }
@@ -90,10 +88,8 @@ class BaseElement
     {
         $elements = [];
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $elements[] = new DateElement($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $elements[] = new DateElement($value);
         }
         return $elements;
     }
@@ -129,10 +125,8 @@ class BaseElement
     {
         $elements = [];
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $elements[] = new LanguageElement($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $elements[] = new LanguageElement($value);
         }
         return $elements;
     }

@@ -74,10 +74,8 @@ class Language extends BaseElement
         $languageTerms = [];
         $xpath = './mods:languageTerm' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $languageTerms[] = new LanguageTerm($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $languageTerms[] = new LanguageTerm($value);
         }
         return $languageTerms;
     }
@@ -97,10 +95,8 @@ class Language extends BaseElement
         $scriptTerms = [];
         $xpath = './mods:scriptTerm' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $scriptTerms[] = new ScriptTerm($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $scriptTerms[] = new ScriptTerm($value);
         }
         return $scriptTerms;
     }

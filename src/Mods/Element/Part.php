@@ -88,10 +88,8 @@ class Part extends BaseElement
         $details = [];
         $xpath = './mods:detail' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $details[] = new Detail($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $details[] = new Detail($value);
         }
         return $details;
     }
@@ -111,10 +109,8 @@ class Part extends BaseElement
         $extents = [];
         $xpath = './mods:extent' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $extents[] = new Extent($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $extents[] = new Extent($value);
         }
         return $extents;
     }
@@ -149,10 +145,8 @@ class Part extends BaseElement
         $texts = [];
         $xpath = './mods:text' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $texts[] = new Text($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $texts[] = new Text($value);
         }
         return $texts;
     }

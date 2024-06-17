@@ -54,10 +54,8 @@ class Role extends BaseElement
         $roleTerms = [];
         $xpath = './mods:roleTerm' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $roleTerms[] = new RoleTerm($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $roleTerms[] = new RoleTerm($value);
         }
         return $roleTerms;
     }

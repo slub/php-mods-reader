@@ -22,9 +22,9 @@ class Element
 
     /**
      * @access protected
-     * @var array|false
+     * @var static[]|false|null
      */
-    protected array $values;
+    protected array $values; // @phpstan-ignore-line
 
     /**
      * @access protected
@@ -60,7 +60,7 @@ class Element
      */
     public function exists(): bool
     {
-        return $this->values != false;
+        return $this->values != false && $this->values != null;
     }
 
     /**
@@ -68,11 +68,13 @@ class Element
      *
      * @access public
      *
-     * @return array|false array if element exists, false otherwise
+     * @return array array with values if element exist, empty array otherwise
      */
-    // TODO: change return type after upgrade to PHP 8.x
     public function getValues(): array
     {
-        return $this->values;
+        if ($this->exists()) {
+            return $this->values;
+        }
+        return [];
     }
 }

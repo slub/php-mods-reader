@@ -105,10 +105,8 @@ class CopyInformation extends BaseElement
     {
         $electronicLocators = [];
         $element = new Element($this->xml, './mods:electronicLocator');
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $electronicLocators[] = $value;
-            }
+        foreach ($element->getValues() as $value) {
+            $electronicLocators[] = $value;
         }
         return $electronicLocators;
     }
@@ -128,10 +126,8 @@ class CopyInformation extends BaseElement
         $notes = [];
         $xpath = './mods:note' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $notes[] = new Note($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $notes[] = new Note($value);
         }
         return $notes;
     }
@@ -151,10 +147,8 @@ class CopyInformation extends BaseElement
         $enumerationAndChronologies = [];
         $xpath = './mods:enumerationAndChronology' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $enumerationAndChronologies[] = new EnumerationAndChronology($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $enumerationAndChronologies[] = new EnumerationAndChronology($value);
         }
         return $enumerationAndChronologies;
     }
@@ -174,10 +168,8 @@ class CopyInformation extends BaseElement
         $itemIdentifiers = [];
         $xpath = './mods:itemIdentifier' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $itemIdentifiers[] = new ItemIdentifier($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $itemIdentifiers[] = new ItemIdentifier($value);
         }
         return $itemIdentifiers;
     }

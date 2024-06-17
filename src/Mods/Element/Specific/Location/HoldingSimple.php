@@ -54,10 +54,8 @@ class HoldingSimple extends BaseElement
         $copyInformation = [];
         $xpath = './mods:copyInformation' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $copyInformation[] = new CopyInformation($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $copyInformation[] = new CopyInformation($value);
         }
         return $copyInformation;
     }

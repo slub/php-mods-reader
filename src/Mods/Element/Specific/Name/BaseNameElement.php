@@ -53,10 +53,8 @@ class BaseNameElement extends BaseElement
         $nameParts = [];
         $xpath = './mods:namePart' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $nameParts[] = new NamePart($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $nameParts[] = new NamePart($value);
         }
         return $nameParts;
     }
@@ -76,10 +74,8 @@ class BaseNameElement extends BaseElement
         $nameIdentifiers = [];
         $xpath = './mods:nameIdentifier' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $nameIdentifiers[] = new NameIdentifier($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $nameIdentifiers[] = new NameIdentifier($value);
         }
         return $nameIdentifiers;
     }
@@ -99,10 +95,8 @@ class BaseNameElement extends BaseElement
         $displayForms = [];
         $xpath = './mods:displayForm' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $displayForms[] = new LanguageElement($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $displayForms[] = new LanguageElement($value);
         }
         return $displayForms;
     }
@@ -122,10 +116,8 @@ class BaseNameElement extends BaseElement
         $affiliations = [];
         $xpath = './mods:affiliation' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $affiliations[] = new AuthorityLanguageElement($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $affiliations[] = new AuthorityLanguageElement($value);
         }
         return $affiliations;
     }
@@ -145,10 +137,8 @@ class BaseNameElement extends BaseElement
         $roles = [];
         $xpath = './mods:role' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $roles[] = new Role($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $roles[] = new Role($value);
         }
         return $roles;
     }
@@ -168,10 +158,8 @@ class BaseNameElement extends BaseElement
         $descriptions = [];
         $xpath = './mods:description' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $descriptions[] = new LanguageElement($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $descriptions[] = new LanguageElement($value);
         }
         return $descriptions;
     }

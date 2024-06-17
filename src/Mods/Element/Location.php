@@ -62,10 +62,8 @@ class Location extends BaseElement
         $physicalLocations = [];
         $xpath = './mods:physicalLocation' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $physicalLocations[] = new PhysicalLocation($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $physicalLocations[] = new PhysicalLocation($value);
         }
         return $physicalLocations;
     }
@@ -105,10 +103,8 @@ class Location extends BaseElement
         $urls = [];
         $xpath = './mods:url' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $urls[] = new Url($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $urls[] = new Url($value);
         }
         return $urls;
     }

@@ -77,10 +77,8 @@ class Name extends BaseNameElement
         $alternativeNames = [];
         $xpath = './mods:alternativeName' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $alternativeNames[] = new AlternativeName($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $alternativeNames[] = new AlternativeName($value);
         }
         return $alternativeNames;
     }

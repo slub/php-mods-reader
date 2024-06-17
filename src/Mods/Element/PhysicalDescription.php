@@ -63,10 +63,8 @@ class PhysicalDescription extends BaseElement
         $forms = [];
         $xpath = './mods:form' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $forms[] = new Form($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $forms[] = new Form($value);
         }
         return $forms;
     }
@@ -86,10 +84,8 @@ class PhysicalDescription extends BaseElement
         $reformattingQualities = [];
         $xpath = './mods:reformattingQuality' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $reformattingQualities[] = $value;
-            }
+        foreach ($element->getValues() as $value) {
+            $reformattingQualities[] = $value;
         }
         return $reformattingQualities;
     }
@@ -123,10 +119,8 @@ class PhysicalDescription extends BaseElement
         $forms = [];
         $xpath = './mods:extent' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $forms[] = new Extent($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $forms[] = new Extent($value);
         }
         return $forms;
     }
@@ -146,10 +140,8 @@ class PhysicalDescription extends BaseElement
         $digitalOrigins = [];
         $xpath = './mods:digitalOrigin' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $digitalOrigins[] = $value;
-            }
+        foreach ($element->getValues() as $value) {
+            $digitalOrigins[] = $value;
         }
         return $digitalOrigins;
     }
@@ -169,10 +161,8 @@ class PhysicalDescription extends BaseElement
         $notes = [];
         $xpath = './mods:note' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $notes[] = new Note($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $notes[] = new Note($value);
         }
         return $notes;
     }

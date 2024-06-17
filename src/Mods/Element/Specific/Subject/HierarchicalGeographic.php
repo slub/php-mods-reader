@@ -57,10 +57,8 @@ class HierarchicalGeographic extends BaseElement
         $continents = [];
         $xpath = './mods:continent' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $continents[] = new LevelPeriodElement($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $continents[] = new LevelPeriodElement($value);
         }
         return $continents;
     }
@@ -80,10 +78,8 @@ class HierarchicalGeographic extends BaseElement
         $countries = [];
         $xpath = './mods:country' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $countries[] = new LevelPeriodElement($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $countries[] = new LevelPeriodElement($value);
         }
         return $countries;
     }
@@ -103,10 +99,8 @@ class HierarchicalGeographic extends BaseElement
         $regions = [];
         $xpath = './mods:region' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $regions[] = new TypeElement($value, 'regionType');
-            }
+        foreach ($element->getValues() as $value) {
+            $regions[] = new TypeElement($value, 'regionType');
         }
         return $regions;
     }
@@ -126,10 +120,8 @@ class HierarchicalGeographic extends BaseElement
         $states = [];
         $xpath = './mods:state' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $states[] = new TypeElement($value, 'stateType');
-            }
+        foreach ($element->getValues() as $value) {
+            $states[] = new TypeElement($value, 'stateType');
         }
         return $states;
     }
@@ -149,10 +141,8 @@ class HierarchicalGeographic extends BaseElement
         $territories = [];
         $xpath = './mods:territory' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $territories[] = new LevelPeriodElement($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $territories[] = new LevelPeriodElement($value);
         }
         return $territories;
     }
@@ -172,10 +162,8 @@ class HierarchicalGeographic extends BaseElement
         $counties = [];
         $xpath = './mods:county' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $counties[] = new LevelPeriodElement($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $counties[] = new LevelPeriodElement($value);
         }
         return $counties;
     }
@@ -195,10 +183,8 @@ class HierarchicalGeographic extends BaseElement
         $cities = [];
         $xpath = './mods:city' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
+        foreach ($element->getValues() as $value) {
                 $cities[] = new LevelPeriodElement($value);
-            }
         }
         return $cities;
     }
@@ -218,10 +204,8 @@ class HierarchicalGeographic extends BaseElement
         $sections = [];
         $xpath = './mods:citySection' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $sections[] = new TypeElement($value, 'citySectionType');
-            }
+        foreach ($element->getValues() as $value) {
+            $sections[] = new TypeElement($value, 'citySectionType');
         }
         return $sections;
     }
@@ -241,10 +225,8 @@ class HierarchicalGeographic extends BaseElement
         $islands = [];
         $xpath = './mods:island' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $islands[] = new LevelPeriodElement($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $islands[] = new LevelPeriodElement($value);
         }
         return $islands;
     }
@@ -264,10 +246,8 @@ class HierarchicalGeographic extends BaseElement
         $areas = [];
         $xpath = './mods:area' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $areas[] = new TypeElement($value, 'areaType');
-            }
+        foreach ($element->getValues() as $value) {
+            $areas[] = new TypeElement($value, 'areaType');
         }
         return $areas;
     }
@@ -287,10 +267,8 @@ class HierarchicalGeographic extends BaseElement
         $extraterrestrialAreas = [];
         $xpath = './mods:extraterrestrialArea' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $extraterrestrialAreas[] = new LevelPeriodElement($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $extraterrestrialAreas[] = new LevelPeriodElement($value);
         }
         return $extraterrestrialAreas;
     }

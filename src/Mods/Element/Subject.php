@@ -66,10 +66,8 @@ class Subject extends BaseElement
         $topics = [];
         $xpath = './mods:topic' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $topics[] = new AuthorityLanguageElement($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $topics[] = new AuthorityLanguageElement($value);
         }
         return $topics;
     }
@@ -89,10 +87,8 @@ class Subject extends BaseElement
         $geographics = [];
         $xpath = './mods:geographic' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $geographics[] = new AuthorityLanguageElement($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $geographics[] = new AuthorityLanguageElement($value);
         }
         return $geographics;
     }
@@ -112,10 +108,8 @@ class Subject extends BaseElement
         $temporals = [];
         $xpath = './mods:temporal' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $temporals[] = new AuthorityDateLanguageElement($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $temporals[] = new AuthorityDateLanguageElement($value);
         }
         return $temporals;
     }
@@ -135,10 +129,8 @@ class Subject extends BaseElement
         $titleInfos = [];
         $xpath = './mods:titleInfo' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $titleInfos[] = new TitleInfo($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $titleInfos[] = new TitleInfo($value);
         }
         return $titleInfos;
     }
@@ -158,10 +150,8 @@ class Subject extends BaseElement
         $names = [];
         $xpath = './mods:name' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $names[] = new Name($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $names[] = new Name($value);
         }
         return $names;
     }
@@ -181,10 +171,8 @@ class Subject extends BaseElement
         $genres = [];
         $xpath = './mods:genre' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $genres[] = new Genre($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $genres[] = new Genre($value);
         }
         return $genres;
     }
@@ -204,10 +192,8 @@ class Subject extends BaseElement
         $hierarchicalGeographics = [];
         $xpath = './mods:hierarchicalGeographic' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $hierarchicalGeographics[] = new HierarchicalGeographic($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $hierarchicalGeographics[] = new HierarchicalGeographic($value);
         }
         return $hierarchicalGeographics;
     }
@@ -227,10 +213,8 @@ class Subject extends BaseElement
         $cartographics = [];
         $xpath = './mods:cartographics' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $cartographics[] = new Cartographics($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $cartographics[] = new Cartographics($value);
         }
         return $cartographics;
     }
@@ -250,10 +234,8 @@ class Subject extends BaseElement
         $geographicCodes = [];
         $xpath = './mods:geographicCode' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $geographicCodes[] = new AuthorityLanguageElement($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $geographicCodes[] = new AuthorityLanguageElement($value);
         }
         return $geographicCodes;
     }
@@ -273,10 +255,8 @@ class Subject extends BaseElement
         $occupations = [];
         $xpath = './mods:occupation' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $occupations[] = new AuthorityLanguageElement($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $occupations[] = new AuthorityLanguageElement($value);
         }
         return $occupations;
     }

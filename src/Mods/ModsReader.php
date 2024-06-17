@@ -97,10 +97,8 @@ class ModsReader
         $accessConditions = [];
         $xpath = './mods:accessCondition' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $accessConditions[] = new AccessCondition($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $accessConditions[] = new AccessCondition($value);
         }
         return $accessConditions;
     }
@@ -120,10 +118,8 @@ class ModsReader
         $classifications = [];
         $xpath = './mods:classification' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $classifications[] = new Classification($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $classifications[] = new Classification($value);
         }
         return $classifications;
     }
@@ -143,10 +139,8 @@ class ModsReader
         $extensions = [];
         $xpath = './mods:extension' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $extensions[] = new Extension($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $extensions[] = new Extension($value);
         }
         return $extensions;
     }
@@ -166,10 +160,8 @@ class ModsReader
         $genres = [];
         $xpath = './mods:genre' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $genres[] = new Genre($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $genres[] = new Genre($value);
         }
         return $genres;
     }
@@ -189,10 +181,8 @@ class ModsReader
         $identifiers = [];
         $xpath = './mods:identifier' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $identifiers[] = new Identifier($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $identifiers[] = new Identifier($value);
         }
         return $identifiers;
     }
@@ -212,10 +202,8 @@ class ModsReader
         $languages = [];
         $xpath = './mods:language' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $languages[] = new Language($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $languages[] = new Language($value);
         }
         return $languages;
     }
@@ -235,10 +223,8 @@ class ModsReader
         $locations = [];
         $xpath = './mods:location' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $locations[] = new Location($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $locations[] = new Location($value);
         }
         return $locations;
     }
@@ -258,10 +244,8 @@ class ModsReader
         $names = [];
         $xpath = './mods:name' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $names[] = new Name($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $names[] = new Name($value);
         }
         return $names;
     }
@@ -281,10 +265,8 @@ class ModsReader
         $notes = [];
         $xpath = './mods:note' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $notes[] = new Note($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $notes[] = new Note($value);
         }
         return $notes;
     }
@@ -304,10 +286,8 @@ class ModsReader
         $originInfos = [];
         $xpath = './mods:originInfo' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $originInfos[] = new OriginInfo($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $originInfos[] = new OriginInfo($value);
         }
         return $originInfos;
     }
@@ -327,10 +307,8 @@ class ModsReader
         $parts = [];
         $xpath = './mods:part' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $parts[] = new Part($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $parts[] = new Part($value);
         }
         return $parts;
     }
@@ -350,10 +328,8 @@ class ModsReader
         $physicalDescriptions = [];
         $xpath = './mods:physicalDescription' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $physicalDescriptions[] = new PhysicalDescription($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $physicalDescriptions[] = new PhysicalDescription($value);
         }
         return $physicalDescriptions;
     }
@@ -373,10 +349,8 @@ class ModsReader
         $recordInfos = [];
         $xpath = './mods:recordInfo' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $recordInfos[] = new RecordInfo($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $recordInfos[] = new RecordInfo($value);
         }
         return $recordInfos;
     }
@@ -396,10 +370,8 @@ class ModsReader
         $relatedItems = [];
         $xpath = './mods:relatedItem' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $relatedItems[] = new RelatedItem($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $relatedItems[] = new RelatedItem($value);
         }
         return $relatedItems;
     }
@@ -419,10 +391,8 @@ class ModsReader
         $subjects = [];
         $xpath = './mods:subject' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $subjects[] = new Subject($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $subjects[] = new Subject($value);
         }
         return $subjects;
     }
@@ -442,10 +412,8 @@ class ModsReader
         $tableOfContents = [];
         $xpath = './mods:tableOfContents' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $tableOfContents[] = new TableOfContents($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $tableOfContents[] = new TableOfContents($value);
         }
         return $tableOfContents;
     }
@@ -465,10 +433,8 @@ class ModsReader
         $targetAudiences = [];
         $xpath = './mods:targetAudience' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $targetAudiences[] = new TargetAudience($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $targetAudiences[] = new TargetAudience($value);
         }
         return $targetAudiences;
     }
@@ -488,10 +454,8 @@ class ModsReader
         $titleInfos = [];
         $xpath = './mods:titleInfo' . $query;
         $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            foreach ($element->getValues() as $value) {
-                $titleInfos[] = new TitleInfo($value);
-            }
+        foreach ($element->getValues() as $value) {
+            $titleInfos[] = new TitleInfo($value);
         }
         return $titleInfos;
     }

@@ -126,12 +126,24 @@ class ModsReaderTest extends TestCase
         self::assertEquals('use and reproduction', $accessConditions[0]->getType());
         self::assertEmpty($accessConditions[0]->getDisplayLabel());
         self::assertEmpty($accessConditions[0]->getXlinkHref());
+
+        $firstAccessCondition = $this->bookReader->getFirstAccessCondition('[@type="use and reproduction"]');
+        self::assertEquals($accessConditions[0], $firstAccessCondition);
+
+        $lastAccessCondition = $this->bookReader->getLastAccessCondition('[@type="use and reproduction"]');
+        self::assertEquals($accessConditions[0], $lastAccessCondition);
     }
 
     public function testGetNoAccessConditionsByQueryForBookDocument()
     {
         $accessConditions = $this->bookReader->getAccessConditions('[@type="restriction on access"]');
         self::assertEmpty($accessConditions);
+
+        $firstAccessCondition = $this->bookReader->getFirstAccessCondition('[@type="restriction on access"]');
+        self::assertNull($firstAccessCondition);
+
+        $lastAccessCondition = $this->bookReader->getLastAccessCondition('[@type="restriction on access"]');
+        self::assertNull($lastAccessCondition);
     }
 
     public function testGetAccessConditionsForSerialDocument()
@@ -181,6 +193,12 @@ class ModsReaderTest extends TestCase
         self::assertEquals('lcc', $classifications[0]->getAuthority());
         self::assertEmpty($classifications[0]->getId());
         self::assertEmpty($classifications[0]->getUsage());
+
+        $firstClassification = $this->bookReader->getFirstClassification();
+        self::assertEquals($classifications[0], $firstClassification);
+
+        $lastClassification = $this->bookReader->getLastClassification();
+        self::assertEquals($classifications[1], $lastClassification);
     }
 
     public function testGetClassificationsByQueryForBookDocument()
@@ -198,8 +216,14 @@ class ModsReaderTest extends TestCase
 
     public function testGetNoClassificationsByQueryForBookDocument()
     {
-        $classifications = $this->bookReader->getAccessConditions('[@generator="xyz"]');
+        $classifications = $this->bookReader->getClassifications('[@generator="xyz"]');
         self::assertEmpty($classifications);
+
+        $firstClassification = $this->bookReader->getFirstClassification('[@generator="xyz"]');
+        self::assertNull($firstClassification);
+
+        $lastClassification = $this->bookReader->getLastClassification('[@generator="xyz"]');
+        self::assertNull($lastClassification);
     }
 
     public function testGetClassificationsForSerialDocument()
@@ -282,6 +306,12 @@ class ModsReaderTest extends TestCase
     {
         $genres = $this->bookReader->getGenres('[@authority="merc"]');
         self::assertEmpty($genres);
+
+        $firstGenre = $this->bookReader->getFirstGenre('[@authority="merc"]');
+        self::assertNull($firstGenre);
+
+        $lastGenre = $this->bookReader->getLastGenre('[@authority="merc"]');
+        self::assertNull($lastGenre);
     }
 
     public function testGetGenresForSerialDocument()
@@ -295,6 +325,12 @@ class ModsReaderTest extends TestCase
         self::assertEquals('primary', $genres[0]->getUsage());
         self::assertEmpty($genres[0]->getDisplayLabel());
         self::assertEmpty($genres[0]->getTransliteration());
+
+        $firstGenre = $this->serialReader->getFirstGenre();
+        self::assertEquals($genres[0], $firstGenre);
+
+        $lastGenre = $this->serialReader->getLastGenre();
+        self::assertEquals($genres[1], $lastGenre);
     }
 
     public function testGetGenresByQueryForSerialDocument()
@@ -327,6 +363,12 @@ class ModsReaderTest extends TestCase
         self::assertEquals('isbn', $identifiers[0]->getType());
         self::assertEmpty($identifiers[0]->getLang());
         self::assertFalse($identifiers[0]->isInvalid());
+
+        $firstIdentifier = $this->bookReader->getFirstIdentifier();
+        self::assertEquals($identifiers[0], $firstIdentifier);
+
+        $lastIdentifier = $this->bookReader->getLastIdentifier();
+        self::assertEquals($identifiers[1], $lastIdentifier);
     }
 
     public function testGetIdentifiersByQueryForBookDocument()
@@ -346,6 +388,12 @@ class ModsReaderTest extends TestCase
     {
         $identifiers = $this->bookReader->getIdentifiers('[@type="xyz"]');
         self::assertEmpty($identifiers);
+
+        $firstIdentifier = $this->bookReader->getFirstIdentifier('[@type="xyz"]');
+        self::assertNull($firstIdentifier);
+
+        $lastIdentifier = $this->bookReader->getLastIdentifier('[@type="xyz"]');
+        self::assertNull($lastIdentifier);
     }
 
     public function testGetIdentifiersForSerialDocument()
@@ -396,6 +444,12 @@ class ModsReaderTest extends TestCase
         self::assertEquals('code', $languages[0]->getScriptTerms()[0]->getType());
         self::assertEquals('iso15924', $languages[0]->getScriptTerms()[0]->getAuthority());
         self::assertEquals('Latn', $languages[0]->getScriptTerms()[0]->getValue());
+
+        $firstLanguage = $this->bookReader->getFirstLanguage();
+        self::assertEquals($languages[0], $firstLanguage);
+
+        $lastLanguage = $this->bookReader->getLastLanguage();
+        self::assertEquals($languages[1], $lastLanguage);
     }
 
     public function testGetLanguagesByQueryForBookDocument()
@@ -421,6 +475,12 @@ class ModsReaderTest extends TestCase
     {
         $languages = $this->bookReader->getLanguages('[@objectPart="abstract"]');
         self::assertEmpty($languages);
+
+        $firstLanguage = $this->bookReader->getFirstLanguage('[@objectPart="abstract"]');
+        self::assertNull($firstLanguage);
+
+        $lastLanguage = $this->bookReader->getLastLanguage('[@objectPart="abstract"]');
+        self::assertNull($lastLanguage);
     }
 
     public function testGetLanguagesForSerialDocument()
@@ -482,6 +542,12 @@ class ModsReaderTest extends TestCase
         self::assertEquals('QH511.A1J68', $copyInformation[0]->getShelfLocators()[0]->getValue());
         self::assertEquals('1', $copyInformation[0]->getEnumerationAndChronologies()[0]->getUnitType());
         self::assertEquals('v.1-v.2 1999-2002', $copyInformation[0]->getEnumerationAndChronologies()[0]->getValue());
+
+        $firstLocation = $this->bookReader->getFirstLocation();
+        self::assertEquals($locations[0], $firstLocation);
+
+        $lastLocation = $this->bookReader->getLastLocation();
+        self::assertEquals($locations[1], $lastLocation);
     }
 
     public function testGetLocationsByQueryForBookDocument()
@@ -507,6 +573,12 @@ class ModsReaderTest extends TestCase
     {
         $locations = $this->bookReader->getLocations('[@displayLabel="random"]');
         self::assertEmpty($locations);
+
+        $firstLocation = $this->bookReader->getFirstLocation('[@displayLabel="random"]');
+        self::assertNull($firstLocation);
+
+        $lastLocation = $this->bookReader->getLastLocation('[@displayLabel="random"]');
+        self::assertNull($lastLocation);
     }
 
     public function testGetLocationsForSerialDocument()
@@ -549,12 +621,19 @@ class ModsReaderTest extends TestCase
         self::assertNotEmpty($names[0]->getValue());
         self::assertNotEmpty($names[0]->getNameParts());
         self::assertEquals('Alterman, Eric.', $names[0]->getNameParts()[0]->getValue());
+
         $roles = $names[0]->getRoles();
         self::assertNotEmpty($roles);
         self::assertNotEmpty($roles[0]->getRoleTerms());
         self::assertEquals('text', $roles[0]->getRoleTerms()[0]->getType());
         self::assertEquals('marcrelator', $roles[0]->getRoleTerms()[0]->getAuthority());
         self::assertEquals('creator', $roles[0]->getRoleTerms()[0]->getValue());
+
+        $firstName = $this->bookReader->getFirstName();
+        self::assertEquals($names[0], $firstName);
+
+        $lastName = $this->bookReader->getLastName();
+        self::assertEquals($names[1], $lastName);
     }
 
     public function testGetNamesByQueryForBookDocument()
@@ -570,6 +649,7 @@ class ModsReaderTest extends TestCase
         self::assertEquals(2, count($names[0]->getNameParts()));
         self::assertEquals('given', $names[0]->getNameParts()[0]->getType());
         self::assertEquals('Aron', $names[0]->getNameParts()[0]->getValue());
+
         $roles = $names[0]->getRoles();
         self::assertNotEmpty($roles);
         self::assertNotEmpty($roles[0]->getRoleTerms());
@@ -582,6 +662,12 @@ class ModsReaderTest extends TestCase
     {
         $names = $this->bookReader->getNames('[@type="corporate"]');
         self::assertEmpty($names);
+
+        $firstName = $this->bookReader->getFirstName('[@type="corporate"]');
+        self::assertNull($firstName);
+
+        $lastName = $this->bookReader->getLastName('[@type="corporate"]');
+        self::assertNull($lastName);
     }
 
     public function testGetNamesForSerialDocument()
@@ -621,6 +707,12 @@ class ModsReaderTest extends TestCase
         self::assertEquals('Eric Alterman.', $notes[0]->getValue());
         self::assertNotEmpty($notes[0]->getType());
         self::assertEquals('statement of responsibility', $notes[0]->getType());
+
+        $firstNote = $this->bookReader->getFirstNote();
+        self::assertEquals($notes[0], $firstNote);
+
+        $lastNote = $this->bookReader->getLastNote();
+        self::assertEquals($notes[1], $lastNote);
     }
 
     public function testGetNotesByQueryForBookDocument()
@@ -638,6 +730,12 @@ class ModsReaderTest extends TestCase
     {
         $notes = $this->bookReader->getNotes('[@type="xyz"]');
         self::assertEmpty($notes);
+
+        $firstNote = $this->bookReader->getFirstNote('[@type="xyz"]');
+        self::assertNull($firstNote);
+
+        $lastNote = $this->bookReader->getLastNote('[@type="xyz"]');
+        self::assertNull($lastNote);
     }
 
     public function testGetNotesForSerialDocument()
@@ -678,6 +776,7 @@ class ModsReaderTest extends TestCase
         self::assertEquals('publication', $originInfos[0]->getEventType());
         self::assertNotEmpty($originInfos[0]->getPlaces());
         self::assertEquals(2, count($originInfos[0]->getPlaces()));
+
         $placeTerms = $originInfos[0]->getPlaces()[0]->getPlaceTerms();
         self::assertNotEmpty($placeTerms);
         self::assertEquals('marccountry', $placeTerms[0]->getAuthority());
@@ -689,6 +788,12 @@ class ModsReaderTest extends TestCase
         self::assertEquals('2000', $originInfos[0]->getIssuedDates()[0]->getValue());
         self::assertNotEmpty($originInfos[0]->getIssuances());
         self::assertEquals('monographic', $originInfos[0]->getIssuances()[0]->getValue());
+
+        $firstOriginInfo = $this->bookReader->getFirstOriginInfo();
+        self::assertEquals($originInfos[0], $firstOriginInfo);
+
+        $lastOriginInfo = $this->bookReader->getLastOriginInfo();
+        self::assertEquals($originInfos[1], $lastOriginInfo);
     }
 
     public function testGetOriginInfosByQueryForBookDocument()
@@ -716,6 +821,12 @@ class ModsReaderTest extends TestCase
     {
         $originInfos = $this->bookReader->getOriginInfos('[@eventType="xyz"]');
         self::assertEmpty($originInfos);
+
+        $firstOriginInfo = $this->bookReader->getFirstOriginInfo('[@eventType="xyz"]');
+        self::assertNull($firstOriginInfo);
+
+        $lastOriginInfo = $this->bookReader->getLastOriginInfo('[@eventType="xyz"]');
+        self::assertNull($lastOriginInfo);
     }
 
     public function testGetOriginInfosForSerialDocument()
@@ -728,6 +839,7 @@ class ModsReaderTest extends TestCase
         self::assertEquals('publication', $originInfos[0]->getEventType());
         self::assertNotEmpty($originInfos[0]->getPlaces());
         self::assertEquals(2, count($originInfos[0]->getPlaces()));
+
         $placeTerms = $originInfos[0]->getPlaces()[0]->getPlaceTerms();
         self::assertNotEmpty($placeTerms);
         self::assertEquals('marccountry', $placeTerms[0]->getAuthority());
@@ -757,6 +869,7 @@ class ModsReaderTest extends TestCase
         self::assertEquals('publication', $originInfos[0]->getEventType());
         self::assertNotEmpty($originInfos[0]->getPlaces());
         self::assertEquals(2, count($originInfos[0]->getPlaces()));
+
         $placeTerms = $originInfos[0]->getPlaces()[0]->getPlaceTerms();
         self::assertNotEmpty($placeTerms);
         self::assertEquals('marccountry', $placeTerms[0]->getAuthority());
@@ -804,6 +917,12 @@ class ModsReaderTest extends TestCase
         self::assertEquals('1989', $parts[0]->getDates()[0]->getValue());
         self::assertNotEmpty($parts[0]->getTexts());
         self::assertEquals('Some random text', $parts[0]->getTexts()[0]->getValue());
+
+        $firstPart = $this->bookReader->getFirstPart();
+        self::assertEquals($parts[0], $firstPart);
+
+        $lastPart = $this->bookReader->getLastPart();
+        self::assertEquals($parts[1], $lastPart);
     }
 
     public function testGetPartsByQueryForBookDocument()
@@ -834,6 +953,12 @@ class ModsReaderTest extends TestCase
     {
         $parts = $this->bookReader->getParts('[@order="3"]');
         self::assertEmpty($parts);
+
+        $firstPart = $this->bookReader->getFirstPart('[@order="3"]');
+        self::assertNull($firstPart);
+
+        $lastPart = $this->bookReader->getLastPart('[@order="3"]');
+        self::assertNull($lastPart);
     }
 
     public function testGetNoPartsForSerialDocument()
@@ -858,6 +983,12 @@ class ModsReaderTest extends TestCase
         self::assertNotEmpty($physicalDescriptions[0]->getDigitalOrigins());
         self::assertEquals('born digital', $physicalDescriptions[0]->getDigitalOrigins()[0]);
         self::assertEmpty($physicalDescriptions[0]->getNotes());
+
+        $firstPhysicalDescription = $this->bookReader->getFirstPhysicalDescription();
+        self::assertEquals($physicalDescriptions[0], $firstPhysicalDescription);
+
+        $lastPhysicalDescription = $this->bookReader->getLastPhysicalDescription();
+        self::assertEquals($physicalDescriptions[0], $lastPhysicalDescription);
     }
 
     public function testGetPhysicalDescriptionsByQueryForBookDocument()
@@ -882,6 +1013,12 @@ class ModsReaderTest extends TestCase
     {
         $physicalDescriptions = $this->bookReader->getPhysicalDescriptions('[./mods:form[@authority="marcform"]="electronic"]');
         self::assertEmpty($physicalDescriptions);
+
+        $firstPhysicalDescription = $this->bookReader->getFirstPhysicalDescription('[./mods:form[@authority="marcform"]="electronic"]');
+        self::assertNull($firstPhysicalDescription);
+
+        $lastPhysicalDescription = $this->bookReader->getLastPhysicalDescription('[./mods:form[@authority="marcform"]="electronic"]');
+        self::assertNull($lastPhysicalDescription);
     }
 
     public function testGetPhysicalDescriptionsForSerialDocument()
@@ -948,6 +1085,12 @@ class ModsReaderTest extends TestCase
         self::assertEquals('11761548', $recordInfos[0]->getRecordIdentifiers()[0]->getValue());
         self::assertNotEmpty($recordInfos[0]->getRecordOrigins());
         self::assertStringContainsString('Converted from MARCXML to MODS', $recordInfos[0]->getRecordOrigins()[0]->getValue());
+
+        $firstRecordInfo = $this->bookReader->getFirstRecordInfo();
+        self::assertEquals($recordInfos[0], $firstRecordInfo);
+
+        $lastRecordInfo = $this->bookReader->getLastRecordInfo();
+        self::assertEquals($recordInfos[0], $lastRecordInfo);
     }
 
     public function testGetRecordInfosByQueryForBookDocument()
@@ -978,6 +1121,12 @@ class ModsReaderTest extends TestCase
     {
         $recordInfos = $this->bookReader->getRecordInfos('[./mods:descriptionStandard="xyz"]');
         self::assertEmpty($recordInfos);
+
+        $firstRecordInfo = $this->bookReader->getFirstRecordInfo('[./mods:descriptionStandard="xyz"]');
+        self::assertNull($firstRecordInfo);
+
+        $lastRecordInfo = $this->bookReader->getLastRecordInfo('[./mods:descriptionStandard="xyz"]');
+        self::assertNull($lastRecordInfo);
     }
 
     public function testGetRecordInfosForSerialDocument()
@@ -1068,6 +1217,12 @@ class ModsReaderTest extends TestCase
     {
         $relatedItems = $this->bookReader->getRelatedItems();
         self::assertEmpty($relatedItems);
+
+        $firstRelatedItem = $this->bookReader->getFirstRelatedItem();
+        self::assertNull($firstRelatedItem);
+
+        $lastRelatedItem = $this->bookReader->getLastRelatedItem();
+        self::assertNull($lastRelatedItem);
     }
 
     public function testGetRelatedItemsForSerialDocument()
@@ -1092,6 +1247,12 @@ class ModsReaderTest extends TestCase
         self::assertNotEmpty($localIdentifiers);
         self::assertEquals(3, count($localIdentifiers));
         self::assertEquals('(OCoLC)41477508', $localIdentifiers[0]->getValue());
+
+        $firstRelatedItem = $this->serialReader->getFirstRelatedItem();
+        self::assertEquals($relatedItem, $firstRelatedItem);
+
+        $lastRelatedItem = $this->serialReader->getLastRelatedItem();
+        self::assertEquals($relatedItem, $lastRelatedItem);
     }
 
     public function testGetRelatedItemsByQueryForSerialDocument()
@@ -1142,14 +1303,24 @@ class ModsReaderTest extends TestCase
         self::assertEquals('Cumbria', $hierarchicalGeographics[0]->getCounties()[0]->getValue());
         self::assertNotEmpty($hierarchicalGeographics[0]->getCities());
         self::assertEquals('Providence', $hierarchicalGeographics[0]->getCities()[0]->getValue());
-        self::assertNotEmpty($hierarchicalGeographics[0]->getCitySections());
-        self::assertEquals(2, count($hierarchicalGeographics[0]->getCitySections()));
-        self::assertEquals('neighborhood', $hierarchicalGeographics[0]->getCitySections()[0]->getType());
-        self::assertEquals(1, $hierarchicalGeographics[0]->getCitySections()[0]->getLevel());
-        self::assertEquals('East Side', $hierarchicalGeographics[0]->getCitySections()[0]->getValue());
-        self::assertNotEmpty($hierarchicalGeographics[0]->getAreas());
-        self::assertEquals('national park', $hierarchicalGeographics[0]->getAreas()[0]->getType());
-        self::assertEquals('Lake District', $hierarchicalGeographics[0]->getAreas()[0]->getValue());
+
+        $citySections = $hierarchicalGeographics[0]->getCitySections();
+        self::assertNotEmpty($citySections);
+        self::assertEquals(2, count($citySections));
+        self::assertEquals('neighborhood', $citySections[0]->getType());
+        self::assertEquals(1, $citySections[0]->getLevel());
+        self::assertEquals('East Side', $citySections[0]->getValue());
+
+        $areas = $hierarchicalGeographics[0]->getAreas();
+        self::assertNotEmpty($areas);
+        self::assertEquals('national park', $areas[0]->getType());
+        self::assertEquals('Lake District', $areas[0]->getValue());
+
+        $firstSubject = $this->bookReader->getFirstSubject();
+        self::assertEquals($subjects[0], $firstSubject);
+
+        $lastSubject = $this->bookReader->getLastSubject();
+        self::assertEquals($subjects[7], $lastSubject);
     }
 
     public function testGetSubjectsByQueryForBookDocument()
@@ -1172,6 +1343,12 @@ class ModsReaderTest extends TestCase
     {
         $subjects = $this->bookReader->getSubjects('[./mods:topic="Unknown"]');
         self::assertEmpty($subjects);
+
+        $firstSubject = $this->bookReader->getFirstSubject('[./mods:topic="Unknown"]');
+        self::assertNull($firstSubject);
+
+        $lastSubject = $this->bookReader->getLastSubject('[./mods:topic="Unknown"]');
+        self::assertNull($lastSubject);
     }
 
     public function testGetSubjectsForSerialDocument()

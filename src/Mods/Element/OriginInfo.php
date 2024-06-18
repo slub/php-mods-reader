@@ -83,7 +83,7 @@ class OriginInfo extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return Place[]
      */
@@ -104,7 +104,7 @@ class OriginInfo extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return Agent[]
      */
@@ -125,7 +125,7 @@ class OriginInfo extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return DateElement[]
      */
@@ -140,7 +140,7 @@ class OriginInfo extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return DateElement[]
      */
@@ -155,7 +155,7 @@ class OriginInfo extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return DateElement[]
      */
@@ -170,7 +170,7 @@ class OriginInfo extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return DateElement[]
      */
@@ -185,7 +185,7 @@ class OriginInfo extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return DateElement[]
      */
@@ -200,7 +200,7 @@ class OriginInfo extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return DateElement[]
      */
@@ -215,7 +215,7 @@ class OriginInfo extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return DateOther[]
      */
@@ -236,7 +236,7 @@ class OriginInfo extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return DisplayDate[]
      */
@@ -257,7 +257,7 @@ class OriginInfo extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return Edition[]
      */
@@ -278,7 +278,7 @@ class OriginInfo extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return Issuance[]
      */
@@ -299,7 +299,7 @@ class OriginInfo extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return Frequency[]
      */

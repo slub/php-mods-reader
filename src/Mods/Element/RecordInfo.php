@@ -56,7 +56,7 @@ class RecordInfo extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return AuthorityLanguageElement[]
      */
@@ -71,7 +71,7 @@ class RecordInfo extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return DateElement[]
      */
@@ -86,7 +86,7 @@ class RecordInfo extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return DateElement[]
      */
@@ -101,7 +101,7 @@ class RecordInfo extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return RecordIdentifier[]
      */
@@ -122,7 +122,7 @@ class RecordInfo extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return LanguageElement[]
      */
@@ -143,7 +143,7 @@ class RecordInfo extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return RecordInfoNote[]
      */
@@ -164,7 +164,7 @@ class RecordInfo extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return LanguageOfCataloging[]
      */
@@ -185,7 +185,7 @@ class RecordInfo extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return AuthorityLanguageElement[]
      */

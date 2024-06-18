@@ -54,7 +54,7 @@ class PhysicalDescription extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return Form[]
      */
@@ -75,7 +75,7 @@ class PhysicalDescription extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return string[]
      */
@@ -96,7 +96,7 @@ class PhysicalDescription extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return LanguageElement[]
      */
@@ -110,7 +110,7 @@ class PhysicalDescription extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return Extent[]
      */
@@ -131,7 +131,7 @@ class PhysicalDescription extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return string[]
      */
@@ -152,7 +152,7 @@ class PhysicalDescription extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return Note[]
      */

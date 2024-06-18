@@ -48,7 +48,7 @@ class HierarchicalGeographic extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return LevelPeriodElement[]
      */
@@ -69,7 +69,7 @@ class HierarchicalGeographic extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return LevelPeriodElement[]
      */
@@ -90,7 +90,7 @@ class HierarchicalGeographic extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return TypeElement[]
      */
@@ -111,7 +111,7 @@ class HierarchicalGeographic extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return TypeElement[]
      */
@@ -132,7 +132,7 @@ class HierarchicalGeographic extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return LevelPeriodElement[]
      */
@@ -153,7 +153,7 @@ class HierarchicalGeographic extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return LevelPeriodElement[]
      */
@@ -174,7 +174,7 @@ class HierarchicalGeographic extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return LevelPeriodElement[]
      */
@@ -195,7 +195,7 @@ class HierarchicalGeographic extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return TypeElement[]
      */
@@ -216,7 +216,7 @@ class HierarchicalGeographic extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return LevelPeriodElement[]
      */
@@ -237,7 +237,7 @@ class HierarchicalGeographic extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return TypeElement[]
      */
@@ -258,7 +258,7 @@ class HierarchicalGeographic extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return LevelPeriodElement[]
      */

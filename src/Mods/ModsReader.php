@@ -68,7 +68,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return ?AbstractElement
      */
@@ -88,7 +88,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return AccessCondition[]
      */
@@ -109,7 +109,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return ?AccessCondition
      */
@@ -128,7 +128,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return ?AccessCondition
      */
@@ -148,7 +148,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return Classification[]
      */
@@ -169,7 +169,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return ?Classification
      */
@@ -188,7 +188,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return ?Classification
      */
@@ -208,7 +208,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return Extension[]
      */
@@ -229,7 +229,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return ?Extension
      */
@@ -248,7 +248,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return ?Extension
      */
@@ -268,7 +268,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return Genre[]
      */
@@ -289,7 +289,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return ?Genre
      */
@@ -308,7 +308,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return ?Genre
      */
@@ -328,7 +328,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return Identifier[]
      */
@@ -349,7 +349,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return ?Identifier
      */
@@ -368,7 +368,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return ?Identifier
      */
@@ -388,7 +388,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return Language[]
      */
@@ -409,7 +409,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return ?Language
      */
@@ -428,7 +428,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return ?Language
      */
@@ -448,7 +448,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return Location[]
      */
@@ -469,7 +469,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return ?Location
      */
@@ -488,7 +488,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return ?Location
      */
@@ -508,7 +508,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return Name[]
      */
@@ -529,7 +529,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return ?Name
      */
@@ -548,7 +548,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return ?Name
      */
@@ -568,7 +568,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return Note[]
      */
@@ -589,7 +589,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return ?Note
      */
@@ -608,7 +608,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return ?Note
      */
@@ -628,7 +628,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return OriginInfo[]
      */
@@ -649,7 +649,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return ?OriginInfo
      */
@@ -668,7 +668,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return ?OriginInfo
      */
@@ -688,7 +688,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return Part[]
      */
@@ -709,7 +709,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return ?Part
      */
@@ -728,7 +728,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return ?Part
      */
@@ -748,7 +748,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return PhysicalDescription[]
      */
@@ -769,7 +769,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return ?PhysicalDescription
      */
@@ -788,7 +788,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return ?PhysicalDescription
      */
@@ -808,7 +808,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return RecordInfo[]
      */
@@ -829,7 +829,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return ?RecordInfo
      */
@@ -848,7 +848,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return ?RecordInfo
      */
@@ -868,7 +868,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return RelatedItem[]
      */
@@ -889,7 +889,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return ?RelatedItem
      */
@@ -908,7 +908,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return ?RelatedItem
      */
@@ -928,7 +928,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return Subject[]
      */
@@ -949,7 +949,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return ?Subject
      */
@@ -968,7 +968,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return ?Subject
      */
@@ -988,7 +988,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return TableOfContents[]
      */
@@ -1009,7 +1009,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return ?TableOfContents
      */
@@ -1028,7 +1028,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return ?TableOfContents
      */
@@ -1048,7 +1048,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return TargetAudience[]
      */
@@ -1069,7 +1069,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return ?TargetAudience
      */
@@ -1088,7 +1088,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return ?TargetAudience
      */
@@ -1108,7 +1108,7 @@ class ModsReader
      *
      * @access public
      *
-     *  @param string $query The XPath query for metadata search
+     *  @param string $query for metadata search
      *
      * @return TitleInfo[]
      */
@@ -1129,7 +1129,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return ?TitleInfo
      */
@@ -1148,7 +1148,7 @@ class ModsReader
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return ?TitleInfo
      */
@@ -1168,7 +1168,7 @@ class ModsReader
      *
      * @access public
      * 
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return ?TypeOfResource
      */

@@ -49,7 +49,7 @@ class CopyInformation extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return ?Form
      */
@@ -69,7 +69,7 @@ class CopyInformation extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return LanguageElement[]
      */
@@ -84,7 +84,7 @@ class CopyInformation extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return LanguageElement[]
      */
@@ -117,7 +117,7 @@ class CopyInformation extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return Note[]
      */
@@ -138,7 +138,7 @@ class CopyInformation extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return EnumerationAndChronology[]
      */
@@ -159,7 +159,7 @@ class CopyInformation extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return ItemIdentifier[]
      */

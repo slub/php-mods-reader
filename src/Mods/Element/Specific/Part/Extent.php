@@ -58,7 +58,7 @@ class Extent extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return LanguageElement
      */
@@ -73,7 +73,7 @@ class Extent extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return LanguageElement
      */
@@ -88,7 +88,7 @@ class Extent extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return int value or 0 when no value found
      */
@@ -108,7 +108,7 @@ class Extent extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return LanguageElement
      */

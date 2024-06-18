@@ -57,7 +57,7 @@ class Subject extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return AuthorityLanguageElement[]
      */
@@ -78,7 +78,7 @@ class Subject extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return AuthorityLanguageElement[]
      */
@@ -99,7 +99,7 @@ class Subject extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return AuthorityDateLanguageElement[]
      */
@@ -120,7 +120,7 @@ class Subject extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return TitleInfo[]
      */
@@ -141,7 +141,7 @@ class Subject extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return Name[]
      */
@@ -162,7 +162,7 @@ class Subject extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return Genre[]
      */
@@ -183,7 +183,7 @@ class Subject extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return HierarchicalGeographic[]
      */
@@ -204,7 +204,7 @@ class Subject extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return Cartographics[]
      */
@@ -225,7 +225,7 @@ class Subject extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return AuthorityLanguageElement[]
      */
@@ -246,7 +246,7 @@ class Subject extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return AuthorityLanguageElement[]
      */

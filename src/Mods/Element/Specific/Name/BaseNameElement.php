@@ -44,7 +44,7 @@ class BaseNameElement extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return NamePart[]
      */
@@ -65,7 +65,7 @@ class BaseNameElement extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return NameIdentifier[]
      */
@@ -86,7 +86,7 @@ class BaseNameElement extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return LanguageElement[]
      */
@@ -107,7 +107,7 @@ class BaseNameElement extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return AuthorityLanguageElement[]
      */
@@ -149,7 +149,7 @@ class BaseNameElement extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return LanguageElement[]
      */

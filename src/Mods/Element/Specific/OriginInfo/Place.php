@@ -48,7 +48,7 @@ class Place extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return PlaceTerm[]
      */
@@ -69,7 +69,7 @@ class Place extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return BaseElement[]
      */
@@ -90,7 +90,7 @@ class Place extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return Cartographics[]
      */

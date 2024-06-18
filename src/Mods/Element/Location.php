@@ -53,7 +53,7 @@ class Location extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return PhysicalLocation[]
      */
@@ -74,7 +74,7 @@ class Location extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return ?LanguageElement
      */
@@ -94,7 +94,7 @@ class Location extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return Url[]
      */
@@ -115,7 +115,7 @@ class Location extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return ?HoldingSimple
      */
@@ -135,7 +135,7 @@ class Location extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return string
      */

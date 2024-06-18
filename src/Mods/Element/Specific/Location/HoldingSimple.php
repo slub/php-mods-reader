@@ -45,7 +45,7 @@ class HoldingSimple extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return CopyInformation[]
      */

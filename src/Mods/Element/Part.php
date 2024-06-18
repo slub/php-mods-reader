@@ -79,7 +79,7 @@ class Part extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return Detail[]
      */
@@ -100,7 +100,7 @@ class Part extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return Extent[]
      */
@@ -121,7 +121,7 @@ class Part extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return DateElement[]
      */
@@ -136,7 +136,7 @@ class Part extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query for metadata search
+     * @param string $query for metadata search
      *
      * @return Text[]
      */

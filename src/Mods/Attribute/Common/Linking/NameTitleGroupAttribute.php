@@ -16,7 +16,8 @@ trait NameTitleGroupAttribute
 {
 
     /**
-     * Get used with <name> and <titleInfo> to link a name and a title
+     * Get used with <name> and <titleInfo> to link a name and a title.
+     * @see https://www.loc.gov/standards/mods/userguide/attributes.html#nameTitleGroup
      *
      * @access public
      *

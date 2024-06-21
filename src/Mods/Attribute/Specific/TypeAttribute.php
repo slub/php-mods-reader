@@ -21,7 +21,6 @@ trait TypeAttribute
 {
 
     /**
-     * @access private
      * @var array
      */
     private array $allowedTypes = [
@@ -31,6 +30,7 @@ trait TypeAttribute
 
     /**
      * Get the value of the 'type' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/origininfo.html#placeTermtype
      *
      * @access public
      *

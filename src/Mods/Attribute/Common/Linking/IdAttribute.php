@@ -16,7 +16,8 @@ trait IdAttribute
 {
 
     /**
-     * Get the value of id
+     * Get the value of the 'ID' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/attributes.html#ID
      *
      * @access public
      *
@@ -27,8 +28,9 @@ trait IdAttribute
         return $this->getStringAttribute('ID');
     }
 
-        /**
-     * Get the value of idRef
+    /**
+     * Get the value of the 'IDREF' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/attributes.html#IDREF
      *
      * @access public
      *

@@ -16,7 +16,9 @@ trait AltRepGroupAttribute
 {
 
     /**
-     * Get used to link alternative representations of the same element content, for different languages, scripts, transliterations, and translations
+     * Get used to link alternative representations of the same element content,
+     * for different languages, scripts, transliterations, and translations.
+     * @see https://www.loc.gov/standards/mods/userguide/attributes.html#altRepGroup
      *
      * @access public
      *

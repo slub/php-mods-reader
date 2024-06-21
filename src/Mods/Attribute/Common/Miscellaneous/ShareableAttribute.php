@@ -19,7 +19,8 @@ trait ShareableAttribute
 {
 
     /**
-     * Get the value of shareable
+     * Get the value of the 'shareable' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/attributes.html#shareable
      *
      * @access public
      *

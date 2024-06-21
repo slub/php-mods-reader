@@ -19,7 +19,8 @@ trait InvalidAttribute
 {
 
     /**
-     * Get the value of invalid
+     * Get the value of the 'invalid' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/identifier.html#invalid
      *
      * @access public
      *

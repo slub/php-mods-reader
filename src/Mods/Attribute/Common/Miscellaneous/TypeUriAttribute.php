@@ -19,7 +19,8 @@ trait TypeUriAttribute
 {
 
     /**
-     * Get the value of type URI
+     * Get the value of the 'typeURI' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/attributes.html#typeURI
      *
      * @access public
      *

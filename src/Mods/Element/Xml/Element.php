@@ -77,4 +77,19 @@ class Element
         }
         return [];
     }
+
+    /**
+     * Get first value of the queried element.
+     *
+     * @access public
+     *
+     * @return mixed
+     */
+    public function getFirstValue()
+    {
+        if ($this->exists()) {
+            return $this->values[0];
+        }
+        return null;
+    }
 }

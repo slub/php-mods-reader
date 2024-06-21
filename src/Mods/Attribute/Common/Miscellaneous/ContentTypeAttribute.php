@@ -13,13 +13,14 @@
 namespace Slub\Mods\Attribute\Common\Miscellaneous;
 
 /**
- * Trait for displayLabel common attribute
+ * Trait for contentType common attribute
  */
 trait ContentTypeAttribute
 {
 
     /**
-     * Get the value of contentType
+     * Get the value of the 'contentType' attribute.
+     * @see @see https://www.loc.gov/standards/mods/userguide/attributes.html#altFormat
      *
      * @access public
      *

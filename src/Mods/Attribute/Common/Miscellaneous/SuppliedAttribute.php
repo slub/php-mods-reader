@@ -19,7 +19,8 @@ trait SuppliedAttribute
 {
 
     /**
-     * Get the value of supplied
+     * Get the value of the 'supplied' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/attributes.html#supplied
      *
      * @access public
      *
@@ -27,6 +28,6 @@ trait SuppliedAttribute
      */
     public function isSupplied(): bool
     {
-        return !empty($this->xml->attributes()->shareable);
+        return !empty($this->xml->attributes()->supplied);
     }
 }

@@ -18,7 +18,6 @@ trait DateAttribute
 {
 
     /**
-     * @access private
      * @var array
      */
     private array $allowedEncodings = [
@@ -30,7 +29,6 @@ trait DateAttribute
     ];
 
     /**
-     * @access private
      * @var array
      */
     private array $allowedPoints = [
@@ -39,7 +37,6 @@ trait DateAttribute
     ];
 
     /**
-     * @access private
      * @var array
      */
     private array $allowedQualifiers = [
@@ -110,7 +107,7 @@ trait DateAttribute
      * @access public
      *
      * @return string
-     * 
+     *
      * @throws IncorrectValueInAttributeException
      */
     public function getQualifier(): string

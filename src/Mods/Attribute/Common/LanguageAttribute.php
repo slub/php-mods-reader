@@ -16,7 +16,8 @@ trait LanguageAttribute
 {
 
     /**
-     * Get the value of lang
+     * Get the value of the 'lang' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/attributes.html#lang
      *
      * @access public
      *
@@ -28,7 +29,8 @@ trait LanguageAttribute
     }
 
     /**
-     * Get the value of xmlLang
+     * Get the value of the 'xml:lang' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/attributes.html#xml:lang
      *
      * @access public
      *
@@ -36,11 +38,12 @@ trait LanguageAttribute
      */
     public function getXmlLang(): string
     {
-        return $this->getStringAttribute('xmlLang');
+        return $this->getStringAttribute('xml:lang');
     }
 
     /**
-     * Get the value of script
+     * Get the value of the 'script' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/attributes.html#script
      *
      * @access public
      *
@@ -52,7 +55,8 @@ trait LanguageAttribute
     }
 
     /**
-     * Get the value of transliteration
+     * Get the value of the 'transliteration' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/attributes.html#transliteration
      *
      * @access public
      *

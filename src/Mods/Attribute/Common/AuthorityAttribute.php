@@ -16,7 +16,10 @@ trait AuthorityAttribute
 {
 
     /**
-     * Get the value of authority
+     * Get the value of the 'authority' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/attributes.html#authority
+     *
+     * @access public
      *
      * @return string
      */
@@ -26,7 +29,8 @@ trait AuthorityAttribute
     }
 
     /**
-     * Get the value of authorityURI
+     * Get the value of the 'authorityURI' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/attributes.html#authorityURI
      *
      * @access public
      *
@@ -38,7 +42,8 @@ trait AuthorityAttribute
     }
 
     /**
-     * Get the value of valueURI
+     * Get the value of the 'valueURI' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/attributes.html#valueURI
      *
      * @access public
      *

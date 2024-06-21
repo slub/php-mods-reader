@@ -19,7 +19,8 @@ trait DisplayLabelAttribute
 {
 
     /**
-     * Get the value of displayLabel
+     * Get the value of the 'displayLabel' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/attributes.html#displayLabel
      *
      * @access public
      *

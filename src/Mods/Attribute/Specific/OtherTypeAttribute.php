@@ -19,7 +19,8 @@ trait OtherTypeAttribute
 {
 
     /**
-     * Get the value of otherType
+     * Get the value of the 'otherType' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/relateditem.html#othertype
      *
      * @access public
      *
@@ -31,7 +32,8 @@ trait OtherTypeAttribute
     }
 
     /**
-     * Get the value of otherTypeAuth
+     * Get the value of the 'otherTypeAuth' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/relateditem.html#othertypeauth
      *
      * @access public
      *
@@ -43,7 +45,8 @@ trait OtherTypeAttribute
     }
 
     /**
-     * Get the value of otherTypeAuthURI
+     * Get the value of the 'otherTypeAuthURI' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/relateditem.html#othertypeauthuri
      *
      * @access public
      *
@@ -55,7 +58,8 @@ trait OtherTypeAttribute
     }
 
     /**
-     * Get the value of otherTypeURI
+     * Get the value of the 'otherTypeURI' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/relateditem.html#othertypeuri
      *
      * @access public
      *

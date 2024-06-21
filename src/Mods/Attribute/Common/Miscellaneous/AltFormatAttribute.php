@@ -19,7 +19,8 @@ trait AltFormatAttribute
 {
 
     /**
-     * Get the value of alternative format
+     * Get the value of the 'altFormat' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/attributes.html#altFormat
      *
      * @access public
      *

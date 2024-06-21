@@ -21,7 +21,6 @@ trait UsageAttribute
 {
 
     /**
-     * @access private
      * @var array
      */
     private array $allowedUsages = [

@@ -16,7 +16,8 @@ trait XlinkHrefAttribute
 {
 
     /**
-     * Get the value of xlinkHref
+     * Get the value of the 'xlink:href' attribute.
+     * @see https://www.loc.gov/standards/mods/userguide/attributes.html#xlink:href
      *
      * @access public
      *

@@ -67,12 +67,7 @@ class BaseElement
      */
     protected function getAuthorityLanguageElements(string $xpath): array
     {
-        $elements = [];
-        $element = new Element($this->xml, $xpath);
-        foreach ($element->getValues() as $value) {
-            $elements[] = new AuthorityLanguageElement($value);
-        }
-        return $elements;
+        return $this->getElements($xpath, AuthorityLanguageElement::class);
     }
 
     /**
@@ -86,30 +81,21 @@ class BaseElement
      */
     protected function getDateElements(string $xpath): array
     {
-        $elements = [];
-        $element = new Element($this->xml, $xpath);
-        foreach ($element->getValues() as $value) {
-            $elements[] = new DateElement($value);
-        }
-        return $elements;
+        return $this->getElements($xpath, DateElement::class);
     }
 
     /**
-     * Get the matching element or null if there is not match.
+     * Get the matching element or null if there is no match.
      *
      * @access protected
      *
-     * @param string $xpath The XPath for metadata search
+     * @param string $xpath The XPath query for metadata search
      *
      * @return ?LanguageElement
      */
     protected function getLanguageElement(string $xpath): ?LanguageElement
     {
-        $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            return new LanguageElement($element->getFirstValue());
-        }
-        return null;
+        return $this->getElement($xpath, LanguageElement::class);
     }
 
     /**
@@ -123,11 +109,46 @@ class BaseElement
      */
     protected function getLanguageElements(string $xpath): array
     {
+        return $this->getElements($xpath, LanguageElement::class);
+    }
+
+    /**
+     * Generic helper to map XML Element values to element objects.
+     *
+     * @access protected
+     *
+     * @param string $xpath The XPath query for metadata search
+     * @param string $class The fully-qualified class name of the element wrapper
+     *
+     * @return array
+     */
+    protected function getElements(string $xpath, string $class): array
+    {
         $elements = [];
         $element = new Element($this->xml, $xpath);
         foreach ($element->getValues() as $value) {
-            $elements[] = new LanguageElement($value);
+            $elements[] = new $class($value);
         }
         return $elements;
+    }
+
+    /**
+     * Get the matching element or null if there is no match.
+     *
+     * Generic typed helper (phpdoc only).
+     *
+     * @template T of BaseElement
+     * @param string $xpath The XPath query for metadata search
+     * @param class-string<T> $class The fully-qualified class name of the element wrapper
+     *
+     * @return T|null
+     */
+    protected function getElement(string $xpath, string $class): ?BaseElement
+    {
+        $element = new Element($this->xml, $xpath);
+        if ($element->exists()) {
+            return new $class($element->getFirstValue());
+        }
+        return null;
     }
 }

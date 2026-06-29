@@ -22,9 +22,9 @@ class Element
 
     /**
      * @access protected
-     * @var static[]|false|null
+     * @var \SimpleXMLElement[]|false|null
      */
-    protected array $values; // @phpstan-ignore-line
+    protected mixed $values;
 
     /**
      * @access protected
@@ -60,7 +60,7 @@ class Element
      */
     public function exists(): bool
     {
-        return $this->values != false && $this->values != null;
+        return $this->values !== false && $this->values !== null && count($this->values) > 0;
     }
 
     /**
@@ -83,9 +83,9 @@ class Element
      *
      * @access public
      *
-     * @return mixed
+     * @return \SimpleXMLElement|null
      */
-    public function getFirstValue()
+    public function getFirstValue(): ?\SimpleXMLElement
     {
         if ($this->exists()) {
             return $this->values[0];

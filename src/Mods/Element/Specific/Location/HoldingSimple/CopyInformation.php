@@ -58,7 +58,7 @@ class CopyInformation extends BaseElement
         $xpath = './mods:form' . $query;
         $element = new Element($this->xml, $xpath);
         if ($element->exists()) {
-            return new Form($element->getValues()[0]);
+            return new Form($element->getFirstValue());
         }
         return null;
     }

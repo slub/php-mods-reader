@@ -101,7 +101,7 @@ class TitleInfo extends BaseElement
         $xpath = './mods:title' . $query;
         $element = new Element($this->xml, $xpath);
         if ($element->exists()) {
-            return new LanguageElement($element->getValues()[0]);
+            return new LanguageElement($element->getFirstValue());
         }
         return null;
     }
@@ -121,7 +121,7 @@ class TitleInfo extends BaseElement
         $xpath = './mods:subTitle' . $query;
         $element = new Element($this->xml, $xpath);
         if ($element->exists()) {
-            return new LanguageElement($element->getValues()[0]);
+            return new LanguageElement($element->getFirstValue());
         }
         return null;
     }
@@ -141,7 +141,7 @@ class TitleInfo extends BaseElement
         $xpath = './mods:partNumber' . $query;
         $element = new Element($this->xml, $xpath);
         if ($element->exists()) {
-            return new LanguageElement($element->getValues()[0]);
+            return new LanguageElement($element->getFirstValue());
         }
         return null;
     }
@@ -181,7 +181,7 @@ class TitleInfo extends BaseElement
         $xpath = './mods:nonSort' . $query;
         $element = new Element($this->xml, $xpath);
         if ($element->exists()) {
-            return new NonSort($element->getValues()[0]);
+            return new NonSort($element->getFirstValue());
         }
         return null;
     }

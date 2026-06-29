@@ -97,7 +97,7 @@ class Extent extends BaseElement
         $xpath = './mods:total' . $query;
         $element = new Element($this->xml, $xpath);
         if ($element->exists()) {
-            return (int) $element->getValues()[0];
+            return (int) $element->getFirstValue();
         }
         return 0;
     }

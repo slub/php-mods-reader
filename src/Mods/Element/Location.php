@@ -83,7 +83,7 @@ class Location extends BaseElement
         $xpath = './mods:shelfLocator' . $query;
         $element = new Element($this->xml, $xpath);
         if ($element->exists()) {
-            return new LanguageElement($element->getValues()[0]);
+            return new LanguageElement($element->getFirstValue());
         }
         return null;
     }
@@ -124,7 +124,7 @@ class Location extends BaseElement
         $xpath = './mods:holdingSimple' . $query;
         $element = new Element($this->xml, $xpath);
         if ($element->exists()) {
-            return new HoldingSimple($element->getValues()[0]);
+            return new HoldingSimple($element->getFirstValue());
         }
         return null;
     }
@@ -144,7 +144,7 @@ class Location extends BaseElement
         $xpath = './mods:holdingExternal' . $query;
         $element = new Element($this->xml, $xpath);
         if ($element->exists()) {
-            return $element->getValues()[0]->asXML();
+            return $element->getFirstValue()->asXML();
         }
         return '';
     }

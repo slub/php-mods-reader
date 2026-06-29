@@ -59,7 +59,7 @@ trait AbstractReader
         $query = new Query('./mods:abstract', $query, $attributes, $value);
         $element = new Element($this->xml, $query->getXPath());
         if ($element->exists()) {
-            return new AbstractElement($element->getValues()[0]);
+            return new AbstractElement($element->getFirstValue());
         }
         return null;
     }

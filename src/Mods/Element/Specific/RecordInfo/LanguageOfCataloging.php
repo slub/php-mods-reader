@@ -73,7 +73,7 @@ class LanguageOfCataloging extends BaseElement
         $xpath = './mods:languageTerm' . $query;
         $element = new Element($this->xml, $xpath);
         if ($element->exists()) {
-            return new LanguageTerm($element->getValues()[0]);
+            return new LanguageTerm($element->getFirstValue());
         }
         return null;
     }
@@ -93,7 +93,7 @@ class LanguageOfCataloging extends BaseElement
         $xpath = './mods:scriptTerm' . $query;
         $element = new Element($this->xml, $xpath);
         if ($element->exists()) {
-            return new ScriptTerm($element->getValues()[0]);
+            return new ScriptTerm($element->getFirstValue());
         }
         return null;
     }

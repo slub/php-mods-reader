@@ -98,7 +98,7 @@ class Name extends BaseNameElement
         $xpath = './mods:etal' . $query;
         $element = new Element($this->xml, $xpath);
         if ($element->exists()) {
-            return new LanguageElement($element->getValues()[0]);
+            return new LanguageElement($element->getFirstValue());
         }
         return null;
     }

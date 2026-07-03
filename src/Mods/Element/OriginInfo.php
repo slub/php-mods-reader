@@ -25,7 +25,7 @@ use Slub\Mods\Element\Specific\OriginInfo\Edition;
 use Slub\Mods\Element\Specific\OriginInfo\Frequency;
 use Slub\Mods\Element\Specific\OriginInfo\Issuance;
 use Slub\Mods\Element\Specific\OriginInfo\Place;
-use Slub\Mods\Element\Xml\Element;
+use Slub\Mods\Utility\Query;
 
 /**
  * OriginInfo MODS metadata element class for the 'php-mods-reader' library.
@@ -89,13 +89,25 @@ class OriginInfo extends BaseElement
      */
     public function getPlaces(string $query = ''): array
     {
-        $places = [];
-        $xpath = './mods:place' . $query;
-        $element = new Element($this->xml, $xpath);
-        foreach ($element->getValues() as $value) {
-            $places[] = new Place($value);
-        }
-        return $places;
+        return $this->getElements('./mods:place' . $query, Place::class);
+    }
+
+    /**
+     * Get the array of the <place> elements by parameters.
+     * @see https://www.loc.gov/standards/mods/userguide/origininfo.html#place
+     *
+     * @access public
+     *
+     * @param string $xpath The XPath query for metadata search
+     * @param array $attributes The array of attributes ['attribute' => 'value']
+     * @param string $value The value for metadata search
+     *
+     * @return Place[]
+     */
+    public function getPlacesByParameters(string $xpath = '', array $attributes = [], string $value = ''): array
+    {
+        $query = new Query('./mods:place', $xpath, $attributes, $value);
+        return $this->getElements($query->getXPath(), Place::class);
     }
 
     /**
@@ -110,13 +122,25 @@ class OriginInfo extends BaseElement
      */
     public function getAgents(string $query = ''): array
     {
-        $agents = [];
-        $xpath = './mods:agent' . $query;
-        $element = new Element($this->xml, $xpath);
-        foreach ($element->getValues() as $value) {
-            $agents[] = new Agent($value);
-        }
-        return $agents;
+        return $this->getElements('./mods:agent' . $query, Agent::class);
+    }
+
+    /**
+     * Get the array of the <agent> elements by parameters.
+     * @see https://www.loc.gov/standards/mods/userguide/origininfo.html#agent
+     *
+     * @access public
+     *
+     * @param string $xpath The XPath query for metadata search
+     * @param array $attributes The array of attributes ['attribute' => 'value']
+     * @param string $value The value for metadata search
+     *
+     * @return Agent[]
+     */
+    public function getAgentsByParameters(string $xpath = '', array $attributes = [], string $value = ''): array
+    {
+        $query = new Query('./mods:agent', $xpath, $attributes, $value);
+        return $this->getElements($query->getXPath(), Agent::class);
     }
 
     /**
@@ -221,13 +245,25 @@ class OriginInfo extends BaseElement
      */
     public function getOtherDates(string $query = ''): array
     {
-        $otherDates = [];
-        $xpath = './mods:dateOther' . $query;
-        $element = new Element($this->xml, $xpath);
-        foreach ($element->getValues() as $value) {
-            $otherDates[] = new DateOther($value);
-        }
-        return $otherDates;
+        return $this->getElements('./mods:dateOther' . $query, DateOther::class);
+    }
+
+    /**
+     * Get the array of the <dateOther> elements by parameters.
+     * @see https://www.loc.gov/standards/mods/userguide/origininfo.html#dateother
+     *
+     * @access public
+     *
+     * @param string $xpath The XPath query for metadata search
+     * @param array $attributes The array of attributes ['attribute' => 'value']
+     * @param string $value The value for metadata search
+     *
+     * @return DateOther[]
+     */
+    public function getOtherDatesByParameters(string $xpath = '', array $attributes = [], string $value = ''): array
+    {
+        $query = new Query('./mods:dateOther', $xpath, $attributes, $value);
+        return $this->getElements($query->getXPath(), DateOther::class);
     }
 
     /**
@@ -242,13 +278,25 @@ class OriginInfo extends BaseElement
      */
     public function getDisplayDates(string $query = ''): array
     {
-        $displayDates = [];
-        $xpath = './mods:displayDate' . $query;
-        $element = new Element($this->xml, $xpath);
-        foreach ($element->getValues() as $value) {
-            $displayDates[] = new DisplayDate($value);
-        }
-        return $displayDates;
+        return $this->getElements('./mods:displayDate' . $query, DisplayDate::class);
+    }
+
+    /**
+     * Get the array of the <displayDate> elements by parameters.
+     * @see https://www.loc.gov/standards/mods/userguide/origininfo.html#displayDate
+     *
+     * @access public
+     *
+     * @param string $xpath The XPath query for metadata search
+     * @param array $attributes The array of attributes ['attribute' => 'value']
+     * @param string $value The value for metadata search
+     *
+     * @return DisplayDate[]
+     */
+    public function getDisplayDatesByParameters(string $xpath = '', array $attributes = [], string $value = ''): array
+    {
+        $query = new Query('./mods:displayDate', $xpath, $attributes, $value);
+        return $this->getElements($query->getXPath(), DisplayDate::class);
     }
 
     /**
@@ -263,13 +311,25 @@ class OriginInfo extends BaseElement
      */
     public function getEditions(string $query = ''): array
     {
-        $editions = [];
-        $xpath = './mods:edition' . $query;
-        $element = new Element($this->xml, $xpath);
-        foreach ($element->getValues() as $value) {
-            $editions[] = new Edition($value);
-        }
-        return $editions;
+        return $this->getElements('./mods:edition' . $query, Edition::class);
+    }
+
+    /**
+     * Get the array of the <edition> elements by parameters.
+     * @see https://www.loc.gov/standards/mods/userguide/origininfo.html#edition
+     *
+     * @access public
+     *
+     * @param string $xpath The XPath query for metadata search
+     * @param array $attributes The array of attributes ['attribute' => 'value']
+     * @param string $value The value for metadata search
+     *
+     * @return Edition[]
+     */
+    public function getEditionsByParameters(string $xpath = '', array $attributes = [], string $value = ''): array
+    {
+        $query = new Query('./mods:edition', $xpath, $attributes, $value);
+        return $this->getElements($query->getXPath(), Edition::class);
     }
 
     /**
@@ -284,13 +344,25 @@ class OriginInfo extends BaseElement
      */
     public function getIssuances(string $query = ''): array
     {
-        $issuances = [];
-        $xpath = './mods:issuance' . $query;
-        $element = new Element($this->xml, $xpath);
-        foreach ($element->getValues() as $value) {
-            $issuances[] = new Issuance($value);
-        }
-        return $issuances;
+        return $this->getElements('./mods:issuance' . $query, Issuance::class);
+    }
+
+    /**
+     * Get the array of the <issuance> elements by parameters.
+     * @see https://www.loc.gov/standards/mods/userguide/origininfo.html#issuance
+     *
+     * @access public
+     *
+     * @param string $xpath The XPath query for metadata search
+     * @param array $attributes The array of attributes ['attribute' => 'value']
+     * @param string $value The value for metadata search
+     *
+     * @return Issuance[]
+     */
+    public function getIssuancesByParameters(string $xpath = '', array $attributes = [], string $value = ''): array
+    {
+        $query = new Query('./mods:issuance', $xpath, $attributes, $value);
+        return $this->getElements($query->getXPath(), Issuance::class);
     }
 
     /**
@@ -305,12 +377,24 @@ class OriginInfo extends BaseElement
      */
     public function getFrequencies(string $query = ''): array
     {
-        $frequencies = [];
-        $xpath = './mods:frequency' . $query;
-        $element = new Element($this->xml, $xpath);
-        foreach ($element->getValues() as $value) {
-            $frequencies[] = new Frequency($value);
-        }
-        return $frequencies;
+        return $this->getElements('./mods:frequency' . $query, Frequency::class);
+    }
+
+    /**
+     * Get the array of the <frequency> elements by parameters.
+     * @see https://www.loc.gov/standards/mods/userguide/origininfo.html#frequency
+     *
+     * @access public
+     *
+     * @param string $xpath The XPath query for metadata search
+     * @param array $attributes The array of attributes ['attribute' => 'value']
+     * @param string $value The value for metadata search
+     *
+     * @return Frequency[]
+     */
+    public function getFrequenciesByParameters(string $xpath = '', array $attributes = [], string $value = ''): array
+    {
+        $query = new Query('./mods:frequency', $xpath, $attributes, $value);
+        return $this->getElements($query->getXPath(), Frequency::class);
     }
 }

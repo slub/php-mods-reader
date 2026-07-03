@@ -22,6 +22,7 @@ use Slub\Mods\Element\Specific\Location\HoldingSimple;
 use Slub\Mods\Element\Specific\Location\PhysicalLocation;
 use Slub\Mods\Element\Specific\Location\Url;
 use Slub\Mods\Element\Xml\Element;
+use Slub\Mods\Utility\Query;
 
 /**
  * Location MODS metadata element class for the 'php-mods-reader' library.
@@ -59,13 +60,25 @@ class Location extends BaseElement
      */
     public function getPhysicalLocations(string $query = ''): array
     {
-        $physicalLocations = [];
-        $xpath = './mods:physicalLocation' . $query;
-        $element = new Element($this->xml, $xpath);
-        foreach ($element->getValues() as $value) {
-            $physicalLocations[] = new PhysicalLocation($value);
-        }
-        return $physicalLocations;
+        return $this->getElements('./mods:physicalLocation' . $query, PhysicalLocation::class);
+    }
+
+    /**
+     * Get the array of the <physicalLocation> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/location.html#physicallocation
+     *
+     * @access public
+     *
+     * @param string $xpath The XPath query for metadata search
+     * @param array $attributes The array of attributes ['attribute' => 'value']
+     * @param string $value The value for metadata search
+     *
+     * @return PhysicalLocation[]
+     */
+    public function getPhysicalLocationsByParameters(string $xpath = '', array $attributes = [], string $value = ''): array
+    {
+        $query = new Query('./mods:namePart', $xpath, $attributes, $value);
+        return $this->getElements($query->getXPath(), PhysicalLocation::class);
     }
 
     /**
@@ -80,12 +93,25 @@ class Location extends BaseElement
      */
     public function getShelfLocator(string $query = ''): ?LanguageElement
     {
-        $xpath = './mods:shelfLocator' . $query;
-        $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            return new LanguageElement($element->getFirstValue());
-        }
-        return null;
+        return $this->getLanguageElement('./mods:shelfLocator' . $query);
+    }
+
+    /**
+     * Get the value of the <shelfLocator> element by parameters.
+     * @see https://www.loc.gov/standards/mods/userguide/location.html#shelfLocator
+     *
+     * @access public
+     *
+     * @param string $xpath The XPath query for metadata search
+     * @param array $attributes The array of attributes ['attribute' => 'value']
+     * @param string $value The value for metadata search
+     *
+     * @return ?LanguageElement
+     */
+    public function getShelfLocatorByParameters(string $xpath = '', array $attributes = [], string $value = ''): ?LanguageElement
+    {
+        $query = new Query('./mods:shelfLocator', $xpath, $attributes, $value);
+        return $this->getLanguageElement($query->getXPath());
     }
 
     /**
@@ -100,13 +126,25 @@ class Location extends BaseElement
      */
     public function getUrls(string $query = ''): array
     {
-        $urls = [];
-        $xpath = './mods:url' . $query;
-        $element = new Element($this->xml, $xpath);
-        foreach ($element->getValues() as $value) {
-            $urls[] = new Url($value);
-        }
-        return $urls;
+        return $this->getElements('./mods:url' . $query, Url::class);
+    }
+
+    /**
+     * Get the array of the <url> elements by parameters.
+     * @see https://www.loc.gov/standards/mods/userguide/location.html#url
+     *
+     * @access public
+     *
+     * @param string $xpath The XPath query for metadata search
+     * @param array $attributes The array of attributes ['attribute' => 'value']
+     * @param string $value The value for metadata search
+     *
+     * @return Url[]
+     */
+    public function getUrlsByParameters(string $xpath = '', array $attributes = [], string $value = ''): array
+    {
+        $query = new Query('./mods:url', $xpath, $attributes, $value);
+        return $this->getElements($query->getXPath(), Url::class);
     }
 
     /**
@@ -115,18 +153,31 @@ class Location extends BaseElement
      *
      * @access public
      *
-     * @param string $query for metadata search
+     * @param string $query The XPath query for metadata search
      *
      * @return ?HoldingSimple
      */
     public function getHoldingSimple(string $query = ''): ?HoldingSimple
     {
-        $xpath = './mods:holdingSimple' . $query;
-        $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            return new HoldingSimple($element->getFirstValue());
-        }
-        return null;
+        return $this->getElement('./mods:holdingSimple' . $query, HoldingSimple::class);
+    }
+
+    /**
+     * Get the value of the <holdingSimple> element by parameters.
+     * @see https://www.loc.gov/standards/mods/userguide/location.html#holdingsimple
+     *
+     * @access public
+     *
+     * @param string $xpath The XPath query for metadata search
+     * @param array $attributes The array of attributes ['attribute' => 'value']
+     * @param string $value The value for metadata search
+     *
+     * @return ?HoldingSimple
+     */
+    public function getHoldingSimpleByParameters(string $xpath = '', array $attributes = [], string $value = ''): ?HoldingSimple
+    {
+        $query = new Query('./mods:holdingSimple', $xpath, $attributes, $value);
+        return $this->getElement($query->getXPath(), HoldingSimple::class);
     }
 
     /**

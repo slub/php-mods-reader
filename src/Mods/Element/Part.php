@@ -21,7 +21,7 @@ use Slub\Mods\Element\Common\DateElement;
 use Slub\Mods\Element\Specific\Part\Detail;
 use Slub\Mods\Element\Specific\Part\Extent;
 use Slub\Mods\Element\Specific\Part\Text;
-use Slub\Mods\Element\Xml\Element;
+use Slub\Mods\Utility\Query;
 
 /**
  * Part MODS metadata element class for the 'php-mods-reader' library.
@@ -85,13 +85,25 @@ class Part extends BaseElement
      */
     public function getDetails(string $query = ''): array
     {
-        $details = [];
-        $xpath = './mods:detail' . $query;
-        $element = new Element($this->xml, $xpath);
-        foreach ($element->getValues() as $value) {
-            $details[] = new Detail($value);
-        }
-        return $details;
+        return $this->getElements('./mods:detail' . $query, Detail::class);
+    }
+
+    /**
+     * Get the array of the <detail> elements by parameters.
+     * @see https://www.loc.gov/standards/mods/userguide/part.html#detail
+     *
+     * @access public
+     *
+     * @param string $xpath The XPath query for metadata search
+     * @param array $attributes The array of attributes ['attribute' => 'value']
+     * @param string $value The value for metadata search
+     *
+     * @return Detail[]
+     */
+    public function getDetailsByParameters(string $xpath = '', array $attributes = [], string $value = ''): array
+    {
+        $query = new Query('./mods:detail', $xpath, $attributes, $value);
+        return $this->getElements($query->getXPath(), Detail::class);
     }
 
     /**
@@ -106,13 +118,25 @@ class Part extends BaseElement
      */
     public function getExtents(string $query = ''): array
     {
-        $extents = [];
-        $xpath = './mods:extent' . $query;
-        $element = new Element($this->xml, $xpath);
-        foreach ($element->getValues() as $value) {
-            $extents[] = new Extent($value);
-        }
-        return $extents;
+        return $this->getElements('./mods:extent' . $query, Extent::class);
+    }
+
+    /**
+     * Get the array of the <extent> elements by parameters.
+     * @see https://www.loc.gov/standards/mods/userguide/part.html#extent
+     *
+     * @access public
+     *
+     * @param string $xpath The XPath query for metadata search
+     * @param array $attributes The array of attributes ['attribute' => 'value']
+     * @param string $value The value for metadata search
+     *
+     * @return Extent[]
+     */
+    public function getExtentsByParameters(string $xpath = '', array $attributes = [], string $value = ''): array
+    {
+        $query = new Query('./mods:extent', $xpath, $attributes, $value);
+        return $this->getElements($query->getXPath(), Extent::class);
     }
 
     /**
@@ -131,6 +155,24 @@ class Part extends BaseElement
     }
 
     /**
+     * Get the array of the <date> elements by parameters.
+     * @see https://www.loc.gov/standards/mods/userguide/part.html#date
+     *
+     * @access public
+     *
+     * @param string $xpath The XPath query for metadata search
+     * @param array $attributes The array of attributes ['attribute' => 'value']
+     * @param string $value The value for metadata search
+     *
+     * @return DateElement[]
+     */
+    public function getDatesByParameters(string $xpath = '', array $attributes = [], string $value = ''): array
+    {
+        $query = new Query('./mods:date', $xpath, $attributes, $value);
+        return $this->getDateElements($query->getXPath());
+    }
+
+    /**
      * Get the array of the <text> elements.
      * @see https://www.loc.gov/standards/mods/userguide/part.html#text
      *
@@ -142,12 +184,24 @@ class Part extends BaseElement
      */
     public function getTexts(string $query = ''): array
     {
-        $texts = [];
-        $xpath = './mods:text' . $query;
-        $element = new Element($this->xml, $xpath);
-        foreach ($element->getValues() as $value) {
-            $texts[] = new Text($value);
-        }
-        return $texts;
+        return $this->getElements('./mods:text' . $query, Text::class);
+    }
+
+    /**
+     * Get the array of the <text> elements by parameters.
+     * @see https://www.loc.gov/standards/mods/userguide/part.html#text
+     *
+     * @access public
+     *
+     * @param string $xpath The XPath query for metadata search
+     * @param array $attributes The array of attributes ['attribute' => 'value']
+     * @param string $value The value for metadata search
+     *
+     * @return Text[]
+     */
+    public function getTextsByParameters(string $xpath = '', array $attributes = [], string $value = ''): array
+    {
+        $query = new Query('./mods:text', $xpath, $attributes, $value);
+        return $this->getElements($query->getXPath(), Text::class);
     }
 }

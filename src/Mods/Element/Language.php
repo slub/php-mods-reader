@@ -20,7 +20,7 @@ use Slub\Mods\Attribute\Common\Miscellaneous\UsageAttribute;
 use Slub\Mods\Element\Common\BaseElement;
 use Slub\Mods\Element\Specific\Language\LanguageTerm;
 use Slub\Mods\Element\Specific\Language\ScriptTerm;
-use Slub\Mods\Element\Xml\Element;
+use Slub\Mods\Utility\Query;
 
 /**
  * Language MODS metadata element class for the 'php-mods-reader' library.
@@ -71,13 +71,25 @@ class Language extends BaseElement
      */
     public function getLanguageTerms(string $query = ''): array
     {
-        $languageTerms = [];
-        $xpath = './mods:languageTerm' . $query;
-        $element = new Element($this->xml, $xpath);
-        foreach ($element->getValues() as $value) {
-            $languageTerms[] = new LanguageTerm($value);
-        }
-        return $languageTerms;
+        return $this->getElements('./mods:languageTerm' . $query, LanguageTerm::class);
+    }
+
+    /**
+     * Get the array of the <languageTerm> elements by parameters.
+     * @see https://www.loc.gov/standards/mods/userguide/language.html#languageterm
+     *
+     * @access public
+     *
+     * @param string $xpath The XPath query for metadata search
+     * @param array $attributes The array of attributes ['attribute' => 'value']
+     * @param string $value The value for metadata search
+     *
+     * @return LanguageTerm[]
+     */
+    public function getLanguageTermsByParameters(string $xpath = '', array $attributes = [], string $value = ''): array
+    {
+        $query = new Query('./mods:languageTerm', $xpath, $attributes, $value);
+        return $this->getElements($query->getXPath(), LanguageTerm::class);
     }
 
     /**
@@ -86,18 +98,30 @@ class Language extends BaseElement
      *
      * @access public
      *
-     * @param string $query for metadata search
+     * @param string $query The XPath query for metadata search
      *
      * @return ScriptTerm[]
      */
     public function getScriptTerms(string $query = ''): array
     {
-        $scriptTerms = [];
-        $xpath = './mods:scriptTerm' . $query;
-        $element = new Element($this->xml, $xpath);
-        foreach ($element->getValues() as $value) {
-            $scriptTerms[] = new ScriptTerm($value);
-        }
-        return $scriptTerms;
+        return $this->getElements('./mods:scriptTerm' . $query, ScriptTerm::class);
+    }
+
+    /**
+     * Get the array of the <scriptTerm> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/language.html#scriptterm
+     *
+     * @access public
+     *
+     * @param string $xpath The XPath query for metadata search
+     * @param array $attributes The array of attributes ['attribute' => 'value']
+     * @param string $value The value for metadata search
+     *
+     * @return ScriptTerm[]
+     */
+    public function getScriptTermsByParameters(string $xpath = '', array $attributes = [], string $value = ''): array
+    {
+        $query = new Query('./mods:scriptTerm', $xpath, $attributes, $value);
+        return $this->getElements($query->getXPath(), ScriptTerm::class);
     }
 }

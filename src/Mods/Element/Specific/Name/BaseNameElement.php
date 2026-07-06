@@ -16,6 +16,7 @@ use Slub\Mods\Element\Common\AuthorityLanguageElement;
 use Slub\Mods\Element\Common\BaseElement;
 use Slub\Mods\Element\Common\LanguageElement;
 use Slub\Mods\Element\Xml\Element;
+use Slub\Mods\Utility\Query;
 
 /**
  * BaseNameElement class for the 'php-mods-reader' library.
@@ -50,13 +51,25 @@ class BaseNameElement extends BaseElement
      */
     public function getNameParts(string $query = ''): array
     {
-        $nameParts = [];
-        $xpath = './mods:namePart' . $query;
-        $element = new Element($this->xml, $xpath);
-        foreach ($element->getValues() as $value) {
-            $nameParts[] = new NamePart($value);
-        }
-        return $nameParts;
+        return $this->getElements('./mods:namePart' . $query, NamePart::class);
+    }
+
+    /**
+     * Get the array of the <namePart> elements by given parameters.
+     * @see https://www.loc.gov/standards/mods/userguide/name.html#namepart
+     *
+     * @access public
+     *
+     * @param string $xpath The XPath query for metadata search
+     * @param array $attributes The array of attributes ['attribute' => 'value']
+     * @param string $value The value for metadata search
+     *
+     * @return NamePart[]
+     */
+    public function getNamePartsByParameters(string $xpath = '', array $attributes = [], string $value = ''): array
+    {
+        $query = new Query('./mods:namePart', $xpath, $attributes, $value);
+        return $this->getElements($query->getXPath(), NamePart::class);
     }
 
     /**
@@ -71,13 +84,25 @@ class BaseNameElement extends BaseElement
      */
     public function getNameIdentifiers(string $query): array
     {
-        $nameIdentifiers = [];
-        $xpath = './mods:nameIdentifier' . $query;
-        $element = new Element($this->xml, $xpath);
-        foreach ($element->getValues() as $value) {
-            $nameIdentifiers[] = new NameIdentifier($value);
-        }
-        return $nameIdentifiers;
+        return $this->getElements('./mods:nameIdentifier' . $query, NameIdentifier::class);
+    }
+
+    /**
+     * Get the array of the <nameIdentifier> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/name.html#nameidentifier
+     *
+     * @access public
+     *
+     * @param string $xpath The XPath query for metadata search
+     * @param array $attributes The array of attributes ['attribute' => 'value']
+     * @param string $value The value for metadata search
+     *
+     * @return NameIdentifier[]
+     */
+    public function getNameIdentifiersByParameters(string $xpath = '', array $attributes = [], string $value = ''): array
+    {
+        $query = new Query('./mods:nameIdentifier', $xpath, $attributes, $value);
+        return $this->getElements($query->getXPath(), NameIdentifier::class);
     }
 
     /**
@@ -92,13 +117,25 @@ class BaseNameElement extends BaseElement
      */
     public function getDisplayForms(string $query = ''): array
     {
-        $displayForms = [];
-        $xpath = './mods:displayForm' . $query;
-        $element = new Element($this->xml, $xpath);
-        foreach ($element->getValues() as $value) {
-            $displayForms[] = new LanguageElement($value);
-        }
-        return $displayForms;
+        return $this->getLanguageElements('./mods:displayForm' . $query);
+    }
+
+    /**
+     * Get the array of the <displayForm> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/name.html#displayform
+     *
+     * @access public
+     *
+     * @param string $xpath The XPath query for metadata search
+     * @param array $attributes The array of attributes ['attribute' => 'value']
+     * @param string $value The value for metadata search
+     *
+     * @return LanguageElement[]
+     */
+    public function getDisplayFormsByParameters(string $xpath = '', array $attributes = [], string $value = ''): array
+    {
+        $query = new Query('./mods:displayForm', $xpath, $attributes, $value);
+        return $this->getLanguageElements($query->getXPath());
     }
 
     /**
@@ -113,13 +150,25 @@ class BaseNameElement extends BaseElement
      */
     public function getAffiliations(string $query = ''): array
     {
-        $affiliations = [];
-        $xpath = './mods:affiliation' . $query;
-        $element = new Element($this->xml, $xpath);
-        foreach ($element->getValues() as $value) {
-            $affiliations[] = new AuthorityLanguageElement($value);
-        }
-        return $affiliations;
+        return $this->getAuthorityLanguageElements('./mods:affiliation' . $query);
+    }
+
+    /**
+     * Get the array of the <affiliation> elements by given parameters.
+     * @see https://www.loc.gov/standards/mods/userguide/name.html#displayform
+     *
+     * @access public
+     *
+     * @param string $xpath The XPath query for metadata search
+     * @param array $attributes The array of attributes ['attribute' => 'value']
+     * @param string $value The value for metadata search
+     *
+     * @return AuthorityLanguageElement[]
+     */
+    public function getAffiliationsByParameters(string $xpath = '', array $attributes = [], string $value = ''): array
+    {
+        $query = new Query('./mods:affiliation', $xpath, $attributes, $value);
+        return $this->getAuthorityLanguageElements($query->getXPath());
     }
 
     /**
@@ -128,19 +177,31 @@ class BaseNameElement extends BaseElement
      *
      * @access public
      *
-     * @param string $query The XPath query ''):for metadata search
+     * @param string $query The XPath query for metadata search
      *
      * @return Role[]
      */
     public function getRoles(string $query = ''): array
     {
-        $roles = [];
-        $xpath = './mods:role' . $query;
-        $element = new Element($this->xml, $xpath);
-        foreach ($element->getValues() as $value) {
-            $roles[] = new Role($value);
-        }
-        return $roles;
+        return $this->getElements('./mods:role' . $query, Role::class);
+    }
+
+    /**
+     * Get the array of the <role> elements by parameters.
+     * @see https://www.loc.gov/standards/mods/userguide/name.html#role
+     *
+     * @access public
+     *
+     * @param string $xpath The XPath query for metadata search
+     * @param array $attributes The array of attributes ['attribute' => 'value']
+     * @param string $value The value for metadata search
+     *
+     * @return Role[]
+     */
+    public function getRolesByParameters(string $xpath = '', array $attributes = [], string $value = ''): array
+    {
+        $query = new Query('./mods:role', $xpath, $attributes, $value);
+        return $this->getElements($query->getXPath(), Role::class);
     }
 
     /**
@@ -155,12 +216,24 @@ class BaseNameElement extends BaseElement
      */
     public function getDescriptions(string $query = ''): array
     {
-        $descriptions = [];
-        $xpath = './mods:description' . $query;
-        $element = new Element($this->xml, $xpath);
-        foreach ($element->getValues() as $value) {
-            $descriptions[] = new LanguageElement($value);
-        }
-        return $descriptions;
+        return $this->getLanguageElements('./mods:description' . $query);
+    }
+
+    /**
+     * Get the array of the <description> elements by given parameters.
+     * @see https://www.loc.gov/standards/mods/userguide/name.html#description
+     *
+     * @access public
+     *
+     * @param string $xpath The XPath query for metadata search
+     * @param array $attributes The array of attributes ['attribute' => 'value']
+     * @param string $value The value for metadata search
+     *
+     * @return LanguageElement[]
+     */
+    public function getDescriptionsByParameters(string $xpath = '', array $attributes = [], string $value = ''): array
+    {
+        $query = new Query('./mods:description', $xpath, $attributes, $value);
+        return $this->getLanguageElements($query->getXPath());
     }
 }

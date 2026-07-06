@@ -30,27 +30,27 @@ class Query
      *
      * @access public
      *
-     * @param string $xpath The base XPath for element
-     * @param string $query The XPath query for metadata search
+     * @param string $baseXpath The base XPath for element
+     * @param string $xpath The XPath query for metadata search
      * @param array $attributes The array of attributes ['attribute' => 'value']
      * @param string $value The value for metadata search
      *
      * @return void
      */
-    public function __construct(string $xpath, string $query = '', array $attributes = [], string $value = '')
+    public function __construct(string $baseXpath, string $xpath = '', array $attributes = [], string $value = '')
     {
         $parsedAttributes = !empty($attributes) ? $this->getParsedAttributes($attributes) : '';
 
-        if (!empty($query) && !empty($parsedAttributes)) {
-            $xpath .= !empty($value) ? '[' . $query . '[' . $parsedAttributes . ']="' . $value . '"]' : '[' . $query . '[' . $parsedAttributes . ']]';
-        } else if (!empty($query) || !empty($parsedAttributes)) {
-            $inner = !empty($query) ? $query : $parsedAttributes;
-            $xpath .= !empty($value) ? '[' . $inner . ']="' . $value . '"' : '[' . $inner . ']';
+        if (!empty($xpath) && !empty($parsedAttributes)) {
+            $baseXpath .= !empty($value) ? '[' . $xpath . '[' . $parsedAttributes . ']="' . $value . '"]' : '[' . $xpath . '[' . $parsedAttributes . ']]';
+        } else if (!empty($xpath) || !empty($parsedAttributes)) {
+            $inner = !empty($xpath) ? $xpath : $parsedAttributes;
+            $baseXpath .= !empty($value) ? '[' . $inner . ']="' . $value . '"' : '[' . $inner . ']';
         } else if (!empty($value)) {
-            $xpath .= '="' . $value . '"';
+            $baseXpath .= '="' . $value . '"';
         }
 
-        $this->xPath = $xpath;
+        $this->xPath = $baseXpath;
     }
 
     public function getXPath(): string

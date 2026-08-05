@@ -23,7 +23,7 @@ use Slub\Mods\Attribute\Common\Miscellaneous\UsageAttribute;
 use Slub\Mods\Element\Common\LanguageElement;
 use Slub\Mods\Element\Specific\Name\AlternativeName;
 use Slub\Mods\Element\Specific\Name\BaseNameElement;
-use Slub\Mods\Element\Xml\Element;
+use Slub\Mods\Utility\Query;
 
 /**
  * Name MODS metadata element class for the 'php-mods-reader' library.
@@ -74,13 +74,25 @@ class Name extends BaseNameElement
      */
     public function getAlternativeNames(string $query = ''): array
     {
-        $alternativeNames = [];
-        $xpath = './mods:alternativeName' . $query;
-        $element = new Element($this->xml, $xpath);
-        foreach ($element->getValues() as $value) {
-            $alternativeNames[] = new AlternativeName($value);
-        }
-        return $alternativeNames;
+        return $this->getElements('./mods:alternativeName' . $query, AlternativeName::class);
+    }
+
+    /**
+     * Get the array of the <alternativeName> elements by parameters.
+     * @see https://www.loc.gov/standards/mods/userguide/name.html#alternativename
+     *
+     * @access public
+     *
+     * @param string $xpath The XPath query for metadata search
+     * @param array $attributes The array of attributes ['attribute' => 'value']
+     * @param string $value The value for metadata search
+     *
+     * @return AlternativeName[]
+     */
+    public function getAlternativeNamesByParameters(string $xpath = '', array $attributes = [], string $value = ''): array
+    {
+        $query = new Query('./mods:alternativeName', $xpath, $attributes, $value);
+        return $this->getElements($query->getXPath(), AlternativeName::class);
     }
 
     /**
@@ -95,11 +107,24 @@ class Name extends BaseNameElement
      */
     public function getEtal(string $query = ''): ?LanguageElement
     {
-        $xpath = './mods:etal' . $query;
-        $element = new Element($this->xml, $xpath);
-        if ($element->exists()) {
-            return new LanguageElement($element->getFirstValue());
-        }
-        return null;
+        return $this->getLanguageElement('./mods:etal' . $query);
+    }
+
+    /**
+     * Get the value of the <etal> element by parameters.
+     * @see https://www.loc.gov/standards/mods/userguide/name.html#etal
+     *
+     * @access public
+     *
+     * @param string $xpath The XPath query for metadata search
+     * @param array $attributes The array of attributes ['attribute' => 'value']
+     * @param string $value The value for metadata search
+     *
+     * @return ?LanguageElement
+     */
+    public function getEtalByParameters(string $xpath = '', array $attributes = [], string $value = ''): ?LanguageElement
+    {
+        $query = new Query('./mods:etal', $xpath, $attributes, $value);
+        return $this->getLanguageElement($query->getXPath());
     }
 }

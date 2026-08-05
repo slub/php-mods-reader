@@ -22,10 +22,9 @@ use Slub\Mods\Attribute\Common\Miscellaneous\UsageAttribute;
 use Slub\Mods\Element\Common\AuthorityDateLanguageElement;
 use Slub\Mods\Element\Common\AuthorityLanguageElement;
 use Slub\Mods\Element\Common\BaseElement;
-use Slub\Mods\Element\Name;
 use Slub\Mods\Element\Specific\OriginInfo\Place\Cartographics;
 use Slub\Mods\Element\Specific\Subject\HierarchicalGeographic;
-use Slub\Mods\Element\Xml\Element;
+use Slub\Mods\Utility\Query;
 
 /**
  * Subject MODS metadata element class for the 'php-mods-reader' library.
@@ -63,13 +62,25 @@ class Subject extends BaseElement
      */
     public function getTopics(string $query = ''): array
     {
-        $topics = [];
-        $xpath = './mods:topic' . $query;
-        $element = new Element($this->xml, $xpath);
-        foreach ($element->getValues() as $value) {
-            $topics[] = new AuthorityLanguageElement($value);
-        }
-        return $topics;
+        return $this->getAuthorityLanguageElements('./mods:topic' . $query);
+    }
+
+    /**
+     * Get the array of the <topic> elements by parameters.
+     * @see https://www.loc.gov/standards/mods/userguide/subject.html#topic
+     *
+     * @access public
+     *
+     * @param string $xpath The XPath query for metadata search
+     * @param array $attributes The array of attributes ['attribute' => 'value']
+     * @param string $value The value for metadata search
+     *
+     * @return AuthorityLanguageElement[]
+     */
+    public function getTopicsByParameters(string $xpath = '', array $attributes = [], string $value = ''): array
+    {
+        $query = new Query('./mods:topic', $xpath, $attributes, $value);
+        return $this->getAuthorityLanguageElements($query->getXPath());
     }
 
     /**
@@ -78,19 +89,31 @@ class Subject extends BaseElement
      *
      * @access public
      *
-     * @param string $query for metadata search
+     * @param string $query The XPath query for metadata search
      *
      * @return AuthorityLanguageElement[]
      */
     public function getGeographics(string $query = ''): array
     {
-        $geographics = [];
-        $xpath = './mods:geographic' . $query;
-        $element = new Element($this->xml, $xpath);
-        foreach ($element->getValues() as $value) {
-            $geographics[] = new AuthorityLanguageElement($value);
-        }
-        return $geographics;
+        return $this->getAuthorityLanguageElements('./mods:geographic' . $query);
+    }
+
+    /**
+     * Get the array of the <geographic> elements.
+     * @see https://www.loc.gov/standards/mods/userguide/subject.html#geographic
+     *
+     * @access public
+     *
+     * @param string $xpath The XPath query for metadata search
+     * @param array $attributes The array of attributes ['attribute' => 'value']
+     * @param string $value The value for metadata search
+     *
+     * @return AuthorityLanguageElement[]
+     */
+    public function getGeographicsByParameters(string $xpath = '', array $attributes = [], string $value = ''): array
+    {
+        $query = new Query('./mods:geographic', $xpath, $attributes, $value);
+        return $this->getAuthorityLanguageElements($query->getXPath());
     }
 
     /**
@@ -99,19 +122,31 @@ class Subject extends BaseElement
      *
      * @access public
      *
-     * @param string $query for metadata search
+     * @param string $query The XPath query for metadata search
      *
      * @return AuthorityDateLanguageElement[]
      */
     public function getTemporals(string $query = ''): array
     {
-        $temporals = [];
-        $xpath = './mods:temporal' . $query;
-        $element = new Element($this->xml, $xpath);
-        foreach ($element->getValues() as $value) {
-            $temporals[] = new AuthorityDateLanguageElement($value);
-        }
-        return $temporals;
+        return $this->getElements('./mods:temporal' . $query, AuthorityDateLanguageElement::class);
+    }
+
+    /**
+     * Get the value of the <temporal> element by parameters.
+     * @see https://www.loc.gov/standards/mods/userguide/subject.html#temporal
+     *
+     * @access public
+     *
+     * @param string $xpath The XPath query for metadata search
+     * @param array $attributes The array of attributes ['attribute' => 'value']
+     * @param string $value The value for metadata search
+     *
+     * @return AuthorityDateLanguageElement[]
+     */
+    public function getTemporalsByParameters(string $xpath = '', array $attributes = [], string $value = ''): array
+    {
+        $query = new Query('./mods:temporal', $xpath, $attributes, $value);
+        return $this->getElements($query->getXPath(), AuthorityDateLanguageElement::class);
     }
 
     /**
@@ -120,19 +155,31 @@ class Subject extends BaseElement
      *
      * @access public
      *
-     * @param string $query for metadata search
+     * @param string $query The XPath query for metadata search
      *
      * @return TitleInfo[]
      */
     public function getTitleInfos(string $query = ''): array
     {
-        $titleInfos = [];
-        $xpath = './mods:titleInfo' . $query;
-        $element = new Element($this->xml, $xpath);
-        foreach ($element->getValues() as $value) {
-            $titleInfos[] = new TitleInfo($value);
-        }
-        return $titleInfos;
+        return $this->getElements('./mods:titleInfo' . $query, TitleInfo::class);
+    }
+
+    /**
+     * Get the array of the <titleInfo> elements by parameters.
+     * @see https://www.loc.gov/standards/mods/userguide/subject.html#titleinfo
+     *
+     * @access public
+     *
+     * @param string $xpath The XPath query for metadata search
+     * @param array $attributes The array of attributes ['attribute' => 'value']
+     * @param string $value The value for metadata search
+     *
+     * @return TitleInfo[]
+     */
+    public function getTitleInfosByParameters(string $xpath = '', array $attributes = [], string $value = ''): array
+    {
+        $query = new Query('./mods:titleInfo', $xpath, $attributes, $value);
+        return $this->getElements($query->getXPath(), TitleInfo::class);
     }
 
     /**
@@ -141,19 +188,31 @@ class Subject extends BaseElement
      *
      * @access public
      *
-     * @param string $query for metadata search
+     * @param string $query The XPath query for metadata search
      *
      * @return Name[]
      */
     public function getNames(string $query = ''): array
     {
-        $names = [];
-        $xpath = './mods:name' . $query;
-        $element = new Element($this->xml, $xpath);
-        foreach ($element->getValues() as $value) {
-            $names[] = new Name($value);
-        }
-        return $names;
+        return $this->getElements('./mods:name' . $query, Name::class);
+    }
+
+    /**
+     * Get the array of the <name> elements by parameters.
+     * @see https://www.loc.gov/standards/mods/userguide/subject.html#name
+     *
+     * @access public
+     *
+     * @param string $xpath The XPath query for metadata search
+     * @param array $attributes The array of attributes ['attribute' => 'value']
+     * @param string $value The value for metadata search
+     *
+     * @return Name[]
+     */
+    public function getNamesByParameters(string $xpath = '', array $attributes = [], string $value = ''): array
+    {
+        $query = new Query('./mods:name', $xpath, $attributes, $value);
+        return $this->getElements($query->getXPath(), Name::class);
     }
 
     /**
@@ -162,20 +221,32 @@ class Subject extends BaseElement
      *
      * @access public
      *
-     * @param string $query for metadata search
+     * @param string $query The XPath query for metadata search
      *
      * @return Genre[]
      */
     public function getGenres(string $query = ''): array
     {
-        $genres = [];
-        $xpath = './mods:genre' . $query;
-        $element = new Element($this->xml, $xpath);
-        foreach ($element->getValues() as $value) {
-            $genres[] = new Genre($value);
-        }
-        return $genres;
+        return $this->getElements('./mods:genre' . $query, Genre::class);
     }
+    /**
+     * Get the array of the <genre> elements by parameters.
+     * @see https://www.loc.gov/standards/mods/userguide/subject.html#genre
+     *
+     * @access public
+     *
+     * @param string $xpath The XPath query for metadata search
+     * @param array $attributes The array of attributes ['attribute' => 'value']
+     * @param string $value The value for metadata search
+     *
+     * @return Genre[]
+     */
+    public function getGenresByParameters(string $xpath = '', array $attributes = [], string $value = ''): array
+    {
+        $query = new Query('./mods:genre', $xpath, $attributes, $value);
+        return $this->getElements($query->getXPath(), Genre::class);
+    }
+
 
     /**
      * Get the array of the <hierarchicalGeographic> elements.
@@ -189,13 +260,25 @@ class Subject extends BaseElement
      */
     public function getHierarchicalGeographics(string $query = ''): array
     {
-        $hierarchicalGeographics = [];
-        $xpath = './mods:hierarchicalGeographic' . $query;
-        $element = new Element($this->xml, $xpath);
-        foreach ($element->getValues() as $value) {
-            $hierarchicalGeographics[] = new HierarchicalGeographic($value);
-        }
-        return $hierarchicalGeographics;
+        return $this->getElements('./mods:hierarchicalGeographic' . $query, HierarchicalGeographic::class);
+    }
+
+    /**
+     * Get the array of the <hierarchicalGeographic> elements by parameters.
+     * @see https://www.loc.gov/standards/mods/userguide/subject.html#hierarchicalgeographic
+     *
+     * @access public
+     *
+     * @param string $xpath The XPath query for metadata search
+     * @param array $attributes The array of attributes ['attribute' => 'value']
+     * @param string $value The value for metadata search
+     *
+     * @return HierarchicalGeographic[]
+     */
+    public function getHierarchicalGeographicsByParameters(string $xpath = '', array $attributes = [], string $value = ''): array
+    {
+        $query = new Query('./mods:hierarchicalGeographic', $xpath, $attributes, $value);
+        return $this->getElements($query->getXPath(), HierarchicalGeographic::class);
     }
 
     /**
@@ -210,13 +293,25 @@ class Subject extends BaseElement
      */
     public function getCartographics(string $query = ''): array
     {
-        $cartographics = [];
-        $xpath = './mods:cartographics' . $query;
-        $element = new Element($this->xml, $xpath);
-        foreach ($element->getValues() as $value) {
-            $cartographics[] = new Cartographics($value);
-        }
-        return $cartographics;
+        return $this->getElements('./mods:cartographics' . $query, Cartographics::class);
+    }
+
+    /**
+     * Get the array of the <cartographics> elements by parameters.
+     * @see https://www.loc.gov/standards/mods/userguide/subject.html#hierarchicalgeographic
+     *
+     * @access public
+     *
+     * @param string $xpath The XPath query for metadata search
+     * @param array $attributes The array of attributes ['attribute' => 'value']
+     * @param string $value The value for metadata search
+     *
+     * @return Cartographics[]
+     */
+    public function getCartographicsByParameters(string $xpath = '', array $attributes = [], string $value = ''): array
+    {
+        $query = new Query('./mods:cartographics', $xpath, $attributes, $value);
+        return $this->getElements($query->getXPath(), Cartographics::class);
     }
 
     /**
@@ -231,14 +326,27 @@ class Subject extends BaseElement
      */
     public function getGeographicCodes(string $query = ''): array
     {
-        $geographicCodes = [];
-        $xpath = './mods:geographicCode' . $query;
-        $element = new Element($this->xml, $xpath);
-        foreach ($element->getValues() as $value) {
-            $geographicCodes[] = new AuthorityLanguageElement($value);
-        }
-        return $geographicCodes;
+        return $this->getAuthorityLanguageElements('./mods:geographicCode' . $query);
     }
+
+    /**
+     * Get the array of the <geographicCode> elements by parameters.
+     * @see https://www.loc.gov/standards/mods/userguide/subject.html#geographiccode
+     *
+     * @access public
+     *
+     * @param string $xpath The XPath query for metadata search
+     * @param array $attributes The array of attributes ['attribute' => 'value']
+     * @param string $value The value for metadata search
+     *
+     * @return AuthorityLanguageElement[]
+     */
+    public function getGeographicCodesByParameters(string $xpath = '', array $attributes = [], string $value = ''): array
+    {
+        $query = new Query('./mods:geographicCode', $xpath, $attributes, $value);
+        return $this->getAuthorityLanguageElements($query->getXPath());
+    }
+
 
     /**
      * Get the array of the <occupation> elements.
@@ -252,12 +360,24 @@ class Subject extends BaseElement
      */
     public function getOccupations(string $query = ''): array
     {
-        $occupations = [];
-        $xpath = './mods:occupation' . $query;
-        $element = new Element($this->xml, $xpath);
-        foreach ($element->getValues() as $value) {
-            $occupations[] = new AuthorityLanguageElement($value);
-        }
-        return $occupations;
+        return $this->getAuthorityLanguageElements('./mods:occupation' . $query);
+    }
+
+    /**
+     * Get the array of the <occupation> elements by parameters.
+     * @see https://www.loc.gov/standards/mods/userguide/subject.html#occupation
+     *
+     * @access public
+     *
+     * @param string $xpath The XPath query for metadata search
+     * @param array $attributes The array of attributes ['attribute' => 'value']
+     * @param string $value The value for metadata search
+     *
+     * @return AuthorityLanguageElement[]
+     */
+    public function getOccupationsByParameters(string $xpath = '', array $attributes = [], string $value = ''): array
+    {
+        $query = new Query('./mods:occupation', $xpath, $attributes, $value);
+        return $this->getAuthorityLanguageElements($query->getXPath());
     }
 }

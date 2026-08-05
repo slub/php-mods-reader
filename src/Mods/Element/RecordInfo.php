@@ -24,7 +24,7 @@ use Slub\Mods\Element\Common\LanguageElement;
 use Slub\Mods\Element\Specific\RecordInfo\LanguageOfCataloging;
 use Slub\Mods\Element\Specific\RecordInfo\RecordIdentifier;
 use Slub\Mods\Element\Specific\RecordInfo\RecordInfoNote;
-use Slub\Mods\Element\Xml\Element;
+use Slub\Mods\Utility\Query;
 
 /**
  * RecordInfo MODS metadata element class for the 'php-mods-reader' library.
@@ -66,6 +66,24 @@ class RecordInfo extends BaseElement
     }
 
     /**
+     * Get the array of the <recordContentSource> elements by parameters.
+     * @see https://www.loc.gov/standards/mods/userguide/recordinfo.html#recordcontentsource
+     *
+     * @access public
+     *
+     * @param string $xpath The XPath query for metadata search
+     * @param array $attributes The array of attributes ['attribute' => 'value']
+     * @param string $value The value for metadata search
+     *
+     * @return AuthorityLanguageElement[]
+     */
+    public function getRecordContentSourcesByParameters(string $xpath = '', array $attributes = [], string $value = ''): array
+    {
+        $query = new Query('./mods:recordContentSource', $xpath, $attributes, $value);
+        return $this->getAuthorityLanguageElements($query->getXPath());
+    }
+
+    /**
      * Get the array of the <recordCreationDate> elements.
      * @see https://www.loc.gov/standards/mods/userguide/recordinfo.html#recordcreationdate
      *
@@ -78,6 +96,24 @@ class RecordInfo extends BaseElement
     public function getRecordCreationDates(string $query = ''): array
     {
         return $this->getDateElements('./mods:recordCreationDate' . $query);
+    }
+
+    /**
+     * Get the array of the <recordCreationDate> elements by parameters.
+     * @see https://www.loc.gov/standards/mods/userguide/recordinfo.html#recordcreationdate
+     *
+     * @access public
+     *
+     * @param string $xpath The XPath query for metadata search
+     * @param array $attributes The array of attributes ['attribute' => 'value']
+     * @param string $value The value for metadata search
+     *
+     * @return DateElement[]
+     */
+    public function getRecordCreationDatesByParameters(string $xpath = '', array $attributes = [], string $value = ''): array
+    {
+        $query = new Query('./mods:recordCreationDate', $xpath, $attributes, $value);
+        return $this->getDateElements($query->getXPath());
     }
 
     /**
@@ -96,6 +132,24 @@ class RecordInfo extends BaseElement
     }
 
     /**
+     * Get the array of the <recordChangeDate> elements by parameters.
+     * @see https://www.loc.gov/standards/mods/userguide/recordinfo.html#recordchangedate
+     *
+     * @access public
+     *
+     * @param string $xpath The XPath query for metadata search
+     * @param array $attributes The array of attributes ['attribute' => 'value']
+     * @param string $value The value for metadata search
+     *
+     * @return DateElement[]
+     */
+    public function getRecordChangeDatesByParameters(string $xpath = '', array $attributes = [], string $value = ''): array
+    {
+        $query = new Query('./mods:recordChangeDate', $xpath, $attributes, $value);
+        return $this->getDateElements($query->getXPath());
+    }
+
+    /**
      * Get the array of the <recordIdentifier> elements.
      * @see https://www.loc.gov/standards/mods/userguide/recordinfo.html#recordidentifier
      *
@@ -107,13 +161,25 @@ class RecordInfo extends BaseElement
      */
     public function getRecordIdentifiers(string $query = ''): array
     {
-        $recordIdentifiers = [];
-        $xpath = './mods:recordIdentifier' . $query;
-        $element = new Element($this->xml, $xpath);
-        foreach ($element->getValues() as $value) {
-            $recordIdentifiers[] = new RecordIdentifier($value);
-        }
-        return $recordIdentifiers;
+        return $this->getElements('./mods:recordIdentifier' . $query, RecordIdentifier::class);
+    }
+
+    /**
+     * Get the array of the <recordIdentifier> elements by parameters.
+     * @see https://www.loc.gov/standards/mods/userguide/recordinfo.html#recordidentifier
+     *
+     * @access public
+     *
+     * @param string $xpath The XPath query for metadata search
+     * @param array $attributes The array of attributes ['attribute' => 'value']
+     * @param string $value The value for metadata search
+     *
+     * @return RecordIdentifier[]
+     */
+    public function getRecordIdentifiersByParameters(string $xpath = '', array $attributes = [], string $value = ''): array
+    {
+        $query = new Query('./mods:recordIdentifier', $xpath, $attributes, $value);
+        return $this->getElements($query->getXPath(), RecordIdentifier::class);
     }
 
     /**
@@ -128,13 +194,25 @@ class RecordInfo extends BaseElement
      */
     public function getRecordOrigins(string $query = ''): array
     {
-        $recordOrigins = [];
-        $xpath = './mods:recordOrigin' . $query;
-        $element = new Element($this->xml, $xpath);
-        foreach ($element->getValues() as $value) {
-            $recordOrigins[] = new LanguageElement($value);
-        }
-        return $recordOrigins;
+        return $this->getLanguageElements('./mods:recordOrigin' . $query);
+    }
+
+    /**
+     * Get the array of the <recordOrigin> elements by parameters.
+     * @see https://www.loc.gov/standards/mods/userguide/recordinfo.html#recordorigin
+     *
+     * @access public
+     *
+     * @param string $xpath The XPath query for metadata search
+     * @param array $attributes The array of attributes ['attribute' => 'value']
+     * @param string $value The value for metadata search
+     *
+     * @return LanguageElement[]
+     */
+    public function getRecordOriginsByParameters(string $xpath = '', array $attributes = [], string $value = ''): array
+    {
+        $query = new Query('./mods:recordOrigin', $xpath, $attributes, $value);
+        return $this->getLanguageElements($query->getXPath());
     }
 
     /**
@@ -149,13 +227,25 @@ class RecordInfo extends BaseElement
      */
     public function getRecordInfoNotes(string $query = ''): array
     {
-        $recordInfoNotes = [];
-        $xpath = './mods:recordInfoNote' . $query;
-        $element = new Element($this->xml, $xpath);
-        foreach ($element->getValues() as $value) {
-            $recordInfoNotes[] = new RecordInfoNote($value);
-        }
-        return $recordInfoNotes;
+        return $this->getElements('./mods:recordInfoNote' . $query, RecordInfoNote::class);
+    }
+
+    /**
+     * Get the array of the <recordInfoNote> elements by parameters.
+     * @see https://www.loc.gov/standards/mods/userguide/recordinfo.html#recordinfonote
+     *
+     * @access public
+     *
+     * @param string $xpath The XPath query for metadata search
+     * @param array $attributes The array of attributes ['attribute' => 'value']
+     * @param string $value The value for metadata search
+     *
+     * @return RecordInfoNote[]
+     */
+    public function getRecordInfoNotesByParameters(string $xpath = '', array $attributes = [], string $value = ''): array
+    {
+        $query = new Query('./mods:recordInfoNote', $xpath, $attributes, $value);
+        return $this->getElements($query->getXPath(), RecordInfoNote::class);
     }
 
     /**
@@ -170,13 +260,25 @@ class RecordInfo extends BaseElement
      */
     public function getLanguageOfCatalogings(string $query = ''): array
     {
-        $languageOfCatalogings = [];
-        $xpath = './mods:languageOfCataloging' . $query;
-        $element = new Element($this->xml, $xpath);
-        foreach ($element->getValues() as $value) {
-            $languageOfCatalogings[] = new LanguageOfCataloging($value);
-        }
-        return $languageOfCatalogings;
+        return $this->getElements('./mods:languageOfCataloging' . $query, LanguageOfCataloging::class);
+    }
+
+    /**
+     * Get the array of the <languageOfCataloging> elements by parameters.
+     * @see https://www.loc.gov/standards/mods/userguide/recordinfo.html#languageofcataloging
+     *
+     * @access public
+     *
+     * @param string $xpath The XPath query for metadata search
+     * @param array $attributes The array of attributes ['attribute' => 'value']
+     * @param string $value The value for metadata search
+     *
+     * @return LanguageOfCataloging[]
+     */
+    public function getLanguageOfCatalogingsByParameters(string $xpath = '', array $attributes = [], string $value = ''): array
+    {
+        $query = new Query('./mods:languageOfCataloging', $xpath, $attributes, $value);
+        return $this->getElements($query->getXPath(), LanguageOfCataloging::class);
     }
 
     /**
@@ -192,5 +294,23 @@ class RecordInfo extends BaseElement
     public function getDescriptionStandards(string $query = ''): array
     {
         return $this->getAuthorityLanguageElements('./mods:descriptionStandard' . $query);
+    }
+
+    /**
+     * Get the array of the <descriptionStandard> elements by parameters.
+     * @see https://www.loc.gov/standards/mods/userguide/recordinfo.html#descriptionstandard
+     *
+     * @access public
+     *
+     * @param string $xpath The XPath query for metadata search
+     * @param array $attributes The array of attributes ['attribute' => 'value']
+     * @param string $value The value for metadata search
+     *
+     * @return AuthorityLanguageElement[]
+     */
+    public function getDescriptionStandardsByParameters(string $xpath = '', array $attributes = [], string $value = ''): array
+    {
+        $query = new Query('./mods:descriptionStandard', $xpath, $attributes, $value);
+        return $this->getAuthorityLanguageElements($query->getXPath());
     }
 }
